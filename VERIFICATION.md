@@ -1,78 +1,78 @@
-# EzQuote 1.6.1 验证记录
+# EzQuote 1.6.1 Verification record
 
-本轮为 1.6 系列最终交付检查，修正重复启动与正常停止的处理。候选 ZIP 解压到含空格目录后，执行全部回归，并通过实际 run.py 启动器验证 1.6.0 覆盖升级、原有虚拟环境重用及再次重启。依赖事先在测试环境准备，未验证 Windows 首次联网安装。使用 Linux、Python 3.12.14、Chrome Headless Shell 140.0.7339.207、真实本地 FastAPI 服务与手机网关。数据、账号、历史订单、聊天 DOM 和外部提供者响应均为合成测试输入。
+This was the final delivery check for the 1.6 series, correcting duplicate-start and normal-stop handling. The candidate ZIP was extracted into a path containing spaces, all regressions were run, and the actual run.py launcher was used to verify an in-place upgrade from 1.6.0, reuse of the existing virtual environment and another restart. Dependencies were prepared in the test environment beforehand; first-time online installation on Windows was not verified. The environment used Linux, Python 3.12.14, Chrome Headless Shell 140.0.7339.207, a real local FastAPI service and a mobile gateway. Data, accounts, historical orders, chat DOM and external-provider responses were synthetic test inputs.
 
-## 后端 331 项通过
+## Backend: 331 tests passed
 
-实际执行：
+Command executed:
 
     python -m pytest tests independent-results retest-results -q --disable-warnings --tb=short
 
-结果：331 passed, 1 warning in 39.19s。原有 329 项全部保留，新增 2 项启动器回归，检查端口占用时不启动错误页面或手机隧道，以及正常 Ctrl+C 时等待子进程清理。完整输出为 qa-results/backend-pytest.txt。警告是既有 Starlette/httpx 兼容弃用提示。
+Result: 331 passed, 1 warning in 39.19s. All existing 329 tests were retained, with 2 launcher regressions added to check that an occupied port does not open the wrong page or a mobile tunnel, and that normal Ctrl+C waits for child-process cleanup. Full output is in qa-results/backend-pytest.txt. The warning is the existing Starlette/httpx compatibility deprecation notice.
 
-本轮业务后台仅更新运行版本，启动器先占用自身端口、等待本进程就绪后才打开浏览器，并正常处理 Ctrl+C；没有新增业务接口、数据库表或变更定价、核对、库存和审批合同。原有数字完整性、三语语法、未解释原文、库存合计、权限、人工更正、核对绑定、幂等、PDF/Excel、历史快照、导出恢复、迁移和 40/41/1,000 片段边界检查全部继续通过。
+This release updated only the business backend's runtime version. The launcher reserves its own port first, waits for its service instance before opening a browser, and handles Ctrl+C cleanly. No business endpoints or database tables were added, and pricing, review, stock and approval contracts were unchanged. Existing checks continued to pass for numeric integrity, trilingual grammar, unexplained original text, aggregate stock, permissions, manual corrections, review binding, idempotency, PDF/Excel, historical snapshots, export recovery, migration and 40/41/1,000-segment boundaries.
 
-本次长输入结果在 qa-results/long-inquiry-current.json，版本自动从健康接口读取，不再覆盖历史证据。1.5.4 的性能证据及验证说明保留在 qa-results/long-inquiry-v154-after.json、verification-v154.txt 与对应版本说明；本轮不据此增加新的性能承诺。
+This run's long-input result is in qa-results/long-inquiry-current.json, with the version read automatically from the health endpoint rather than replacing historical evidence. Performance evidence and verification notes for 1.5.4 remain in qa-results/long-inquiry-v154-after.json, verification-v154.txt and the corresponding release notes. No new performance commitment is inferred from them in this release.
 
-## 启动与升级 5 组实测通过
+## Startup and upgrade: 5 real test groups passed
 
-对实际解压目录运行 1.6.0，创建老板与员工账号、导入经营表，并保存草稿、待审批单及 RM471.20 已批准单。停机覆盖新版后，由普通 python run.py 通过原虚拟环境启动 1.6.1；原有用户、密码、有效登录、经营表、报价状态、批准快照均保留，原 PDF 字节一致、Excel 全部工作表的单元格值一致。
+Version 1.6.0 was run from an actual extracted directory. Owner and staff accounts were created, the business workbook was imported, and draft, pending-approval and RM471.20 approved quotations were saved. After stopping the service and replacing files with the new version, ordinary python run.py started 1.6.1 through the existing virtual environment. Existing users, passwords, valid sessions, business workbook, quotation states and approval snapshots were retained. Original PDF bytes were identical, and all Excel worksheet cell values matched.
 
-再次启动会明确提示端口占用，不打开浏览器、不尝试手机隧道，也不停止正在使用的服务。真实浏览器交接调用由本地探针记录，确认只交接本次已就绪的版本。升级后继续批准、退回和登记成交，并再次正常停止、启动；无异常堆栈，数据仍在。已有 .venv 的标记和保留文件未变。完整记录在 qa-results/upgrade-v160-v161.json；旧版重复启动复现见 launcher-v160-before.json。
+Starting again clearly reported an occupied port without opening the browser, attempting a mobile tunnel or stopping the service already in use. A local probe recorded actual browser handoff calls and confirmed that only the newly ready version was opened. After upgrading, approval, return and won-outcome recording still worked; another normal stop and restart produced no traceback and retained the data. Existing .venv markers and retained files were unchanged. Full records are in qa-results/upgrade-v160-v161.json; the old duplicate-start reproduction is in launcher-v160-before.json.
 
-## 浏览器 64 组通过
+## Browser: 64 groups passed
 
-九个脚本顺序执行，不并用 8765/8766 端口；无未处理 JavaScript 错误。各脚本原有业务断言保留，固定背景颜色断言随参考配色更新为 #f4f8f6。
+Nine scripts ran sequentially without competing for ports 8765/8766, and no unhandled JavaScript errors occurred. Existing business assertions in each script were retained. The fixed background-color assertion was updated to #f4f8f6 to match the reference palette.
 
-| 脚本 | 通过组数 | 范围 |
+| Script | Groups passed | Scope |
 | --- | ---: | --- |
-| browser_smoke.mjs | 8 | 首次设置、真实界面 Excel 导入、员工提交、老板批准、文件下载、三语和缺信息 |
-| chat_integration.mjs | 6 | 合成 WhatsApp 来源、追问、保留未保存内容、提交、正确聊天回填与切错聊天拦截 |
-| mobile_browser.mjs | 6 | 合成通知提供者、真实本地手机网关、密码、马来语审批、PDF和窄屏 |
-| copilot_browser.mjs | 7 | 完整经营导入、库存推荐、最低毛利拦截、老板改价、正式输出、成交反馈和手机改价 |
-| guided_browser.mjs | 7 | 角色导航、分步核对、草稿恢复、返回修改、审批退回、筛选与三语布局 |
-| semantic_browser.mjs | 6 | 完整数量、同数量多商品、否定、换行偏好、输入异步隔离和实际 PDF |
-| self_review_browser.mjs | 10 | 全角范围、异常数字、未知商品与取消、更正记录、缓存及手机切换 |
-| audit_browser.mjs | 8 | 桌面迟到响应、同草稿等待期间编辑、来源确认、PDF归属与原文覆盖 |
-| ui_polish_browser.mjs | 6 | 真实主题资源、侧栏入口、角色限制、六种宽度切换、三语、核对中/通过、依据折叠、金额布局、超长错误、键盘关闭及退出清理 |
+| browser_smoke.mjs | 8 | First-run setup, Excel import through the real interface, staff submission, owner approval, downloads, three languages and missing information |
+| chat_integration.mjs | 6 | Synthetic WhatsApp source, clarification, preservation of unsaved content, submission, insertion into the correct chat and rejection after switching to a different chat |
+| mobile_browser.mjs | 6 | Synthetic notification provider, real local mobile gateway, password, Malay approval, PDF and narrow screens |
+| copilot_browser.mjs | 7 | Complete business import, stock recommendation, minimum-margin rejection, owner price edits, final exports, customer-outcome feedback and mobile price edits |
+| guided_browser.mjs | 7 | Role-based navigation, guided review, draft restoration, returning to edit, approval returns, filters and trilingual layouts |
+| semantic_browser.mjs | 6 | Complete quantities, multiple products with equal quantities, negation, continuation-line preferences, isolation of asynchronous input and actual PDF |
+| self_review_browser.mjs | 10 | Full-width ranges, unusual numbers, unknown products and cancellation, correction records, caching and mobile quotation switching |
+| audit_browser.mjs | 8 | Late desktop responses, edits to the same draft while waiting, source confirmation, PDF ownership and original-text coverage |
+| ui_polish_browser.mjs | 6 | Real theme assets, sidebar entry, role restrictions, six viewport widths, three languages, review-in-progress/passed states, collapsed evidence, amount layout, oversized-input errors, keyboard dismissal and logout cleanup |
 
-界面脚本中，桌面新建入口实际进入报价流程，返回首页后验证 aria-current；员工仍只有首页和报价记录两个导航，老板设置入口由已有角色检查保护。三语首页在 320、430、768、900、1160、1440px 下无水平溢出，900px 是侧栏切换点。
+The interface scripts verified that the desktop new-quotation entry actually entered the workflow and checked aria-current after returning home. Staff still had only Home and Quotation records navigation; owner settings remained protected by existing role checks. The home page had no horizontal overflow in all three languages at widths of 320, 430, 768, 900, 1160 and 1440px; 900px was the sidebar breakpoint.
 
-实际保持 review HTTP 响应验证“正在核对”和 aria-busy，再放行到“核对通过”及 RM471.20。原文与普通数量依据仍可展开，错误数量继续提示。三语报价金额在 320、430、1160px 下没有横向溢出或金额卡裁切。1,000 片段仍可控拒绝、保留原文、不生成报价；改回正常输入可恢复。退出后隐藏工作区和侧栏。
+The review HTTP response was deliberately held to verify “Review in progress” and aria-busy, then released to reach “Review passed” and RM471.20. Original text and ordinary quantity evidence remained expandable, while incorrect quantities still showed warnings. Trilingual quotation amounts had no horizontal overflow or clipped amount cards at 320, 430 and 1160px. An input with 1,000 segments was still rejected in a controlled way, retained its original text and created no quotation; switching back to normal input recovered the workflow. Logging out hid the workspace and sidebar.
 
-完整经营脚本保留原价 RM495、建议 RM471.20、违规改价拦截、老板改为 4%+RM30 后 RM471.60、正式 PDF/Excel 与三语回复、反馈后下笔建议 3.17% 的原断言。此前修正的明确金额等待继续生效。
+The complete-business script retained its original assertions: original total RM495, recommendation RM471.20, rejection of invalid price changes, RM471.60 after the owner changed to 4% + RM30, final PDF/Excel and trilingual replies, and a 3.17% suggestion on the next quotation after feedback. The previously corrected wait for the explicit expected amount remained effective.
 
-各脚本日志在 qa-results，汇总在 browser-results.json。1.5.4 的浏览器汇总另存 browser-results-v154.json；截图仅用于内部目视检查，不放入发布包。
+Script logs are in qa-results, summarized in browser-results.json. The 1.5.4 browser summary is separately retained as browser-results-v154.json. Screenshots were used only for internal visual checks and are not included in the release package.
 
-## 插件逻辑 10 组通过
+## Extension logic: 10 groups passed
 
     node tests/extension_checks.mjs
 
-Manifest 权限和五个 JS 文件语法、英马静态文案、消息顺序与来源、过长消息、右键入口、徽标、服务端批准与来源核对、追问回填和通知去重均通过。扩展 API 是模拟桥接，真实 WhatsApp 页面是合成 DOM，不等于实机联调。
+Checks passed for Manifest permissions and syntax of five JS files, English/Malay static copy, message order and origin, oversized messages, context-menu entry, badges, server approval and source checks, clarification insertion and notification deduplication. Extension APIs used a simulated bridge, and the WhatsApp page used a synthetic DOM; this does not establish real-device integration.
 
-## 版面与交付
+## Layout and delivery
 
-- 已查看中文桌面首页、商品页、报价页、老板审批页与马来语 320px 首页、手机审批。绿色按钮、金额、状态和导航可读；没有发现重叠、裁切或横向溢出。中文截图使用包内 Noto Sans SC 字体安装到测试环境。
-- 两页队友 Word 指南已更新为 EzQuote 1.6.1 并补充端口占用处理，重新渲染并逐页检查。
-- ZIP 发布器检查版本、theme.css、必需模块/样例/指南、64组汇总、331项日志与升级实测结果、CRC和逐文件 SHA-256；不包含账号、密钥、data、数据库、虚拟环境或内部截图。
+- The Chinese desktop home, product, quotation and owner-approval pages, plus the Malay 320px home and mobile approval, were inspected. Green buttons, amounts, states and navigation were readable, with no overlap, clipping or horizontal overflow found. Chinese screenshots used the packaged Noto Sans SC font installed in the test environment.
+- The two-page teammate Word guide was updated to EzQuote 1.6.1, including occupied-port handling, then rendered again and checked page by page.
+- The ZIP packager checked versions, theme.css, required modules/samples/guides, the 64-group summary, 331-test log, actual upgrade results, CRC and per-file SHA-256. It excluded accounts, keys, data, databases, virtual environments and internal screenshots.
 
-## 开发复现
+## Development reproduction
 
     python -m pip install -r requirements-dev.txt
     python -m pytest tests independent-results retest-results -q
     npm install
     node tests/extension_checks.mjs
 
-为浏览器脚本设置 TEST_PYTHON 和 BROWSER_EXECUTABLE，再顺序执行上表九个脚本。例如：
+Set TEST_PYTHON and BROWSER_EXECUTABLE for browser scripts, then execute all nine scripts in the table sequentially. For example:
 
     node tests/ui_polish_browser.mjs
     node tests/guided_browser.mjs
     node tests/copilot_browser.mjs
 
-Windows PowerShell 用 $env:TEST_PYTHON 与 $env:BROWSER_EXECUTABLE 设置实际路径。普通用户启动应用无需 Node。
+In Windows PowerShell, set the actual paths with $env:TEST_PYTHON and $env:BROWSER_EXECUTABLE. Ordinary application startup does not require Node.
 
-## 未完成的实机验证与边界
+## Outstanding real-device checks and limits
 
-Windows 干净环境首次安装、原生 Chrome 扩展、真实 WhatsApp DOM/来源绑定/草稿回填仍需本机联调。没有调用付费模型、真实 Meta 接口、真实手机收件或公网隧道。手机测试仅覆盖真实本地网关配合合成提供者。
+First-time installation on a clean Windows machine, the native Chrome extension, and real WhatsApp DOM/source binding/draft insertion still require local integration checks. No paid model, real Meta endpoint, real mobile message receipt or public tunnel was used. Mobile tests covered only a real local gateway with a synthetic provider.
 
-需求整理仍为常见建材表达的本地规则，历史建议为统计和店铺规则。库存是 Excel 快照，不预留或出库；客户结果人工登记；批准不等于成交。客户回复由人核对发送，PDF 单独附加。各电脑数据独立，升级保留 data 和 .venv。
+Requirement organization still uses local rules for common building-materials expressions; historical suggestions use statistics and store rules. Stock is an Excel snapshot without reservations or stock movements. Customer outcomes are recorded manually, and approval is not a won sale. People check and send customer replies, with PDFs attached separately. Each computer's data is independent; retain data and .venv during upgrades.

@@ -1,153 +1,153 @@
 # EzQuote MVP 1.6.1
 
-本版按团队更新的完整流程实现：客户需求 → 三语需求整理 → 商品与库存匹配 → 商品原价和基础配送 → 历史折扣与运费建议 → 老板采用或修改后批准 → PDF 与客户回复 → 成交结果反馈。
+This version implements the team's updated complete workflow: customer requirements → trilingual requirement organization → product and stock matching → original product prices and base delivery → historical discount and delivery suggestions → owner approval with or without edits → PDF and customer replies → customer-outcome feedback.
 
-本次沿用团队选择的无 API 方案。需求理解使用本地目录规则，Pricing Intelligence 使用真实执行的历史统计与店铺规则；默认不调用 OpenAI 或 WhatsApp Cloud API。界面、审批和客户回复支持中文、英文、马来语。样例经营数据全部自编。
+The team's chosen API-free approach is retained. Requirement understanding uses local catalog rules, while Pricing Intelligence runs actual historical statistics and store rules. OpenAI and WhatsApp Cloud API are not called by default. The interface, approval workflow and customer replies support Chinese, English and Malay. All sample business data is synthetic.
 
-## 1.6.1 最终检查修正
+## 1.6.1 Final-check fixes
 
-旧服务仍在运行时，新启动器会提示关闭旧窗口，并保留 data 和 .venv，不再打开旧页面。浏览器只在本次服务启动完成后打开。Windows 启动失败时显示对应错误提示，不再把所有错误归为 Python 安装问题。正常 Ctrl+C 停止时等待后台清理，不再显示异常堆栈。最终检查详见“1.6.1_最终交付检查.md”。
+When an older service is still running, the new launcher asks the user to close that window and keep data and .venv, rather than opening the old page. The browser opens only after this service instance has started. Windows startup failures display the relevant error instead of attributing every failure to the Python installation. A normal Ctrl+C stop waits for backend cleanup without displaying a traceback. See “1.6.1_最终交付检查.md” for final-check details.
 
-## 1.6.0 深绿界面
+## 1.6.0 Dark-green interface
 
-按团队提供的参考图改为深绿侧栏、浅灰绿底、白色卡片和薄荷绿金额高亮，品牌统一为 EzQuote。桌面工作台显示左侧导航、概览数字、最近报价与流程提示；窄屏使用顶部导航，继续按四步核对报价。审批通过、待审和退回分别使用绿、黄、红提示，均对应真实记录状态。
+The interface follows the team's reference image: a dark-green sidebar, pale gray-green background, white cards and mint-green amount highlights, with consistent EzQuote branding. The desktop workspace shows left navigation, overview figures, recent quotations and workflow guidance. Narrow screens use top navigation and retain the four-step quotation review. Approved, pending and returned states use green, yellow and red indicators, respectively, each reflecting the actual record state.
 
-商品与报价页面调整间距和分栏；宽屏将客户与商品摘要放在左侧、金额建议放在右侧，窄屏恢复纵向布局。WhatsApp 消息入口、扩展图标和可选手机审批页同步使用绿色主题。只展示已有功能，不增加未实现的客户、报表或发送状态菜单。更新说明见“1.6_界面更新说明.md”。
+Product and quotation pages have revised spacing and columns. Wide screens place customer and product summaries on the left and pricing suggestions on the right; narrow screens return to a vertical layout. The WhatsApp message entry, extension icon and optional mobile approval page share the green theme. Only existing features are shown; there are no unimplemented customer, report or sending-status menus. See “1.6_界面更新说明.md” for release notes.
 
-## 历史 1.5.4 页面优化与清单修正
+## Historical 1.5.4 Page polish and checklist fixes
 
-本轮保留现有流程和蓝白风格，压缩窄屏顶部空白，强化金额、状态与主按钮；普通数量依据收在“查看本行对应原文”内，异常数量仍显著提示。商品页显示正在核对、核对通过或待确认，输入区增加三语填写建议、字符计数和分批提示；通知可以关闭。
+That release retained the existing workflow and blue-and-white style, reduced blank space at the top of narrow screens, and emphasized amounts, states and primary buttons. Ordinary quantity evidence was moved into “View the original text for this line,” while unusual quantities remained prominent. The product page shows review in progress, review passed or confirmation needed. The input area adds trilingual entry tips, a character count and batch guidance; notices can be dismissed.
 
-同时完成队友 1.5.3 清单两项修正：拆分不再递归，超过商品数或处理预算整笔返回 422，不截取部分商品报价；正式经营浏览器脚本等待预期金额后再断言。每次最多 40 条商品需求，配送、问候另设分段预算。详见“1.5.4_优化与验收说明.md”。
+Two items from the team's 1.5.3 checklist were also fixed: splitting is no longer recursive, and exceeding the product count or processing budget returns 422 for the entire inquiry instead of quoting a partial subset. The complete-business browser script waits for the expected amount before asserting it. Each inquiry allows at most 40 product requirements, with separate segment budgets for delivery and greetings. See “1.5.4_优化与验收说明.md”.
 
-## 历史修订
+## Earlier revisions
 
-1.5.3 再次自查修复文字数量相加或截尾、其他连接方式漏商品、弯引号否定失效，以及电脑页面迟到响应覆盖另一笔报价或新草稿。未解释的原文会阻止报价，要求问清后分行重写；保存、审批和 PDF 操作记录绑定发起时的报价。结果与边界见“1.5.3_自查与修复说明.md”。
+The 1.5.3 self-review fixed the addition or truncation of written quantities, omitted products joined in other ways, negation with curly apostrophes, and late desktop responses overwriting another quotation or a new draft. Unexplained original text blocks quotation creation and requires clarification followed by rewriting on separate lines. Save, approval and PDF operations remain tied to the quotation that initiated them. See “1.5.3_自查与修复说明.md” for results and limits.
 
-上一轮 1.5.2 按队友独立复测修复了两类遗漏：`20／30` 等特殊分隔会追问，`1_020` 等不支持的格式保留完整数字，不再截尾；同句的 `cement and sand`、`simen dan pasir`、`水泥和沙子` 会保留未知商品。补充商品及数量，或明确取消并记录原因后才能继续。复现、修复和验证见“1.5.2_复测修复说明.md”。
+The preceding 1.5.2 release addressed two omissions identified by independent retesting: unusual separators such as `20／30` trigger clarification, and unsupported formats such as `1_020` preserve the entire number instead of using its tail. Unknown products in the same sentence, such as `cement and sand`, `simen dan pasir` and `水泥和沙子`, are retained. The user must provide the missing product and quantity, or explicitly cancel the item with a recorded reason, before proceeding. See “1.5.2_复测修复说明.md” for reproduction, fixes and validation.
 
-本次自查又修复范围数量、配送续行吞项、后置否定、手动新增项确认、非法数字异常、传统模式数字处理、旧草稿缓存及同一手机标签页切换报价。手机页显示人工更正与原因。详细复现、测试及功能边界见“1.5_自查修订说明.md”。范围数量或多种数量无法绑定时，请核实后修改原文并重新整理。
+The self-review also fixed quantity ranges, products swallowed by delivery continuation lines, trailing negation, confirmation of manually added items, invalid-number exceptions, number handling in legacy mode, old draft caches and switching quotations within the same mobile tab. The mobile page shows manual corrections and their reasons. See “1.5_自查修订说明.md” for reproduction details, tests and functional limits. If a range or several quantities cannot be assigned unambiguously, verify them, edit the original text and organize the inquiry again.
 
-## 本次修复
+## Fixes included
 
-- `1,020` 完整识别为 `1020`，库存不足会拦截；不再截成 `20`。格式错误的数字需人工核实。
-- 同一句的水泥 20 袋和铁钉 20 袋分别保留；单个商品的换行偏好附回原商品。多商品之间无法确定归属的条件仍要追问。
-- 支持常见中英马来否定条件，先排除“不速凝”“不要某品牌”等候选；否定自提不会被当成自提。双重否定及冲突需确认。
-- 后台核对原文、商品行、数量和配送，核对记录绑定当前输入、目录、经营数据与报价版本。不能靠前端勾选或删行绕过。
-- 人工改数量、换商品或配送时，页面列出差异；填写确认原因并重新核对。只对已确认的具体值生效，再改值需要再确认。
+- `1,020` is recognized in full as `1020`; insufficient stock blocks the quotation instead of the quantity being truncated to `20`. Malformed numbers require manual verification.
+- Twenty bags of cement and twenty bags of nails in the same sentence are retained separately. A continuation-line preference for one product is attached to that product. Conditions whose association across multiple products is unclear still require clarification.
+- Common Chinese, English and Malay negation is supported. Candidates that violate conditions such as “not fast-setting” or “not this brand” are excluded first. Negating collection does not become collection. Double negation and conflicting conditions require confirmation.
+- The backend reviews the original text, product lines, quantities and delivery. Review records bind to the current input, catalog, business data and quotation revision. Frontend checkboxes or deleted lines cannot bypass them.
+- When quantities, products or delivery are changed manually, the page lists the differences. Enter a confirmation reason and review again. Confirmation applies only to the specific values confirmed; further changes require another confirmation.
 
-修复与回归用例对照见“1.5_修复与测试对照.md”。
+See “1.5_修复与测试对照.md” for the mapping between fixes and regression cases.
 
-## 新版页面
+## Updated pages
 
-- 员工首页：新建报价、继续未完成报价、待审批、待跟进和最近记录。
-- 分步报价：客户需求 → 商品核对 → 报价确认；批准后显示客户回复与文件。
-- 老板审批：先看商品、原价与建议，默认直接批准；改价、退回和历史依据按需展开。
-- 老板设置：经营数据、商品目录、店铺资料和可选连接集中管理。员工不显示设置入口。
-- “待跟进”表示已批准但客户结果仍为待回复；“已结束”筛选已成交或未成交。批准不等于成交。
+- Staff home: create a quotation, continue an unfinished quotation, pending approval, follow-up and recent records.
+- Guided quotation: customer requirements → product review → quotation confirmation; approved quotations show customer replies and files.
+- Owner approval: review products, original prices and suggestions first, then approve directly by default. Price edits, returns and historical evidence expand as needed.
+- Owner settings: business data, the product catalog, shop details and optional connections are managed together. Staff do not see the settings entry.
+- “Follow-up” means an approved quotation whose customer outcome is still open. “Closed” filters won or lost outcomes. Owner approval does not mean a sale was won.
 
-从 1.4 或更早版本升级时保留 data 和 .venv，已有完整经营数据无需再次导入。后台与插件一起更新为 1.6.1。旧的未批准经营报价要点“重新核对这笔报价”，保存新版本后重新提交；已批准 PDF 和金额保留。
+When upgrading from 1.4 or earlier, retain data and .venv. Complete business data already imported does not need to be imported again. Update the backend and extension together to 1.6.1. For old unapproved business quotations, select “Review this quotation again,” save a new revision and submit it again. Approved PDFs and amounts are retained.
 
-## 先读哪份说明
+## Which guide to read
 
-- 已经安装旧版：读“更新到1.5_先看这里.md”，保留 data。
-- 队友首次体验：读“队友使用指南_1.6.docx”或“先看这里.txt”。
-- 修改经营数据：读“经营数据模板说明.md”。
-- 对照队友需求：读“功能覆盖说明_1.5.md”；原文在 docs/需求流程原文.docx。
-- 技术接口与验证范围：API.md、VERIFICATION.md。
+- Existing installation: read “更新到1.5_先看这里.md” and retain data.
+- First-time teammate experience: read “队友使用指南_1.6.docx” or “先看这里.txt”.
+- Editing business data: read “经营数据模板说明.md”.
+- Comparing the team's requirements: read “功能覆盖说明_1.5.md”; the original is in docs/需求流程原文.docx.
+- Technical interfaces and verification scope: API.md and VERIFICATION.md.
 
-## 启动和导入
+## Startup and import
 
-1. 完整解压到固定文件夹。已有 Python 时可以继续用，要求 Python 3.10+，推荐 3.12。
-2. 进入能看到 run.py 的一层，在文件管理器地址栏输入 cmd，然后运行 python run.py。保持窗口运行。
-3. 打开 http://127.0.0.1:8765/。首次设置店名及不同的老板和员工密码，至少 8 位；固定账号为 boss、staff。
-4. 老板进入“设置 → 经营数据”，选 samples/business_demo.xlsx，先“检查导入内容”，再“确认导入完整经营数据”。
-5. 这份完整经营表包含 Products、Inventory、History、Delivery、Rules。导入会同步创建商品目录和经营数据版本，不必再单独导入旧 products.xlsx。
-6. 当前演示保持“设置 → 可选连接”中的真实 AI 和 WhatsApp 手机自动通知关闭。
+1. Extract the complete package into a permanent folder. An existing Python installation can be used; Python 3.10+ is required and 3.12 is recommended.
+2. Open the folder containing run.py, enter cmd in the file manager address bar, then run python run.py. Keep the window open.
+3. Open http://127.0.0.1:8765/. On first use, set the shop name and different owner and staff passwords, each at least 8 characters long. The fixed account names are boss and staff.
+4. As the owner, open Settings → Business data, select samples/business_demo.xlsx, choose “Check import contents,” then “Confirm complete business-data import.”
+5. The complete workbook contains Products, Inventory, History, Delivery and Rules. Importing it creates both the product catalog and a business-data version, so there is no need to import the old products.xlsx separately.
+6. For this demonstration, keep real AI and automatic WhatsApp mobile notifications disabled under Settings → Optional connections.
 
-首次安装依赖和使用 WhatsApp Web 需要联网。普通用户不需要 Node，不需要密钥，不需要启动手机隧道。
+An internet connection is needed for the first dependency installation and for WhatsApp Web. Ordinary users do not need Node, keys or a mobile tunnel.
 
-只导入旧 samples/products.xlsx 时，保留旧版保守目录模式和 RM370.00 演示。导入完整经营数据后，所有新报价和修改都必须经过库存与定价规则校验，不能通过取消前端勾选绕开规则。
+Importing only the old samples/products.xlsx retains the conservative legacy catalog mode and RM370.00 demonstration. After importing complete business data, all new quotations and revisions must pass stock and pricing-rule checks. Unchecking a frontend option cannot bypass those rules.
 
-## 装到 WhatsApp 网页版
+## Load the extension in WhatsApp Web
 
-Chrome 打开 chrome://extensions，开启开发者模式，加载本项目 extension 文件夹，确认版本 1.6.1，再刷新 https://web.whatsapp.com/。
+In Chrome, open chrome://extensions, enable Developer mode, load this project's extension folder, confirm version 1.6.1, then refresh https://web.whatsapp.com/.
 
-插件只读取用户这次选择的询价，不在后台批量上传聊天。消息旁点“生成报价”，侧栏用 staff 登录；另一个完整工作台标签页用 boss 登录。也可选中文字带入，或在本地工作台手工粘贴。
+The extension reads only the inquiry selected by the user for the current operation; it does not upload chats in bulk in the background. Select “Generate quotation” beside a message and sign in as staff in the side panel. Sign in as boss in a separate full-workspace tab. You can also capture selected text or paste it manually into the local workspace.
 
-手机 WhatsApp App 和 Windows 原生 WhatsApp 客户端不会新增插件按钮。旧路径的扩展先停用或重新加载正确路径。
+The mobile WhatsApp app and native Windows WhatsApp client do not gain an extension button. Disable an extension loaded from an old path or reload it from the correct path first.
 
-## 完整演示
+## Complete demonstration
 
-员工首页点击“新建报价”，展开“试用一条示例询价”，点击“完整流程样例”；也可直接输入：
+On the staff home page, select “New quotation,” expand “Try a sample inquiry,” and choose “Complete workflow sample.” Alternatively, enter:
 
     Hi boss, I need 20 bags cement for plastering. Prefer fast setting. Deliver to Shah Alam. How much?
 
-也支持：
+The following inquiries are also supported:
 
     我要20袋水泥用于抹灰，偏好速凝，送到莎阿南，多少钱？
     Saya mahu 20 beg simen untuk melepa, mahu cepat kering. Hantar ke Shah Alam. Berapa harga?
 
-1. 点“整理需求，核对商品”。商品页推荐 CEM-A-FAST-50，Brand A Fast Cement，50kg，库存 85 袋，单价 RM23。备选商品、商品切换和识别详情默认收起。
-2. 核对规格、数量和配送地区后，点“确认商品，查看报价”。若手动值与原文不同，先在提示中填写确认原因，点“确认更正并重新核对”，再继续。规格选择会由服务器核实；库存不足不能用原因说明绕过。可以返回修改，数量和配送信息会保留。
-3. 报价页对照原始总额和建议总额：商品原价 RM460，基础运费 RM35，原始总额 RM495。初始样例建议折扣 3%（RM13.80）、运费 RM25，建议总额 RM471.20。
-4. 员工核对客户和来源，勾选确认，点“提交老板审批”。保存草稿是次要操作。
-5. 老板从首页待审批列表或“报价记录”打开报价，直接“确认并批准”；需要改价时展开“调整折扣和运费”。历史依据和退回原因按需展开。
-6. 例如改为 4% 折扣和 RM30 运费，最终为 RM471.60。后台校验最高折扣及最低预估毛利，过低价格会被拦截。
-7. 批准后员工下载 PDF、Excel，选择客户回复语言。客户消息先填入对应聊天草稿，再由人核对发送；PDF 单独附加。
-8. 客户决定后，展开“客户有回复了吗？记录结果”，保存已成交、未成交或待回复，可填写实际配送成本。
-9. 再新建同类报价，统计会加入新结果。首次只新增上述一笔成交且实际配送成本填 RM29 时，类似已结束订单由 8 变 9，建议折扣由 3% 变为 3.17%。后续数值随记录改变。
+1. Select “Organize requirements and review products.” The product page recommends CEM-A-FAST-50, Brand A Fast Cement, 50kg, with stock of 85 bags and a unit price of RM23. Alternatives, product switching and recognition details are collapsed by default.
+2. Check the specification, quantity and delivery area, then select “Confirm products and view quotation.” If manual values differ from the original text, first enter a reason in the prompt and select “Confirm correction and review again.” The server checks specification selections; a reason cannot bypass insufficient stock. You can return to edit while retaining quantities and delivery information.
+3. Compare original and suggested totals on the quotation page: original goods RM460, base delivery RM35 and original total RM495. The initial sample suggests a 3% discount (RM13.80) and RM25 delivery, for a total of RM471.20.
+4. Staff check the customer and source, confirm the checkbox and select “Submit for owner approval.” Saving a draft is the secondary action.
+5. The owner opens the quotation from the home page's pending-approval list or quotation records and selects “Confirm and approve.” To change the price, expand “Adjust discount and delivery.” Historical evidence and the return reason expand as needed.
+6. For example, changing the discount to 4% and delivery to RM30 gives a final amount of RM471.60. The backend checks the maximum discount and minimum estimated margin; prices that are too low are rejected.
+7. After approval, staff download the PDF and Excel files and choose the customer-reply language. The customer message is inserted into the corresponding chat draft for a person to check and send. Attach the PDF separately.
+8. Once the customer decides, expand “Has the customer replied? Record the outcome,” save won, lost or open, and optionally enter actual delivery cost.
+9. Create another similar quotation to include the new outcome in the statistics. If only the single sale above is newly recorded, with actual delivery cost RM29, similar closed orders increase from 8 to 9 and the suggested discount changes from 3% to 3.17%. Later values vary with recorded outcomes.
 
-中文、英文、马来语界面可切换。缺数量、配送地区或存在不明确规格时会追问；也可明确选择自提。未知配送地区需补充经营表配送规则。库存不足的 SKU 不能保存为有效经营报价。
+The interface can switch between Chinese, English and Malay. Missing quantities, delivery areas or unclear specifications trigger clarification; collection can also be selected explicitly. Unknown delivery areas require adding delivery rules to the business workbook. An SKU with insufficient stock cannot be saved as a valid business quotation.
 
-## 定价建议怎样得出
+## How pricing suggestions are calculated
 
-算法在本机执行，不调用模型：
+The algorithm runs locally without calling a model:
 
-- 类似订单要求相同 SKU 组合、每个 SKU 数量在本次的 0.5–2 倍内，优先本地区；没有本地区组合时明确说明使用跨地区折扣参考。
-- 转化率 = 已成交订单 /（已成交 + 未成交）。待回复不进入分母，同一多商品订单按一单计算。
-- 折扣参考类似成交订单的等权平均折扣；样本不足默认 0%，显示低置信度。
-- 当前库存达到店铺 high_stock 时视为高位；库存低位保留原价。高库存且类似转化率低于 50% 时，在历史折扣上尝试增加 1 个百分点；仍受最高折扣和最低预估毛利约束。
-- 运费参考该地区已有成交的实际配送成本；有足够类似订单且库存高时，允许最高配送补贴。没有实际成本样本时使用配送规则。
-- 产品成本、历史配送成本和最终收入用于估算毛利；这是成本估计下的规则核对，不保证实际利润。
-- 建议、历史样本数和规则版本按报价版本固定。后来的经营数据或成交结果不会改写已批准报价。
+- Similar orders require the same SKU combination, with each SKU's quantity between 0.5 and 2 times the current quantity. Orders from the same area are preferred. If no same-area combination exists, the interface explicitly states that cross-area discount references are used.
+- Conversion rate = won orders / (won + lost orders). Open outcomes are excluded from the denominator, and a multi-product order counts as one order.
+- The discount reference is the equally weighted average discount from similar won orders. Insufficient samples default to 0% with low confidence.
+- Stock is considered high when it reaches the store's high_stock threshold. Low stock retains the original price. When stock is high and the similar-order conversion rate is below 50%, the algorithm tries adding 1 percentage point to the historical discount, still subject to maximum-discount and minimum-estimated-margin limits.
+- Delivery references actual delivery costs from won orders in the area. With enough similar orders and high stock, a subsidy up to the maximum delivery allowance is permitted. Delivery rules are used when no actual-cost samples exist.
+- Product cost, historical delivery costs and final revenue are used to estimate gross margin. These are checks based on estimated costs, not a guarantee of actual profit.
+- Suggestions, historical sample counts and rule versions are fixed to the quotation revision. Later business data or customer outcomes do not rewrite approved quotations.
 
-库存读取导入快照，不提供自动出入库或库存预留。成交标记只记录客户结果；库存变化请更新经营表后重新导入。
+Stock comes from the imported snapshot. There are no automatic stock movements or reservations. Marking a sale as won records only the customer outcome; update and reimport the business workbook when stock changes.
 
-## 反馈和记录
+## Feedback and records
 
-老板批准不是客户成交。批准后仍为待回复；只有明确保存的成交/未成交才进入转化率。
+Owner approval is not a customer sale. An approved quotation remains open; only explicitly saved won or lost outcomes enter the conversion rate.
 
-保存老板建议值、最终修改值、审批人、审批时间及客户结果。未填写实际配送成本的成交可进入销量、折扣和转化率统计，但不会把估计运费成本冒充实际成本加入配送历史。
+The system records the owner's suggested values, final edits, approver, approval time and customer outcome. Won orders without an actual delivery cost can contribute to sales, discount and conversion statistics, but estimated delivery costs are not recorded as actual delivery history.
 
-Excel 记录保留 Quotes、Items、Activity，经营报价还增加 Pricing、Requirements；记录过结果时增加 Outcomes。报价记录与原商品价目表分开。
+Excel records retain Quotes, Items and Activity. Business quotations also include Pricing and Requirements, plus Outcomes when outcomes have been recorded. Quotation records are kept separately from the original product price list.
 
-修改已完成报价会创建新版本并重新审批；同一个 Quote ID 的多个版本不会被统计成多笔历史订单。修订时不使用本单旧版本来给本单计算建议。
+Editing a completed quotation creates a new revision and requires approval again. Multiple revisions of the same Quote ID do not become multiple historical orders. A revision's suggestion excludes the quotation's own older revisions.
 
-## 保存和备份
+## Saving and backup
 
-账号、目录、报价与日志保存在 data/quotes.sqlite3；原上传文件在 data/uploads；PDF 在 data/pdf；记录表在 data/exports/quotations.xlsx。
+Accounts, catalogs, quotations and logs are stored in data/quotes.sqlite3; original uploads in data/uploads; PDFs in data/pdf; and the ledger in data/exports/quotations.xlsx.
 
-报价须点保存草稿或提交。下次在同一目录运行 python run.py 可继续使用原账号。备份前先 Ctrl+C 停止服务，再复制整个项目文件夹或完整 data。给队友发干净安装包，他们各自创建账号和数据，各台电脑不会自动同步。
+Select Save draft or Submit to persist a quotation. Running python run.py again in the same directory reuses the existing accounts. Before backing up, stop the service with Ctrl+C, then copy the entire project folder or the complete data directory. Send teammates a clean installation package so that each creates their own accounts and data. Different computers do not synchronize automatically.
 
-本包不含真实账号、密钥或客户资料。可选密钥仍存于本机连接设置文件，未采用硬件密钥库加密；不要分享自己的 data。
+This package contains no real accounts, keys or customer information. Optional keys are still stored in the local connection-settings file without hardware-keystore encryption. Do not share your own data directory.
 
-## 可选接口和手机审批
+## Optional APIs and mobile approval
 
-原有可选 OpenAI 接入、WhatsApp 通知队列、签名手机链接和独立网关继续保留。传统目录模式可选择真实模型；新的需求匹配及历史定价默认始终使用本地规则和统计。
+The existing optional OpenAI connection, WhatsApp notification queue, signed mobile links and independent gateway are retained. Legacy catalog mode can use a real model; the new requirement matching and historical pricing default to local rules and statistics throughout.
 
-配置手机入口后，手机页同样显示原价、建议、折扣及运费，可采用或修改后输入老板密码批准。完整工作台仍绑定 127.0.0.1:8765，独立手机网关绑定 8766。临时 HTTPS 隧道和真实消息收件尚待用户账号联调。
+When a mobile entry is configured, the mobile page also shows original prices, suggestions, discounts and delivery. The owner can accept or edit them, then enter the owner password to approve. The full workspace remains bound to 127.0.0.1:8765 and the separate mobile gateway to 8766. Temporary HTTPS tunnels and real incoming messages still require integration tests with the user's account.
 
-相关历史接入说明见“接入AI与手机通知_1.2.md”。这不是本次无 API 演示的安装前置步骤。接口受理不等于手机送达，未实现送达/已读 webhook；客户回复仍由人发送。
+See “接入AI与手机通知_1.2.md” for the historical connection guide. These connections are not prerequisites for the API-free demonstration. Provider acceptance does not mean mobile delivery; delivery/read webhooks are not implemented. Customer replies are still sent by a person.
 
-## 开发和复现
+## Development and reproduction
 
-后端为 FastAPI、SQLite、openpyxl、ReportLab，金额用 Decimal；插件为原生 HTML/CSS/JS，无打包构建步骤。
+The backend uses FastAPI, SQLite, openpyxl and ReportLab, with Decimal amounts. The extension is plain HTML/CSS/JS and has no bundle/build step.
 
     python -m pip install -r requirements-dev.txt
     python -m pytest tests -q
     node tests/extension_checks.mjs
 
-浏览器脚本见 VERIFICATION.md。普通用户运行无需 Node。生成样例的开发脚本 tools/build_business_sample.mjs 使用 Codex 提供的 artifact-tool，不属于最终用户依赖；样例 Excel 已包含在安装包，可直接编辑使用。
+See VERIFICATION.md for browser scripts. Ordinary application use does not require Node. The development sample-generation script tools/build_business_sample.mjs uses artifact-tool provided by Codex, which is not an end-user dependency. Sample Excel files are already included in the installation package and can be edited directly.
 
-Noto Sans SC 字体用于 PDF，按 SIL Open Font License 发布，许可见 assets/OFL.txt。
+The PDF font is Noto Sans SC, distributed under the SIL Open Font License. See assets/OFL.txt.

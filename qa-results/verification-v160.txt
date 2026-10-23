@@ -1,72 +1,72 @@
-# EzQuote 1.6.0 验证记录
+# EzQuote 1.6.0 Verification Record
 
-本轮为绿色主题与布局更新。使用 Linux、Python 3.12.14、Chrome Headless Shell 140.0.7339.207、真实本地 FastAPI 服务与手机网关。数据、账号、历史订单、聊天 DOM 和外部提供者响应均为合成测试输入。
+This round updates the green theme and layout. The environment was Linux, Python 3.12.14 and Chrome Headless Shell 140.0.7339.207, with a real local FastAPI service and mobile gateway. Data, accounts, historical orders, chat DOM and external-provider responses were all synthetic test inputs.
 
-## 后端 329 项通过
+## Backend: 329 tests passed
 
-实际执行：
+Command actually run:
 
     python -m pytest tests independent-results retest-results -q --disable-warnings --tb=short
 
-结果：329 passed, 1 warning in 38.25s。原有 317 项随包测试、11 项历史独立测试、1 项正式长输入复测全部保留。完整输出为 qa-results/backend-pytest.txt。警告是既有 Starlette/httpx 兼容弃用提示。
+Result: 329 passed, 1 warning in 38.25s. All 317 bundled tests, 11 historical independent tests and 1 formal long-input retest were retained. Full output is in qa-results/backend-pytest.txt. The warning is the existing Starlette/httpx compatibility deprecation notice.
 
-本轮后台仅调整运行版本与固定 theme.css 静态资源白名单；没有新增业务接口、数据库表或变更定价、核对、库存和审批合同。原有数字完整性、三语语法、未解释原文、库存合计、权限、人工更正、核对绑定、幂等、PDF/Excel、历史快照、导出恢复、迁移和 40/41/1,000 片段边界检查全部继续通过。
+Backend changes in this round only adjust the running version and the fixed static-resource allowlist for theme.css. No business endpoints or database tables were added, and the pricing, review, inventory and approval contracts were unchanged. Existing checks for number integrity, three-language syntax, unexplained source text, combined inventory totals, permissions, manual corrections, review binding, idempotency, PDF/Excel, historical snapshots, export recovery, migration and the 40/41/1,000-segment boundaries all continue to pass.
 
-1.5.4 的性能证据及验证说明保留在 qa-results/long-inquiry-v154-after.json、verification-v154.txt 与对应版本说明；本轮不据此增加新的性能承诺。
+The 1.5.4 performance evidence and verification notes remain in qa-results/long-inquiry-v154-after.json, verification-v154.txt and the corresponding version notes; this round makes no additional performance commitment based on them.
 
-## 浏览器 64 组通过
+## Browser: 64 groups passed
 
-九个脚本顺序执行，不并用 8765/8766 端口；无未处理 JavaScript 错误。各脚本原有业务断言保留，固定背景颜色断言随参考配色更新为 #f4f8f6。
+Nine scripts ran sequentially without sharing ports 8765/8766 concurrently, with no unhandled JavaScript errors. Each script retains its existing business assertions; the fixed background-color assertion was updated to #f4f8f6 to match the reference palette.
 
-| 脚本 | 通过组数 | 范围 |
+| Script | Groups passed | Scope |
 | --- | ---: | --- |
-| browser_smoke.mjs | 8 | 首次设置、真实界面 Excel 导入、员工提交、老板批准、文件下载、三语和缺信息 |
-| chat_integration.mjs | 6 | 合成 WhatsApp 来源、追问、保留未保存内容、提交、正确聊天回填与切错聊天拦截 |
-| mobile_browser.mjs | 6 | 合成通知提供者、真实本地手机网关、密码、马来语审批、PDF和窄屏 |
-| copilot_browser.mjs | 7 | 完整经营导入、库存推荐、最低毛利拦截、老板改价、正式输出、成交反馈和手机改价 |
-| guided_browser.mjs | 7 | 角色导航、分步核对、草稿恢复、返回修改、审批退回、筛选与三语布局 |
-| semantic_browser.mjs | 6 | 完整数量、同数量多商品、否定、换行偏好、输入异步隔离和实际 PDF |
-| self_review_browser.mjs | 10 | 全角范围、异常数字、未知商品与取消、更正记录、缓存及手机切换 |
-| audit_browser.mjs | 8 | 桌面迟到响应、同草稿等待期间编辑、来源确认、PDF归属与原文覆盖 |
-| ui_polish_browser.mjs | 6 | 真实主题资源、侧栏入口、角色限制、六种宽度切换、三语、核对中/通过、依据折叠、金额布局、超长错误、键盘关闭及退出清理 |
+| browser_smoke.mjs | 8 | First-run setup, Excel import through the real interface, staff submission, owner approval, file downloads, three languages and missing information |
+| chat_integration.mjs | 6 | Synthetic WhatsApp source, clarification, preserving unsaved content, submission, insertion into the correct chat and blocking the wrong chat |
+| mobile_browser.mjs | 6 | Synthetic notification provider, real local mobile gateway, passwords, Malay approval, PDF and narrow screens |
+| copilot_browser.mjs | 7 | Complete business-data import, inventory recommendations, minimum-margin blocking, owner price edits, final outputs, outcome feedback and mobile price edits |
+| guided_browser.mjs | 7 | Role-based navigation, step-by-step review, draft recovery, going back to edit, approval and return, filters and three-language layouts |
+| semantic_browser.mjs | 6 | Complete quantities, multiple products with the same quantity, negation, preferences on a new line, asynchronous input isolation and actual PDF |
+| self_review_browser.mjs | 10 | Full-width ranges, unusual numbers, unknown products and cancellation, correction records, caches and switching on mobile |
+| audit_browser.mjs | 8 | Late desktop responses, editing the same draft while waiting, source confirmation, PDF ownership and source-text coverage |
+| ui_polish_browser.mjs | 6 | Actual theme resources, sidebar entry points, role restrictions, switching among six widths, three languages, reviewing/passed states, collapsible evidence, amount layouts, oversized-input errors, keyboard dismissal and logout cleanup |
 
-界面脚本中，桌面新建入口实际进入报价流程，返回首页后验证 aria-current；员工仍只有首页和报价记录两个导航，老板设置入口由已有角色检查保护。三语首页在 320、430、768、900、1160、1440px 下无水平溢出，900px 是侧栏切换点。
+In the interface scripts, the desktop new-quotation entry actually enters the quotation flow, and aria-current is checked after returning home. Staff still have only Home and Quotations navigation; the owner's Settings entry is protected by the existing role checks. The home page has no horizontal overflow in the three languages at 320, 430, 768, 900, 1160 or 1440px; 900px is the sidebar breakpoint.
 
-实际保持 review HTTP 响应验证“正在核对”和 aria-busy，再放行到“核对通过”及 RM471.20。原文与普通数量依据仍可展开，错误数量继续提示。三语报价金额在 320、430、1160px 下没有横向溢出或金额卡裁切。1,000 片段仍可控拒绝、保留原文、不生成报价；改回正常输入可恢复。退出后隐藏工作区和侧栏。
+The checks actually hold the review HTTP response to verify the “Reviewing” state and aria-busy, then release it to reach “Review passed” and RM471.20. The source text and ordinary quantity evidence remain expandable, while invalid quantities still show prominent warnings. Three-language quotation amounts have no horizontal overflow or clipped amount cards at 320, 430 or 1160px. Requests with 1,000 segments still receive a controlled rejection, preserve the source text and create no quotation; replacing them with normal input allows recovery. Logging out hides the workspace and sidebar.
 
-完整经营脚本保留原价 RM495、建议 RM471.20、违规改价拦截、老板改为 4%+RM30 后 RM471.60、正式 PDF/Excel 与三语回复、反馈后下笔建议 3.17% 的原断言。此前修正的明确金额等待继续生效。
+The complete-business script retains the original assertions for the RM495 original total, RM471.20 recommendation, rejection of invalid price edits, RM471.60 after the owner changes the discount to 4% and freight to RM30, final PDF/Excel outputs and three-language replies, and a 3.17% recommendation on the next quotation after feedback. The previously corrected explicit waits for expected amounts remain in effect.
 
-各脚本日志在 qa-results，汇总在 browser-results.json。1.5.4 的浏览器汇总另存 browser-results-v154.json；截图仅用于内部目视检查，不放入发布包。
+Each script's logs are in qa-results, with the summary in browser-results.json. The 1.5.4 browser summary is kept separately as browser-results-v154.json. Screenshots are used for internal visual inspection only and are not included in the release package.
 
-## 插件逻辑 10 组通过
+## Extension logic: 10 groups passed
 
     node tests/extension_checks.mjs
 
-Manifest 权限和五个 JS 文件语法、英马静态文案、消息顺序与来源、过长消息、右键入口、徽标、服务端批准与来源核对、追问回填和通知去重均通过。扩展 API 是模拟桥接，真实 WhatsApp 页面是合成 DOM，不等于实机联调。
+Manifest permissions and syntax for five JS files, English and Malay static text, message order and origin, oversized messages, context-menu entry, badges, server approval and source checks, clarification insertion and notification deduplication all passed. Extension APIs use a simulated bridge, and the WhatsApp page uses synthetic DOM; this is not equivalent to integration on a physical machine.
 
-## 版面与交付
+## Layout and delivery
 
-- 已查看中文桌面首页、商品页、报价页、老板审批页与马来语 320px 首页、手机审批。绿色按钮、金额、状态和导航可读；没有发现重叠、裁切或横向溢出。中文截图使用包内 Noto Sans SC 字体安装到测试环境。
-- 两页队友 Word 指南已改为 EzQuote 1.6.0，重新渲染并逐页检查。
-- ZIP 发布器检查版本、theme.css、必需模块/样例/指南、64组汇总、329项日志、CRC和逐文件 SHA-256；不包含账号、密钥、data、数据库、虚拟环境或内部截图。
+- The Chinese desktop home, product, quotation and owner-approval pages, the Malay home page at 320px and mobile approval were inspected. Green buttons, amounts, statuses and navigation were readable; no overlap, clipping or horizontal overflow was found. The bundled Noto Sans SC font was installed in the test environment for Chinese screenshots.
+- The two-page Word guide for teammates was updated to EzQuote 1.6.0, rendered again and checked page by page.
+- The ZIP packager checks versions, theme.css, required modules/samples/guides, the 64-group summary, the 329-test log, CRC and per-file SHA-256. It excludes accounts, keys, data, databases, virtual environments and internal screenshots.
 
-## 开发复现
+## Reproducing development checks
 
     python -m pip install -r requirements-dev.txt
     python -m pytest tests independent-results retest-results -q
     npm install
     node tests/extension_checks.mjs
 
-为浏览器脚本设置 TEST_PYTHON 和 BROWSER_EXECUTABLE，再顺序执行上表九个脚本。例如：
+Set TEST_PYTHON and BROWSER_EXECUTABLE for the browser scripts, then run the nine scripts in the table sequentially, for example:
 
     node tests/ui_polish_browser.mjs
     node tests/guided_browser.mjs
     node tests/copilot_browser.mjs
 
-Windows PowerShell 用 $env:TEST_PYTHON 与 $env:BROWSER_EXECUTABLE 设置实际路径。普通用户启动应用无需 Node。
+In Windows PowerShell, use $env:TEST_PYTHON and $env:BROWSER_EXECUTABLE to set the actual paths. End users do not need Node to start the application.
 
-## 未完成的实机验证与边界
+## Physical-device checks not completed and limitations
 
-Windows 干净环境首次安装、原生 Chrome 扩展、真实 WhatsApp DOM/来源绑定/草稿回填仍需本机联调。没有调用付费模型、真实 Meta 接口、真实手机收件或公网隧道。手机测试仅覆盖真实本地网关配合合成提供者。
+First-time installation on a clean Windows machine, the native Chrome extension and the real WhatsApp DOM/source binding/draft insertion still need local integration testing. No paid model, real Meta endpoint, receipt on a real phone or public tunnel was used. Mobile tests cover only a real local gateway with synthetic providers.
 
-需求整理仍为常见建材表达的本地规则，历史建议为统计和店铺规则。库存是 Excel 快照，不预留或出库；客户结果人工登记；批准不等于成交。客户回复由人核对发送，PDF 单独附加。各电脑数据独立，升级保留 data 和 .venv。
+Requirement parsing still uses local rules for common building-material expressions; historical suggestions use statistics and shop rules. Inventory is an Excel snapshot with no reservation or stock deduction; customer outcomes are entered manually, and approval does not mean a sale. A person sends customer replies, and the PDF is attached separately. Each computer has independent data; upgrades retain data and .venv.

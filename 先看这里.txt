@@ -1,24 +1,24 @@
 EzQuote MVP 1.6.1
 
-先读 队友使用指南_1.6.docx。
-已安装过旧版，先读 更新到1.5_先看这里.md，保留原 data 和 .venv。
+Read 队友使用指南_1.6.docx first.
+If an older version is installed, first read 更新到1.5_先看这里.md and keep the original data and .venv directories.
 
-Windows 打开方式：
-1. 完整解压，进入能看到 run.py 的文件夹。
-2. 文件管理器地址栏输入 cmd，回车，运行 python run.py。
-3. 保持窗口打开，访问 http://127.0.0.1:8765/。
-4. 新用户设置老板和员工密码；老板导入 samples/business_demo.xlsx。
-5. Chrome 开发者模式加载 extension 文件夹，确认版本 1.6.1。
+Starting on Windows:
+1. Extract the complete package and open the directory containing run.py.
+2. Enter cmd in the File Explorer address bar, press Enter, then run python run.py.
+3. Keep the terminal open and visit http://127.0.0.1:8765/.
+4. New users set owner and staff passwords; the owner imports samples/business_demo.xlsx.
+5. Load the extension directory in Chrome developer mode and confirm version 1.6.1.
 
-已有完整经营数据不必重新导入。旧的未批准经营报价要重新核对并保存新版本。
-人工改数量、删商品、改配送时，按页面提示填原因并重新核对。
-20／30 要先问清最终数量；1_020 不会截成 20。未知商品需补充，取消需记录原因。
-本次无 API，不要开真实 AI 或手机自动通知。客户回复由人核对后发送。
+If complete business data is already present, there is no need to import it again. Older unapproved business quotations must be reviewed again and saved as new revisions.
+When manually changing quantities, removing products, or changing delivery, enter a reason and review again as prompted.
+For 20／30, first ask for the final quantity; 1_020 will not be truncated to 20. Supply details for unknown products, or record a reason if they are canceled.
+This release uses no API. Keep real AI and automatic mobile notifications disabled. A person checks and sends customer replies.
 
-新版显示核对进度和字符计数。每次最多 40 条商品需求；提示内容过多时，请保留规格、数量和配送信息后分批提交。
-当前页面布局见 1.6_界面更新说明.md，最终验收记录见 1.6.1_最终交付检查.md。
+The updated interface shows review progress and a character count. Each request supports up to 40 product requirements. If prompted that the input is too long, submit it in batches while retaining specifications, quantities, and delivery details.
+See 1.6_界面更新说明.md for the current page layout and 1.6.1_最终交付检查.md for final acceptance records.
 
-1.6 系列采用深绿与薄荷绿配色。电脑大窗口使用左侧导航，侧栏与手机使用紧凑布局；原报价流程和数据继续使用。
+The 1.6 series uses dark green and mint green. Wide desktop windows use left navigation, while the sidebar and mobile interface use compact layouts; the original quotation workflow and data remain in use.
 
-启动提示 Port 8765 is already in use：关闭旧服务命令窗口，再启动新版。不要删除 data 或 .venv。
-最后一轮交付检查见 1.6.1_最终交付检查.md。
+If startup reports Port 8765 is already in use, close the old service terminal and start the new version again. Do not delete data or .venv.
+See 1.6.1_最终交付检查.md for the final delivery checks.
