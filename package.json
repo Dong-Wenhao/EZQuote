@@ -1,0 +1,21 @@
+{
+  "name": "whatsapp-quote-desk-mvp",
+  "version": "1.6.1",
+  "private": true,
+  "description": "Development-only browser checks. End users do not need Node.",
+  "scripts": {
+    "check:extension": "node tests/extension_checks.mjs",
+    "check:browser": "node tests/browser_smoke.mjs",
+    "check:chat": "node tests/chat_integration.mjs",
+    "check:mobile": "node tests/mobile_browser.mjs",
+    "check:copilot": "node tests/copilot_browser.mjs",
+    "check:guided": "node tests/guided_browser.mjs",
+    "check:semantic": "node tests/semantic_browser.mjs",
+    "check:self-review": "node tests/self_review_browser.mjs",
+    "check:audit": "node tests/audit_browser.mjs",
+    "check:ui": "node tests/ui_polish_browser.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

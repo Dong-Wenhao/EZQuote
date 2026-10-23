@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "browser": "140.0.7339.207",
+  "steps": [
+    "Fullwidth quantity alternatives retain the whole original expression and cannot become an approved 30-bag quotation",
+    "Unsupported underscore quantities show the complete number and require clarification; correcting the inquiry restores pricing",
+    "English, Chinese and Malay coordinated unknown goods remain visible; deleting sand needs an explicit cancellation and saved reason",
+    "Range quantity cannot become the last endpoint or be dismissed with a general confirmation; editing the inquiry restores pricing",
+    "Unknown goods on a delivery line stay visible; deleting them requires a specific cancellation and saved reason",
+    "A manually added product can be confirmed through its actual row and persists as two quotation lines with a correction reason",
+    "The owner sees the exact manual correction and reason in all three phone languages before approving; actual PDF contains both products and final price",
+    "A draft cached by the old parser preserves its original inquiry but must reparse instead of reusing obsolete correction IDs",
+    "After business data changes, the phone explains that a new review is required and disables approval while keeping return available",
+    "Reusing a phone tab adopts the new quotation link and ignores a delayed response for the previous quotation"
+  ],
+  "errors": [],
+  "externalAPIs": "not called",
+  "publicTunnel": "not used",
+  "realWhatsAppAccount": false,
+  "manualAddedTotal": "522.00"
+}

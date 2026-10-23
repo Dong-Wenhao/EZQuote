@@ -1,0 +1,571 @@
+{
+  "Products": [
+    [
+      "sku",
+      "name_zh",
+      "name_en",
+      "name_ms",
+      "brand",
+      "spec",
+      "unit",
+      "unit_price",
+      "aliases",
+      "category",
+      "applications",
+      "preferences",
+      "unit_cost",
+      "source"
+    ],
+    [
+      "CEM-A-50",
+      "水泥",
+      "Cement",
+      "Simen",
+      "Brand A",
+      "50kg",
+      "bag",
+      18.5,
+      "水泥|cement|simen|A牌水泥",
+      "cement",
+      "plastering|masonry|concrete",
+      "",
+      14,
+      "Synthetic demo"
+    ],
+    [
+      "CEM-A-25",
+      "水泥",
+      "Cement",
+      "Simen",
+      "Brand A",
+      "25kg",
+      "bag",
+      10,
+      "水泥|cement|simen|A牌水泥",
+      "cement",
+      "plastering|masonry|concrete",
+      "",
+      7,
+      "Synthetic demo"
+    ],
+    [
+      "CEM-B-50",
+      "水泥",
+      "Cement",
+      "Simen",
+      "Brand B",
+      "50kg",
+      "bag",
+      19.2,
+      "水泥|cement|simen|B牌水泥",
+      "cement",
+      "plastering|masonry|concrete",
+      "",
+      14.5,
+      "Synthetic demo"
+    ],
+    [
+      "PVC-A-20",
+      "PVC水管",
+      "PVC pipe",
+      "Paip PVC",
+      "Brand A",
+      "20mm",
+      "piece",
+      8.75,
+      "水管|PVC管|pvc pipe|paip|paip pvc",
+      "pvc_pipe",
+      "",
+      "",
+      6.2,
+      "Synthetic demo"
+    ],
+    [
+      "PAINT-A-5",
+      "油漆",
+      "Paint",
+      "Cat",
+      "Brand A",
+      "5L",
+      "piece",
+      65,
+      "油漆|paint|cat",
+      "paint",
+      "indoor|outdoor",
+      "",
+      45,
+      "Synthetic demo"
+    ],
+    [
+      "NAIL-A-1",
+      "铁钉",
+      "Nails",
+      "Paku",
+      "Brand A",
+      "1kg",
+      "bag",
+      6.8,
+      "铁钉|钉子|nails|paku",
+      "nails",
+      "",
+      "",
+      4.5,
+      "Synthetic demo"
+    ],
+    [
+      "CEM-A-FAST-50",
+      "快凝抹灰水泥",
+      "Fast Cement",
+      "Simen Cepat Kering",
+      "Brand A",
+      "50kg",
+      "bag",
+      23,
+      "水泥|cement|simen|快凝水泥",
+      "cement",
+      "plastering|masonry",
+      "fast_setting",
+      18,
+      "Synthetic demo"
+    ],
+    [
+      "CEM-B-FAST-50",
+      "快凝水泥",
+      "Fast Cement",
+      "Simen Cepat Kering",
+      "Brand B",
+      "50kg",
+      "bag",
+      24,
+      "水泥|cement|simen",
+      "cement",
+      "plastering|masonry",
+      "fast_setting",
+      18.5,
+      "Synthetic demo"
+    ],
+    [
+      "CEM-C-PRO-50",
+      "快凝防水水泥",
+      "Fast Waterproof Cement",
+      "Simen Cepat Kalis Air",
+      "Brand C",
+      "50kg",
+      "bag",
+      23.8,
+      "水泥|cement|simen",
+      "cement",
+      "plastering|masonry",
+      "fast_setting|waterproof",
+      18.4,
+      "Synthetic demo"
+    ]
+  ],
+  "Inventory": [
+    [
+      "sku",
+      "stock",
+      "low_stock",
+      "high_stock",
+      "source"
+    ],
+    [
+      "CEM-A-50",
+      120,
+      20,
+      100,
+      "Synthetic demo"
+    ],
+    [
+      "CEM-A-25",
+      45,
+      10,
+      80,
+      "Synthetic demo"
+    ],
+    [
+      "CEM-B-50",
+      0,
+      15,
+      100,
+      "Synthetic demo"
+    ],
+    [
+      "PVC-A-20",
+      60,
+      10,
+      50,
+      "Synthetic demo"
+    ],
+    [
+      "PAINT-A-5",
+      35,
+      10,
+      60,
+      "Synthetic demo"
+    ],
+    [
+      "NAIL-A-1",
+      200,
+      40,
+      150,
+      "Synthetic demo"
+    ],
+    [
+      "CEM-A-FAST-50",
+      85,
+      15,
+      80,
+      "Synthetic demo"
+    ],
+    [
+      "CEM-B-FAST-50",
+      12,
+      15,
+      80,
+      "Synthetic demo"
+    ],
+    [
+      "CEM-C-PRO-50",
+      70,
+      15,
+      100,
+      "Synthetic demo"
+    ]
+  ],
+  "History": [
+    [
+      "order_id",
+      "date",
+      "sku",
+      "quantity",
+      "area",
+      "discount_pct",
+      "delivery_cost",
+      "delivery_fee",
+      "outcome",
+      "source"
+    ],
+    [
+      "DEMO-FAST-001",
+      "2026-10-02",
+      "CEM-A-FAST-50",
+      18,
+      "Shah Alam",
+      2,
+      28,
+      25,
+      "won",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-FAST-002",
+      "2026-10-03",
+      "CEM-A-FAST-50",
+      20,
+      "Shah Alam",
+      3,
+      28,
+      25,
+      "won",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-FAST-003",
+      "2026-10-04",
+      "CEM-A-FAST-50",
+      22,
+      "Shah Alam",
+      4,
+      28,
+      25,
+      "won",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-FAST-004",
+      "2026-10-05",
+      "CEM-A-FAST-50",
+      20,
+      "Shah Alam",
+      3,
+      28,
+      25,
+      "won",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-FAST-005",
+      "2026-10-06",
+      "CEM-A-FAST-50",
+      20,
+      "Shah Alam",
+      3,
+      28,
+      25,
+      "won",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-FAST-006",
+      "2026-10-07",
+      "CEM-A-FAST-50",
+      20,
+      "Shah Alam",
+      3,
+      28,
+      25,
+      "lost",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-FAST-007",
+      "2026-10-08",
+      "CEM-A-FAST-50",
+      25,
+      "Shah Alam",
+      3,
+      28,
+      25,
+      "lost",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-FAST-008",
+      "2026-10-09",
+      "CEM-A-FAST-50",
+      20,
+      "Shah Alam",
+      3,
+      28,
+      25,
+      "lost",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-OTHER-001",
+      "2026-09-03",
+      "CEM-A-50",
+      10,
+      "Petaling Jaya",
+      0,
+      34,
+      35,
+      "lost",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-OTHER-002",
+      "2026-09-04",
+      "CEM-A-25",
+      15,
+      "Klang",
+      1,
+      38,
+      40,
+      "won",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-OTHER-003",
+      "2026-09-05",
+      "CEM-B-50",
+      20,
+      "Petaling Jaya",
+      2,
+      34,
+      35,
+      "won",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-OTHER-004",
+      "2026-09-06",
+      "PVC-A-20",
+      10,
+      "Klang",
+      0,
+      38,
+      40,
+      "won",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-OTHER-005",
+      "2026-09-07",
+      "PAINT-A-5",
+      15,
+      "Petaling Jaya",
+      1,
+      34,
+      35,
+      "lost",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-OTHER-006",
+      "2026-09-08",
+      "NAIL-A-1",
+      20,
+      "Klang",
+      2,
+      38,
+      40,
+      "won",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-OTHER-007",
+      "2026-09-09",
+      "CEM-A-50",
+      10,
+      "Petaling Jaya",
+      0,
+      34,
+      35,
+      "won",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-OTHER-008",
+      "2026-09-10",
+      "CEM-A-25",
+      15,
+      "Klang",
+      1,
+      38,
+      40,
+      "won",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-OTHER-009",
+      "2026-09-11",
+      "CEM-B-50",
+      20,
+      "Petaling Jaya",
+      2,
+      34,
+      35,
+      "lost",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-OTHER-010",
+      "2026-09-12",
+      "PVC-A-20",
+      10,
+      "Klang",
+      0,
+      38,
+      40,
+      "won",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-OTHER-011",
+      "2026-09-13",
+      "PAINT-A-5",
+      15,
+      "Petaling Jaya",
+      1,
+      34,
+      35,
+      "won",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-OTHER-012",
+      "2026-09-14",
+      "NAIL-A-1",
+      20,
+      "Klang",
+      2,
+      38,
+      40,
+      "won",
+      "Synthetic demo"
+    ],
+    [
+      "DEMO-OPEN-001",
+      "2026-10-10",
+      "CEM-A-FAST-50",
+      20,
+      "Shah Alam",
+      3,
+      28,
+      25,
+      "open",
+      "Synthetic demo"
+    ]
+  ],
+  "Delivery": [
+    [
+      "area",
+      "aliases",
+      "base_fee",
+      "cost",
+      "source"
+    ],
+    [
+      "Shah Alam",
+      "莎阿南|沙阿南|ShahAlam",
+      35,
+      30,
+      "Synthetic demo"
+    ],
+    [
+      "Petaling Jaya",
+      "PJ|八打灵再也",
+      40,
+      34,
+      "Synthetic demo"
+    ],
+    [
+      "Klang",
+      "巴生",
+      45,
+      38,
+      "Synthetic demo"
+    ],
+    [
+      "Kuala Lumpur",
+      "KL|吉隆坡",
+      55,
+      48,
+      "Synthetic demo"
+    ]
+  ],
+  "Rules": [
+    [
+      "key",
+      "value",
+      "source"
+    ],
+    [
+      "min_margin_pct",
+      15,
+      "Synthetic demo"
+    ],
+    [
+      "max_discount_pct",
+      10,
+      "Synthetic demo"
+    ],
+    [
+      "max_delivery_subsidy",
+      3,
+      "Synthetic demo"
+    ],
+    [
+      "minimum_similar_orders",
+      3,
+      "Synthetic demo"
+    ],
+    [
+      "sales_window_days",
+      90,
+      "Synthetic demo"
+    ]
+  ]
+}

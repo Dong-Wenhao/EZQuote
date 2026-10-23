@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EzQuote · Mobile approval</title>
+<link rel="stylesheet" href="/mobile/style.css">
+<script src="/mobile/app.js" defer></script>
+</head>
+<body><main>
+<header><div class="brand">
+<span>EZ</span><div>
+<strong>EzQuote</strong><small data-t="mobileTitle">手机报价审批</small>
+</div>
+</div>
+<select id="language" aria-label="Language"><option value="zh">中文</option>
+<option value="en">English</option>
+<option value="ms">Melayu</option></select></header>
+<p id="message" class="message" role="status" data-t="loading">正在读取这笔报价…</p>
+<section id="review" hidden>
+  <article class="card"><div class="topline">
+<span id="shop"></span><span id="state" class="badge"></span>
+</div>
+<p id="reference" class="reference"></p>
+<h1 id="customer"></h1>
+<div id="items"></div>
+<section id="requirementCorrections" hidden><h2 data-t="correctionsTitle">本次人工更正</h2><div id="correctionsList"></div></section>
+<p id="reviewRequired" class="message error" data-t="reviewRequired" hidden>这笔报价需要员工在电脑重新核对并保存新版本，之后才能批准。</p>
+<div id="pricing" hidden>
+<h2 data-t="pricingTitle">原价与定价建议</h2>
+<div id="priceDetails"></div>
+</div>
+<div class="total">
+<span id="totalLabel" data-t="total">报价合计</span><strong id="amount"></strong>
+</div>
+<p id="expires" class="muted"></p>
+<details><summary data-t="original">查看客户原文与备注</summary><p id="original" class="original"></p></details></article>
+  <form id="decisionForm" class="card" hidden>
+<h2 data-t="decisionTitle">核对后处理</h2>
+<div id="ownerPricing" hidden><details id="phoneEdit"><summary data-t="adjustPricing">调整折扣和运费</summary><button id="acceptPricing" type="button" class="secondary" data-t="acceptPricing">采用建议值</button><label><span data-t="discountPct">最终折扣百分比</span><input id="discountPct" type="number" min="0" max="99.99" step="0.01"></label><label><span data-t="freightFee">最终运费 RM</span><input id="freightFee" type="number" min="0" step="0.01"></label><label><span data-t="pricingNote">定价说明（可选）</span><input id="pricingNote" maxlength="500"></label><p id="priceDecisionTotal"></p></details></div>
+<p class="muted" data-t="passwordHelp">输入你在电脑工作台设置的老板密码。</p>
+<label><span data-t="password">老板密码</span><input id="password" type="password" required maxlength="128" autocomplete="current-password"></label><button id="approve" type="button" class="primary" data-t="approve">批准并生成报价单</button><details id="phoneReturn"><summary data-t="return">退回修改</summary><label><span data-t="reason">退回原因（批准时可不填）</span><textarea id="reason" rows="2" maxlength="500"></textarea></label><button id="return" type="button" class="secondary" data-t="return">退回修改</button></details><p class="muted" data-t="scope">这里只处理当前报价版本，客户回复由员工核对后发送。</p>
+</form>
+  <article id="processed" class="card" hidden><h2 id="processedTitle"></h2>
+<p id="processedHelp" class="muted"></p>
+<button id="pdf" type="button" class="primary" hidden data-t="pdf">下载这笔报价单</button></article>
+</section><footer data-t="footer">本链接有时效。手机审批和电脑工作台会同步更新。</footer>
+</main></body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "browser": "140.0.7339.207",
+  "steps": [
+    "Boss configures AI, verified phone recipient and HTTPS origin; credentials clear from the form",
+    "Staff has no settings access; structured extraction separates two products and the catalog computes RM413.75",
+    "Background outbox submits one template with the correct amount and scoped link; UI distinguishes acceptance from delivery",
+    "Separate phone context reviews only this quotation; wrong boss password cannot approve and is cleared",
+    "Malay mobile approval updates the staff workspace and downloads the actual generated PDF through the gateway",
+    "Mobile and settings layouts fit narrow screens; language labels switch; public gateway has no catalog route"
+  ],
+  "errors": [],
+  "externalAI": "synthetic provider",
+  "phoneDelivery": "not attempted",
+  "publicTunnel": "not used",
+  "actualGatewayHTTP": true
+}

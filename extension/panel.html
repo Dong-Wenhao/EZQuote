@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EzQuote · 报价工作台</title>
+  <link rel="stylesheet" href="panel.css">
+  <link rel="stylesheet" href="theme.css">
+<script src="i18n.js" defer></script><script src="copilot.js" defer></script><script src="panel.js" defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+<span class="brand-mark">EZ</span><div>
+<h1 data-t="appName">EzQuote</h1>
+<p>WhatsApp Quote Desk</p>
+</div>
+</div>
+    <select id="uiLang" aria-label="Interface language" title="中文 / English / Bahasa Melayu"><option value="zh">中文</option>
+<option value="en">English</option>
+<option value="ms">Melayu</option></select>
+  </header>
+  <div class="connection">
+<span id="connectionDot" class="dot"></span><span id="connectionText">正在连接本地服务</span><button id="reconnect" class="text-button" data-t="reconnect">重新连接</button>
+</div>
+  <main>
+    <div id="notice" class="notice" role="status" hidden><span id="noticeMessage"></span><button id="dismissNotice" class="notice-close" type="button" data-title="dismissNotice" aria-label="关闭提示"></button></div>
+    <section id="offline" class="card" hidden><h2 data-t="startService">先启动本地服务</h2>
+<p data-t="offlineHelp">解压完整项目，双击“启动Windows.bat”，保持终端打开后重新连接。</p>
+<code>http://127.0.0.1:8765</code></section>
+    <section id="setup" class="card" hidden>
+      <p class="eyebrow" data-t="firstRun">首次使用</p>
+<h2 data-t="setupTitle">设置店铺和两个账号</h2>
+      <form id="setupForm">
+<label><span data-t="shopName">店铺名称</span><input id="setupShop" required maxlength="100" value="Demo Building Supplies"></label><label><span data-t="bossPassword">老板密码（至少 8 位）</span><input id="setupBoss" type="password" required minlength="8" maxlength="128" autocomplete="new-password"></label><label><span data-t="staffPassword">员工密码（与老板不同）</span><input id="setupStaff" type="password" required minlength="8" maxlength="128" autocomplete="new-password"></label><button class="primary" data-t="createShop">创建店铺</button>
+</form>
+    </section>
+    <section id="login" class="card" hidden>
+      <p class="eyebrow" data-t="welcome">欢迎回来</p>
+<h2 data-t="signIn">登录报价工作台</h2>
+<form id="loginForm">
+<label><span data-t="account">账号</span><select id="loginUser"><option value="staff" data-t="staff">员工</option>
+<option value="boss" data-t="boss">老板</option></select></label><label><span data-t="password">密码</span><input id="loginPassword" type="password" required maxlength="128" autocomplete="current-password"></label><button class="primary" data-t="signIn">登录</button>
+</form>
+    </section>
+    <section id="workspace" hidden data-layout="guided">
+      <div class="userbar">
+<div class="workspace-heading"><p class="eyebrow" data-t="workspaceEyebrow">店铺工作台</p><h2 id="workspaceTitle"></h2></div><div class="user-actions">
+<span class="user-chip"><span class="user-avatar" aria-hidden="true">EZ</span><span id="userLabel"></span></span>
+<button id="newGlobal" class="text-button" data-t="new">新建</button><a href="http://127.0.0.1:8765/" target="_blank" rel="noopener" data-t="openDesk" id="openFullWorkspace">完整工作台</a><button id="logout" class="text-button" data-t="logout">退出</button>
+</div>
+</div>
+      <div id="captureQueue" class="warning" hidden>
+<strong data-t="incomingCapture">有一条新询价等待处理</strong><p id="queuedText"></p>
+<div class="actions">
+<button id="acceptCapture" class="primary" data-t="replaceWork">处理新询价</button><button id="keepCapture" class="secondary" data-t="keepWork">保留当前明细</button>
+</div>
+<small data-t="replaceHelp">当前未保存的明细会被替换；已保存的报价仍保留在记录中。</small>
+</div>
+      <aside class="app-sidebar">
+<div class="sidebar-brand"><span class="brand-mark">EZ</span><div><strong>EzQuote</strong><small data-t="brandDescriptor">让每笔报价更清楚</small></div></div>
+<p class="sidebar-label" data-t="workspaceEyebrow">店铺工作台</p>
+<button id="sidebarNewQuote" class="sidebar-new" type="button"><span aria-hidden="true">＋</span><span data-t="sidebarCreate">新建报价</span></button>
+<nav class="main-nav" aria-label="Workspace"><button data-view="home" class="active"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7"/></svg></span><span data-t="homeTab">首页</span></button><button data-view="records"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM14 3v5h5M9 12h7M9 16h7"/></svg></span><span data-t="recordsTab">报价记录</span><span id="inboxCount" class="count" hidden></span></button><button data-view="settings" class="boss-only"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></svg></span><span data-t="settingsTab">设置</span></button></nav>
+<div class="sidebar-foot"><span class="sidebar-status-dot" aria-hidden="true"></span><div><strong data-t="localWorkspace">本地工作空间</strong><small data-t="sidebarHelp">店铺数据，老板把关</small></div></div>
+</aside><div id="view-home" class="view">
+<section class="home-hero"><div>
+<p class="eyebrow" data-t="dailyWorkspace">今日工作概览</p>
+<h2 id="homeTitle"></h2>
+<p id="homeSubtitle" class="hero-subtitle"></p>
+<div class="hero-actions">
+<button id="startQuote" class="primary" data-t="startQuote">＋ 新建报价</button><button id="resumeDraft" class="secondary" hidden data-t="resumeDraft">继续未完成的报价</button>
+</div>
+</div>
+<div class="hero-mark" aria-hidden="true">
+<span>Q</span><div></div>
+<div></div>
+<div></div>
+</div></section><section id="homeSetup" class="setup-banner" hidden><div>
+<strong data-t="setupNeeded">先准备店铺商品数据</strong><p id="homeSetupHelp"></p>
+</div>
+<button id="homeConfigure" class="secondary boss-only" data-t="configureData">导入经营数据</button></section><div class="home-stats">
+<button data-filter-jump="pending"><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg></span><strong id="homePending">0</strong><span data-t="pendingShort">待审批</span></button><button data-filter-jump="ready"><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM9 12l2 2 4-4"/></svg></span><strong id="homeReady">0</strong><span data-t="readyShort">待跟进</span></button><button data-filter-jump="all"><span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6zM9 11h7M9 15h7"/></svg></span><strong id="homeAll">0</strong><span data-t="allQuotes">全部报价</span></button>
+</div>
+<section class="card home-records"><div class="section-top">
+<div>
+<p class="eyebrow" data-t="yourWork">YOUR WORK</p>
+<h2 id="homeListTitle"></h2>
+</div>
+<button id="homeAllRecords" class="text-button" data-t="viewAll">查看全部</button>
+</div>
+<div class="quote-list-header" aria-hidden="true"><span data-t="customerColumn">客户与报价编号</span><span data-t="amountColumn">金额</span><span data-t="statusColumn">状态</span></div>
+<div id="homeList"></div></section>
+<section class="card home-guide"><p class="eyebrow" data-t="workflowEyebrow">报价流程</p><h2 data-t="workflowTitle">一笔报价，四步完成</h2><p class="muted" data-t="workflowHelp">按步骤核对，老板批准后准备正式文件。</p><ol class="home-flow"><li><span>1</span><div><strong data-t="flowCapture">客户需求</strong><small data-t="workflowCapture">带入或粘贴客户的原始询价。</small></div></li><li><span>2</span><div><strong data-t="flowItems">商品核对</strong><small data-t="workflowItems">检查商品、数量、库存与配送。</small></div></li><li><span>3</span><div><strong data-t="flowApproval">报价确认</strong><small data-t="workflowApproval">查看建议金额，提交老板决定。</small></div></li><li><span>4</span><div><strong data-t="flowReply">客户回复</strong><small data-t="workflowReply">下载 PDF，核对回复后发送。</small></div></li></ol><div class="workflow-note"><span class="workflow-symbol" aria-hidden="true">✓</span><span data-t="workflowNote">每笔报价保留审批与操作记录。</span></div></section>
+</div>
+<div id="view-inquiry" class="view">
+        <div class="wizard-heading">
+<button id="backHome" class="text-button" data-t="backHome">← 返回首页</button><span id="flowCustomer" class="muted small"></span>
+</div>
+<ol id="flowProgress" class="flow-progress" aria-label="Quotation progress">
+<li class="active"><span data-t="flowCapture">带入询价</span></li>
+<li><span data-t="flowItems">核对商品</span></li>
+<li><span data-t="flowApproval">老板审批</span></li>
+<li><span data-t="flowReply">准备回复</span></li>
+</ol>
+        <section id="inquiryCard" class="card">
+          <div class="section-top">
+<div>
+<p class="eyebrow" data-t="step1">01 · 整理询价</p>
+<h2 data-t="newInquiry">客户要买什么</h2>
+</div>
+<button id="newInquiry" class="text-button" data-t="new" hidden="hidden">新建</button>
+</div>
+          <div id="captureSummary" class="capture-summary" hidden>
+<span class="capture-tag">WhatsApp</span><strong id="capturedCustomer"></strong><p id="capturedText"></p>
+<span class="muted small" data-t="autoParseHint">已带入这条消息，正在匹配店铺价目表。</span>
+</div>
+          <details id="sourceEditor" class="source-editor" open><summary data-t="editInquiry">查看或修改客户与原文</summary>
+          <label><span data-t="customer">客户名称或内部编号</span><input id="customer" maxlength="160" autocomplete="off" data-placeholder="customerPlaceholder" placeholder="例如：演示客户 01"></label>
+          <label><span data-t="inquiryOriginal">询价原文</span><textarea id="inquiryText" rows="5" maxlength="12000" aria-describedby="inquiryHint inquiryCount" data-placeholder="inquiryPlaceholder" placeholder="在 WhatsApp 选中文字带入，或粘贴询价"></textarea></label>
+          <div class="input-guidance"><small id="inquiryHint" data-t="inquiryHint">每种商品写一行，带上规格、数量和配送地区；每次最多 40 条商品明细。</small><span id="inquiryCount">0 / 12,000</span></div>
+          </details>
+          <label class="checkbox" hidden="hidden"><input id="cpSmart" type="checkbox"><span data-t="cpSmart">按需求匹配商品并参考历史定价</span></label>
+          <details class="demo-details"><summary data-t="trySample">试用一条示例询价</summary><div class="sample-row">
+<span data-t="samples">合成样例</span><button data-sample="zh">中文</button><button data-sample="en">English</button><button data-sample="ms">Melayu</button><button data-sample="missing" data-t="missingSpec">缺规格</button>
+</div>
+          <button id="cpFullSample" class="text-button" data-t="cpFullSample">完整流程样例</button>
+          </details><button id="parse" class="primary full" data-t="parse">整理商品明细</button><p id="captureInfo" class="muted small"></p>
+        </section>
+        <section id="lineCard" class="card" hidden>
+          <p class="eyebrow" data-t="step2">02 · 核对明细</p>
+<h2 data-t="checkLines">商品和数量</h2>
+          <p class="muted step-help" data-t="itemsHelp">确认规格、数量和配送地区，再查看报价。</p>
+<div id="cpReviewState" class="review-state" data-state="idle" role="status" hidden><span class="review-state-dot" aria-hidden="true"></span><span id="cpReviewStateText"></span></div>
+<div id="cpDeliveryInputs" hidden>
+<div class="cp-grid">
+<label><span data-t="cpFulfilment">取货方式</span><select id="cpFulfilment"><option value="auto" data-t="cpAuto">按询价识别</option>
+<option value="delivery" data-t="cpDelivery">配送</option>
+<option value="pickup" data-t="cpPickup">自提</option></select></label><label><span data-t="cpArea">配送地区</span><input id="cpArea" maxlength="160" list="cpAreas" autocomplete="off"><datalist id="cpAreas"></datalist></label>
+</div>
+<p class="muted small" data-t="cpModeHelp" hidden="hidden">基于本店商品、库存与历史统计，未调用付费模型。老板决定最终折扣和运费。</p>
+</div>
+          <details id="cpRequirement" hidden><summary data-t="cpRequirement">结构化需求</summary><pre id="cpRequirementJSON" class="cp-json"></pre>
+<p id="parseMethod" class="muted small"></p>
+          </details>
+          <div id="clarificationBox" class="warning" hidden>
+<strong data-t="needsInfo">需要补充信息</strong><p id="clarification"></p>
+<button id="fillQuestion" class="primary" hidden data-t="fillQuestion">把追问填入聊天</button> <button id="copyQuestion" class="secondary" data-t="copyQuestion">复制询问内容</button>
+</div>
+          <div id="lines"></div>
+<section id="reviewIssues" class="review-issues" hidden></section><button id="addLine" class="text-button" data-t="addLine">＋ 添加商品</button>
+          <div class="total">
+<span data-t="estimatedTotal">当前明细合计</span><strong id="estimatedTotal">RM0.00</strong>
+</div>
+<p class="muted small" data-t="priceNote">价格来自已导入价目表，保存时由服务重新核算。</p>
+          <div class="wizard-actions">
+<button id="backToInquiry" class="secondary" data-t="backToInquiry">上一步</button><button id="confirmProducts" class="primary" data-t="confirmProducts">确认商品，查看报价 →</button>
+</div></section>
+        <section id="quoteReviewCard" class="card wizard-card" hidden><p class="eyebrow" data-t="step3">03 · 查看报价</p>
+<h2 data-t="reviewTitle">核对金额，再交给老板</h2>
+<p class="muted step-help" data-t="reviewHelp">这是报价建议，老板批准后才生成正式报价单。</p>
+<div class="review-layout"><div class="review-context"><div id="reviewSummary" class="review-summary"></div>
+<div id="legacyReviewTotal" class="total" hidden>
+<span data-t="quoteTotal">报价合计</span><strong id="legacyReviewAmount"></strong>
+</div></div>
+<div id="cpPreviewBox" class="cp-pricing" hidden>
+<div class="section-top">
+<h3 data-t="cpPricing">历史定价建议</h3>
+<button id="cpRefreshPricing" class="text-button" data-t="cpRefreshPricing">更新建议</button>
+</div>
+<div id="cpPreview"></div>
+<p id="cpPreviewHint" class="muted small"></p>
+</div></div>
+          <details id="quoteOptions"><summary data-t="quoteOptions">回复语言与备注（可选）</summary>
+          <label><span data-t="replyLanguage">客户回复语言</span><select id="quoteLanguage"><option value="zh">中文</option>
+<option value="en">English</option>
+<option value="ms">Bahasa Melayu</option></select></label>
+          <label><span data-t="notes">报价备注</span><textarea id="notes" rows="2" maxlength="1000"></textarea></label>
+          </details>
+          <label class="checkbox"><input id="sourceConfirmed" type="checkbox"><span data-t="confirmSource">我已核对当前客户和这段询价的来源</span></label>
+          <button id="saveSubmit" class="primary full" data-t="saveSubmit">确认明细并提交老板</button>
+          <button id="saveDraft" class="text-button full save-only" data-t="saveDraft">保存报价草稿</button>
+        <button id="backToProducts" class="text-button" data-t="backToProducts">← 返回修改商品</button></section><section id="quoteCard" class="card" hidden>
+          <div class="section-top">
+<div>
+<p class="eyebrow" id="quoteNumber"></p>
+<h2 id="quoteCustomer"></h2>
+</div>
+<span id="quoteStatus" class="status"></span>
+</div>
+          <p id="quoteNextHint" class="quote-next"></p>
+<section id="reviewUpgrade" class="warning" hidden><strong data-t="reviewLegacy">这笔报价需要按新版重新核对</strong><p data-t="reviewLegacyHelp">保留原记录，修改并保存新版本后再提交或批准。</p>
+<button id="reviewEditUpgrade" class="secondary" data-t="reviewEdit">重新核对这笔报价</button></section><div id="quoteSummary"></div>
+<details><summary data-t="viewOriginal">查看询价原文和备注</summary><p id="savedOriginal" class="prewrap"></p></details>
+          <div id="cpQuotePricing" class="cp-pricing" hidden></div>
+<details id="reviewAudit" class="review-audit" hidden><summary data-t="reviewAudit">本次人工更正 请老板核对</summary><div id="reviewAuditLog"></div></details><div class="total">
+<span id="cpTotalCaption" data-t="quoteTotal">报价合计</span><strong id="quoteTotal"></strong>
+</div>
+          <div id="draftActions" class="actions"><button id="submit" class="primary" data-t="submit">提交老板审核</button></div>
+          <div id="bossActions" class="actions" hidden>
+<details id="cpEditDetails" class="owner-edit-details"><summary data-t="adjustPrice">调整折扣和运费</summary><div id="cpOwnerEdit" class="cp-owner" hidden>
+<h3 data-t="cpOwnerDecision" hidden="hidden">老板确定最终价格</h3>
+<button id="cpAccept" class="secondary" type="button" data-t="cpAccept">采用建议值</button><div class="cp-grid">
+<label><span data-t="cpFinalDiscount">最终折扣百分比</span><input id="cpDiscount" type="number" min="0" max="99.99" step="0.01"></label><label><span data-t="cpFinalFreight">最终运费 RM</span><input id="cpFreight" type="number" min="0" step="0.01"></label>
+</div>
+<label><span data-t="cpDecisionNote">定价说明（可选）</span><input id="cpDecisionNote" maxlength="500"></label><p id="cpOwnerTotal" class="cp-owner-total"></p>
+<p class="muted small" data-t="cpPolicyGuard">服务端核对最高折扣与最低毛利；批准后固定这一版价格。</p>
+</div></details><button id="approve" class="primary full" data-t="approve">批准并生成报价单</button><details id="rejectDetails" class="reject-details"><summary data-t="return">退回修改</summary><label><span data-t="returnReason">退回原因</span><input id="rejectReason" maxlength="500"></label><button id="reject" class="secondary" data-t="return">退回修改</button></details>
+</div>
+          <div id="pendingInfo" class="info" hidden data-t="pendingInfo">已进入老板待审列表。内容改动后需要保存新版本并重新提交。</div>
+          <div id="approvedArea" hidden>
+            <p id="approvalInfo" class="muted small"></p>
+<div id="exportWarning" class="warning" hidden>
+<p data-t="exportPending">报价已批准，文件归档待重试。</p>
+<button id="retryExport" class="secondary" data-t="retryExport">重试生成与归档</button>
+</div>
+            <div id="replyTarget" class="reply-target" hidden>
+<span data-t="replyTarget">回复对应的聊天</span><strong id="replyTargetName"></strong>
+</div>
+            <div class="actions">
+<button id="downloadPDF" class="primary" data-t="downloadPDF">下载 PDF 报价单</button><button id="downloadLedger" class="secondary" data-t="downloadLedger">下载 Excel 记录</button>
+</div>
+            <label><span data-t="replyDraft">客户回复草稿</span><select id="replyLanguage"><option value="zh">中文</option>
+<option value="en">English</option>
+<option value="ms">Bahasa Melayu</option></select><textarea id="replyText" rows="5" readonly></textarea></label><button id="fillReply" class="primary full" hidden data-t="fillReply">填入对应 WhatsApp 聊天</button><button id="copyReply" class="secondary full save-only" data-t="copyReply">复制回复</button><p class="muted small" data-t="sendNote">核对后，把 PDF 和回复发给客户；此处不会自动发送 WhatsApp 消息。</p>
+            <details id="cpOutcomeBox" class="cp-pricing"><summary data-t="cpOutcomeTitle">记录客户结果</summary><p class="muted small" data-t="cpOutcomeHelp">成交或未成交会进入下次定价的历史统计；待回复不计入转化率。成交标记不等于出库。</p>
+<div class="cp-grid">
+<label><span data-t="cpOutcome">客户结果</span><select id="cpOutcome"><option value="open" data-t="cpOpen">待回复</option>
+<option value="won" data-t="cpWon">已成交</option>
+<option value="lost" data-t="cpLost">未成交</option></select></label><label><span data-t="cpActualCost">实际配送成本 RM（可选）</span><input id="cpActualCost" type="number" min="0" step="0.01"></label>
+</div>
+<label><span data-t="cpOutcomeNote">结果备注</span><input id="cpOutcomeNote" maxlength="500"></label><button id="cpSaveOutcome" class="secondary" data-t="cpSaveOutcome">保存结果并更新历史</button><p id="cpOutcomeState" class="muted small"></p></details>
+          </div>
+          <details id="quoteTools"><summary data-t="moreActions">更多操作与记录</summary><details id="phoneNotice" class="phone-options" hidden="hidden"><summary data-t="phoneNoticeTitle">手机通知与审批链接</summary><p id="phoneStatus"></p>
+<p id="phoneError" class="small"></p>
+<div class="actions">
+<button id="notifyPhone" class="secondary" data-t="notifyPhone">通知 / 重试通知老板</button><button id="copyMobileLink" class="secondary" data-t="copyMobileLink">复制手机审批链接</button>
+</div>
+<small data-t="mobileLinkHelp">链接只对应这一版报价，老板仍需输入密码才能批准。</small></details><div class="actions">
+<button id="editQuote" class="text-button" data-t="editRevision">修改并创建新版本</button><button id="refreshQuote" class="text-button" data-t="refresh">刷新状态</button>
+</div>
+          <details class="activity-details"><summary data-t="activity">操作记录</summary><div id="activityLog"></div></details>
+        </details></section>
+      </div>
+      <div id="view-records" class="view" hidden><section class="card"><div class="section-top">
+<div>
+<p class="eyebrow" data-t="inbox">工作收件箱</p>
+<h2 data-t="recordsTitle">报价审批与记录</h2>
+</div>
+<button id="refreshRecords" class="text-button" data-t="refresh">刷新</button>
+</div>
+<p id="inboxHint" class="muted"></p>
+<div class="record-filters">
+<button data-record-filter="all" class="active" data-t="filterAll">全部</button><button data-record-filter="pending" data-t="pendingShort">待审批</button><button data-record-filter="ready" data-t="readyShort">待跟进</button><button data-record-filter="closed" data-t="closedShort">已结束</button>
+</div>
+<div id="quoteList"></div></section></div>
+      <div id="view-settings" class="view" hidden>
+<div class="page-heading">
+<p class="eyebrow" data-t="settingsEyebrow">SHOP SETTINGS</p>
+<h2 data-t="settingsTitle">把店铺准备好</h2>
+<p class="muted" data-t="settingsHelp">商品、库存与店铺信息集中在这里，日常报价无需反复设置。</p>
+</div>
+<div class="settings-tabs">
+<button data-settings="business" data-t="cpBusiness">经营数据</button><button data-settings="catalog" data-t="catalogTitle">商品目录</button><button data-settings="shop" data-t="shopSettings">店铺资料</button><button data-settings="connections" data-t="advancedConnections">可选连接</button>
+</div>
+<div id="view-business" class="settings-pane" hidden="hidden">
+        <section class="card"><div class="section-top">
+<h2 data-t="cpBusinessTitle">商品 库存 历史与配送</h2>
+<button id="cpBusinessRefresh" class="text-button" data-t="refresh">刷新</button>
+</div>
+<p data-t="cpBusinessHelp">导入包含 Products、Inventory、History、Delivery、Rules 五张表的经营 Excel。先检查，再确认；导入会创建新版本，旧批准保留。</p>
+<button id="cpBusinessTemplate" class="secondary" data-t="cpBusinessTemplate">下载经营样例</button><label><span data-t="excelFile">Excel 文件</span><input id="cpBusinessFile" type="file" accept=".xlsx"></label><button id="cpBusinessPreview" class="secondary" data-t="previewImport">检查导入内容</button><p id="cpImportSummary" class="muted"></p>
+<button id="cpBusinessImport" class="primary" hidden data-t="cpBusinessImport">确认导入完整经营数据</button></section>
+        <section class="card"><h2 data-t="cpLearning">经营历史与反馈</h2>
+<div id="cpBusinessStats" class="cp-stats"></div>
+<p id="cpBusinessRules" class="muted small"></p>
+<p data-t="cpLearningHelp">样例是自编演示数据。历史转换率用于说明建议依据，不代表折扣能带来因果提升。未记录实际配送成本的成交只参与销量、折扣与转化率统计。</p>
+<div id="cpInventoryList"></div></section>
+      </div>
+      <div id="view-catalog" class="settings-pane" hidden="hidden">
+        <section class="card"><div class="section-top">
+<div>
+<p class="eyebrow" data-t="priceList">店铺价目表</p>
+<h2 data-t="catalogTitle">商品目录</h2>
+</div>
+<button id="downloadTemplate" class="text-button" data-t="template">下载样例</button>
+</div>
+<p id="catalogInfo" class="muted"></p>
+<div id="catalogList"></div></section>
+        <details id="importCard" class="card boss-only"><summary data-t="legacyImport">导入 Excel 价格表</summary><p class="muted small" data-t="importHelp">第一行使用列名，支持 .xlsx；原文件会保留，导入后创建新目录版本。</p>
+<label><span data-t="excelFile">Excel 文件</span><input id="catalogFile" type="file" accept=".xlsx"></label><label id="sheetLabel" hidden><span data-t="worksheet">工作表</span><select id="importSheet"></select></label><div id="columnMapping"></div>
+<button id="previewCatalog" class="secondary full" data-t="previewImport">检查导入内容</button><div id="importPreview"></div>
+<button id="commitCatalog" class="primary full" hidden data-t="commitImport">确认导入价目表</button></details>
+        </div>
+      <div id="view-connections" class="settings-pane" hidden="hidden">
+        <p class="muted small" data-t="connectionIntro">先保存服务凭据，再启用。凭据只保存在这台电脑的后台，不写入 Chrome 存储。</p>
+        <form id="connectionsForm">
+        <section class="card"><h2 data-t="aiTitle">AI 询价理解</h2>
+<p class="muted small" data-t="aiHelp">启用后，会向 OpenAI 提交本次询价及相关商品名称、品牌和规格；价格计算仍由店铺价目表完成。</p>
+<label class="checkbox"><input id="aiEnabled" type="checkbox"><span data-t="enableAI">启用真实 AI 接口</span></label><label><span data-t="aiModel">模型名称</span><input id="aiModel" maxlength="100" value="gpt-5.4-mini"></label><label><span>OpenAI API key</span><input id="aiKey" type="password" maxlength="4096" autocomplete="off"></label><p id="aiKeyState" class="muted small"></p>
+<label class="checkbox"><input id="clearAIKey" type="checkbox"><span data-t="clearCredential">清除已保存的凭据</span></label></section>
+        <section class="card"><h2 data-t="waTitle">WhatsApp 老板手机通知</h2>
+<p class="muted small" data-t="waHelp">使用 WhatsApp Cloud API。个人 WhatsApp 登录不会自动提供这些凭据。</p>
+<label class="checkbox"><input id="waEnabled" type="checkbox"><span data-t="enableWA">提交报价时自动通知老板手机</span></label><label><span data-t="bossPhone">老板 WhatsApp 号码（含国家码）</span><input id="bossPhone" maxlength="30" placeholder="60..." autocomplete="off" inputmode="tel"></label><label class="checkbox"><input id="phoneConfirmed" type="checkbox"><span data-t="confirmPhone">我已核对这是接收待审通知的老板号码</span></label><label><span>WhatsApp Phone Number ID</span><input id="waPhoneId" maxlength="50" autocomplete="off"></label><label><span>WhatsApp access token</span><input id="waToken" type="password" maxlength="4096" autocomplete="off"></label><p id="waTokenState" class="muted small"></p>
+<label class="checkbox"><input id="clearWAToken" type="checkbox"><span data-t="clearCredential">清除已保存的凭据</span></label><label><span data-t="graphVersion">Graph API 版本</span><input id="waVersion" maxlength="10" value="v26.0"></label><label><span data-t="notificationMode">通知方式</span><select id="waMode"><option value="template" data-t="templateMode">已审核模板</option>
+<option value="text" data-t="textMode">开发测试：普通文字</option></select></label><p class="warning small" data-t="windowHelp">普通文字仅适用于老板刚向业务号码发起聊天后的服务窗口；窗口外须用已审核模板。模板正文需依次包含报价号、客户、金额、链接四个参数。</p>
+<div id="templateFields">
+<label><span data-t="templateName">已审核模板名称</span><input id="waTemplate" maxlength="100" value="quote_approval"></label><label><span data-t="templateLanguage">模板语言代码</span><input id="waTemplateLanguage" maxlength="12" value="en_US"></label>
+</div>
+<label><span data-t="notificationLanguage">普通文字通知语言</span><select id="notificationLanguage"><option value="zh">中文</option>
+<option value="en">English</option>
+<option value="ms">Bahasa Melayu</option></select></label></section>
+        <section class="card"><h2 data-t="mobileTitle">手机审批入口</h2>
+<p class="muted small" data-t="mobileOriginHelp">运行 Start Mobile Windows.bat 后，临时 HTTPS 地址会自动填入；也可填写已配置的固定入口。手机入口仅开放单笔审批。</p>
+<label><span data-t="publicOrigin">手机审批 HTTPS 地址</span><input id="publicURL" type="url" maxlength="300" placeholder="https://...trycloudflare.com"></label><label><span data-t="linkMinutes">审批链接有效时间（分钟）</span><input id="linkMinutes" type="number" min="15" max="1440" value="60"></label><p class="muted small" data-t="mobilePasswordHelp">手机上使用现有老板密码。报价改版后，旧审批链接不能批准。</p></section>
+        <div class="actions">
+<button id="saveConnections" type="submit" class="primary" data-t="saveConnections">保存连接设置</button><button id="refreshConnections" type="button" class="secondary" data-t="refreshConnections">重新读取设置</button>
+</div>
+        </form>
+      </div>
+    <div id="view-shop" class="settings-pane" hidden>
+<section id="shopCard" class="card boss-only"><h2 data-t="shopSettings">店铺资料</h2>
+<form id="shopForm">
+<label><span data-t="shopName">店铺名称</span><input id="shopName" required maxlength="100"></label><label><span data-t="address">地址</span><textarea id="shopAddress" rows="2" maxlength="240"></textarea></label><label><span data-t="phone">电话</span><input id="shopPhone" maxlength="80"></label><label><span data-t="terms">报价条款</span><textarea id="shopTerms" rows="3" maxlength="600"></textarea></label><button class="primary" data-t="saveSettings">保存资料</button>
+</form>
+<details><summary data-t="enableDesktop">本机待审提醒</summary><button id="notifyDesktop" class="secondary" hidden data-t="enableDesktop">开启本机桌面待审提醒</button><p id="desktopHelp" class="muted small" hidden data-t="desktopHelp">需以老板身份登录插件并允许通知。它会提醒这台电脑，不会给老板手机发消息。</p></details></section>
+      </div>
+</div></section>
+  </main>
+  <footer>EzQuote 1.6.1 <span data-t="localFooter">· 本地报价与审批</span></footer>
+</body>
+</html>

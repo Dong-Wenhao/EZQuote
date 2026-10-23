@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "browser": "140.0.7339.207",
+  "steps": [
+    "A delayed quotation open cannot overwrite the customer selected afterwards",
+    "Approval finishes for its original quotation while a newly entered draft stays intact",
+    "Save and submit target the original request without clearing the new draft or its persisted input",
+    "Edits made to the same draft after a save request stay unsaved and can be reviewed and submitted as the next revision",
+    "Changing the customer during server review clears source confirmation and cannot silently save for that customer",
+    "A delayed status poll for a completed quote cannot replace the different quote currently being reviewed",
+    "A delayed PDF download keeps its original filename and writes its preparation record to the original quotation",
+    "Malformed word numbers and unclassified goods block pricing, explain the next step in three languages, and recover after rewriting the inquiry"
+  ],
+  "errors": [],
+  "externalAPIs": "not called",
+  "realWhatsAppAccount": false
+}

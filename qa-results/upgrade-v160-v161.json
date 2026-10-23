@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "version": "1.6.1",
+  "checks": [
+    "Actual 1.6.0 launcher creates/imports, saves a draft, submits a pending quote and approves RM471.20 with PDF/Excel",
+    "Overlay upgrade and normal run.py through the existing venv preserve users/passwords/sessions, business data, all three quote states, immutable approval snapshots, byte-identical PDFs and all Excel sheet values",
+    "A second launch exits with the correct port message, opens no browser or tunnel and leaves the existing workspace running; normal browser handoffs identify this ready service",
+    "Preserved pending and draft quotes can still be approved/returned; actual PDF, outcome and ledger operations work after upgrade",
+    "Ctrl+C shuts the normal launcher down cleanly without a traceback; a second normal restart retains all three records, customer outcome and original approved PDF without reinstalling or deleting the venv"
+  ],
+  "path_contains_spaces": true,
+  "actual_entrypoint": "run.py",
+  "dependency_setup": "pre-provisioned venv with locally available dependencies",
+  "windows_first_install": false,
+  "external_apis": "not called",
+  "real_whatsapp": false
+}

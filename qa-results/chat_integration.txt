@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "browser": "140.0.7339.207",
+  "steps": [
+    "Message action captures customer and original, auto-parses missing spec, inserts clarification without sending",
+    "Incoming capture preserves unsaved work; explicit replacement and edited quantities survive reopening",
+    "Combined save and submit preserves the source on the real backend",
+    "Boss approval updates sidebar; approved Malay reply inserts once, logs draft only, and preserves existing composer text",
+    "Wrong chat is blocked; returning to the original visible message permits insertion",
+    "Chat action language follows sidebar language; 430px sidebar stays within viewport"
+  ],
+  "errors": [],
+  "nativeChromeAPIs": false,
+  "realWhatsAppAccount": false
+}

@@ -1,0 +1,8 @@
+{
+  "characters": 11024,
+  "product_mentions": 1000,
+  "status_code": 500,
+  "response": "Internal Server Error",
+  "seconds": 18.066,
+  "health_after": 200
+}

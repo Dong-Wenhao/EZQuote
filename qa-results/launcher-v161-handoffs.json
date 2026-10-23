@@ -1,0 +1,18 @@
+{
+  "browser_handoffs": [
+    {
+      "url": "http://127.0.0.1:8765/",
+      "version": "1.6.0"
+    },
+    {
+      "url": "http://127.0.0.1:8765/",
+      "version": "1.6.1"
+    },
+    {
+      "url": "http://127.0.0.1:8765/",
+      "version": "1.6.1"
+    }
+  ],
+  "second_launch_opened_browser": false,
+  "normal_shutdown_traceback": false
+}

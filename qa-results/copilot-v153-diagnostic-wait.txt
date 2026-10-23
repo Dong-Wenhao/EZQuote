@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "browser": "156.0.8078.48",
+  "steps": [
+    "Owner imports the complete business workbook with products, inventory, history, delivery and rules",
+    "Unbranded natural inquiry matches 85-stock fast cement and shows structured requirements, alternatives and RM471.20 recommendation",
+    "Minimum-margin violation is blocked; owner edits to 4% and RM30 then approves RM471.60 while the original recommendation remains",
+    "Actual PDF and Excel downloads use the approved amount; all three customer replies include the final discount and freight",
+    "Recording a won result and actual delivery cost changes the next recommendation to 9 similar orders and a 3.17% discount",
+    "Missing delivery area blocks submission, new labels switch across three languages and the 360px workflow fits without overflow",
+    "The real isolated mobile gateway supports Malay owner edits and approval, including a 320px layout; no external API or tunnel is used"
+  ],
+  "errors": [],
+  "externalAPIs": "not called",
+  "publicTunnel": "not used",
+  "realWhatsAppAccount": false,
+  "dataDirectory": "C:\\Users\\27925\\Documents\\ChatGPT\\S.D.C\\plugin-retest-153\\wa_quote_mvp\\.qa-tmp\\quote-copilot-data-mO2eLU"
+}

@@ -1,0 +1,126 @@
+{
+  "passed": true,
+  "browser": "140.0.7339.207",
+  "steps": [
+    "1,020 stays 1020 and is blocked by stock; correcting the original inquiry to 20 produces a reviewed PDF and three replies",
+    "Two equal quantities remain two products through approval, PDF and all customer replies",
+    "Negated collection retains delivery and nonzero freight in the approved quotation and outputs",
+    "English and Chinese exclusions show their meaning and select valid alternatives through approval and generated files",
+    "A separate preference line attaches to its one product without creating a ghost item",
+    "A delayed response cannot advance changed inputs; changing 21 to 22 requires a fresh reason, preserved across languages and recorded on approval"
+  ],
+  "verified": [
+    {
+      "case": "corrected-thousand",
+      "items": [
+        {
+          "sku": "CEM-A-50",
+          "quantity": "20"
+        }
+      ],
+      "fulfilment": "delivery",
+      "area": "Shah Alam",
+      "freight": "28.00",
+      "total": "398.00",
+      "pdf": "verified",
+      "replyLanguages": 3
+    },
+    {
+      "case": "two-products",
+      "items": [
+        {
+          "sku": "CEM-A-25",
+          "quantity": "20"
+        },
+        {
+          "sku": "NAIL-A-1",
+          "quantity": "20"
+        }
+      ],
+      "fulfilment": "delivery",
+      "area": "Shah Alam",
+      "freight": "28.00",
+      "total": "364.00",
+      "pdf": "verified",
+      "replyLanguages": 3
+    },
+    {
+      "case": "negated-pickup",
+      "items": [
+        {
+          "sku": "CEM-A-50",
+          "quantity": "20"
+        }
+      ],
+      "fulfilment": "delivery",
+      "area": "Shah Alam",
+      "freight": "28.00",
+      "total": "398.00",
+      "pdf": "verified",
+      "replyLanguages": 3
+    },
+    {
+      "case": "not-fast-en",
+      "items": [
+        {
+          "sku": "CEM-A-25",
+          "quantity": "20"
+        }
+      ],
+      "fulfilment": "delivery",
+      "area": "Shah Alam",
+      "freight": "28.00",
+      "total": "228.00",
+      "pdf": "verified",
+      "replyLanguages": 3
+    },
+    {
+      "case": "not-fast-zh",
+      "items": [
+        {
+          "sku": "CEM-A-25",
+          "quantity": "20"
+        }
+      ],
+      "fulfilment": "delivery",
+      "area": "Shah Alam",
+      "freight": "28.00",
+      "total": "228.00",
+      "pdf": "verified",
+      "replyLanguages": 3
+    },
+    {
+      "case": "not-brand",
+      "items": [
+        {
+          "sku": "CEM-C-PRO-50",
+          "quantity": "20"
+        }
+      ],
+      "fulfilment": "delivery",
+      "area": "Shah Alam",
+      "freight": "28.00",
+      "total": "504.00",
+      "pdf": "verified",
+      "replyLanguages": 3
+    },
+    {
+      "case": "manual-correction",
+      "items": [
+        {
+          "sku": "CEM-A-FAST-50",
+          "quantity": "22"
+        }
+      ],
+      "fulfilment": "delivery",
+      "area": "Shah Alam",
+      "freight": "25.00",
+      "total": "515.82",
+      "pdf": "verified",
+      "replyLanguages": 3
+    }
+  ],
+  "errors": [],
+  "externalAPIs": "not called",
+  "realWhatsAppAccount": false
+}

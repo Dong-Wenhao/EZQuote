@@ -1,0 +1,333 @@
+{
+  "baseline_version": "1.5.0",
+  "current_version": "1.5.1",
+  "before": [
+    {
+      "input": "Need 20 or 30 bags cement 50kg. Deliver to Shah Alam.",
+      "status": "READY",
+      "items": [
+        {
+          "sku": "CEM-A-50",
+          "quantity": "30",
+          "issues": []
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "Need 20 to 30 bags cement 50kg. Deliver to Shah Alam.",
+      "status": "READY",
+      "items": [
+        {
+          "sku": "CEM-A-50",
+          "quantity": "30",
+          "issues": []
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "我要20或30袋水泥50kg，送到莎阿南。",
+      "status": "READY",
+      "items": [
+        {
+          "sku": "CEM-A-50",
+          "quantity": "30",
+          "issues": []
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "Saya mahu 20 atau 30 beg simen 50kg. Hantar ke Shah Alam.",
+      "status": "READY",
+      "items": [
+        {
+          "sku": "CEM-A-50",
+          "quantity": "30",
+          "issues": []
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "Need 20 bags cement for plastering.\n10 bags sand, deliver to Shah Alam.",
+      "status": "READY",
+      "items": [
+        {
+          "sku": "CEM-A-25",
+          "quantity": "20",
+          "issues": []
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "Need 20 bags cement for plastering.\nPrefer fast setting, deliver to Shah Alam.",
+      "status": "READY",
+      "items": [
+        {
+          "sku": "CEM-A-25",
+          "quantity": "20",
+          "issues": []
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "Need 20 bags cement for plastering.\nNo Brand A please, deliver to Shah Alam.",
+      "status": "NEEDS_INFO",
+      "items": [
+        {
+          "sku": "CEM-A-25",
+          "quantity": "20",
+          "issues": []
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "我要20袋水泥用于抹灰，速凝不要，送到莎阿南。",
+      "status": "READY",
+      "items": [
+        {
+          "sku": "CEM-A-FAST-50",
+          "quantity": "20",
+          "issues": []
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "Need 20 bags cement for plastering. No Brand A, Brand C please. Deliver to Shah Alam.",
+      "status": "NEEDS_INFO",
+      "items": [
+        {
+          "sku": "",
+          "quantity": "20",
+          "issues": [
+            "stock"
+          ]
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "Need 20 bags cement for plastering. Prefer fast setting, do not pick up; deliver to Shah Alam.",
+      "status": "READY",
+      "items": [
+        {
+          "sku": "CEM-A-FAST-50",
+          "quantity": "20",
+          "issues": []
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "invalid_quantity": "oops",
+      "status": 500,
+      "detail": "Internal Server Error"
+    },
+    {
+      "invalid_quantity": "NaN",
+      "status": 422,
+      "detail": "{\"detail\":\"quantity must be greater than zero and at most 1000000\"}"
+    },
+    {
+      "invalid_quantity": "Infinity",
+      "status": 422,
+      "detail": "{\"detail\":\"quantity must be greater than zero and at most 1000000\"}"
+    },
+    {
+      "invalid_quantity": "1e10000000",
+      "status": 500,
+      "detail": "Internal Server Error"
+    },
+    {
+      "extra_item_review": 200,
+      "problems": [
+        {
+          "code": "extra_product",
+          "source_id": "extra-1",
+          "item_index": null,
+          "expected_value": {
+            "sku": "NAIL-A-1",
+            "quantity": "5"
+          }
+        }
+      ]
+    }
+  ],
+  "after": [
+    {
+      "input": "Need 20 or 30 bags cement 50kg. Deliver to Shah Alam.",
+      "status": "NEEDS_INFO",
+      "items": [
+        {
+          "sku": "",
+          "quantity": "",
+          "issues": [
+            "multiple_quantities"
+          ]
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "Need 20 to 30 bags cement 50kg. Deliver to Shah Alam.",
+      "status": "NEEDS_INFO",
+      "items": [
+        {
+          "sku": "",
+          "quantity": "",
+          "issues": [
+            "multiple_quantities"
+          ]
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "我要20或30袋水泥50kg，送到莎阿南。",
+      "status": "NEEDS_INFO",
+      "items": [
+        {
+          "sku": "",
+          "quantity": "",
+          "issues": [
+            "multiple_quantities"
+          ]
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "Saya mahu 20 atau 30 beg simen 50kg. Hantar ke Shah Alam.",
+      "status": "NEEDS_INFO",
+      "items": [
+        {
+          "sku": "",
+          "quantity": "",
+          "issues": [
+            "multiple_quantities"
+          ]
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "Need 20 bags cement for plastering.\n10 bags sand, deliver to Shah Alam.",
+      "status": "NEEDS_INFO",
+      "items": [
+        {
+          "sku": "CEM-A-25",
+          "quantity": "20",
+          "issues": []
+        },
+        {
+          "sku": "",
+          "quantity": "10",
+          "issues": [
+            "unknown_product"
+          ]
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "Need 20 bags cement for plastering.\nPrefer fast setting, deliver to Shah Alam.",
+      "status": "READY",
+      "items": [
+        {
+          "sku": "CEM-A-FAST-50",
+          "quantity": "20",
+          "issues": []
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "Need 20 bags cement for plastering.\nNo Brand A please, deliver to Shah Alam.",
+      "status": "READY",
+      "items": [
+        {
+          "sku": "CEM-C-PRO-50",
+          "quantity": "20",
+          "issues": []
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "我要20袋水泥用于抹灰，速凝不要，送到莎阿南。",
+      "status": "READY",
+      "items": [
+        {
+          "sku": "CEM-A-25",
+          "quantity": "20",
+          "issues": []
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "Need 20 bags cement for plastering. No Brand A, Brand C please. Deliver to Shah Alam.",
+      "status": "READY",
+      "items": [
+        {
+          "sku": "CEM-C-PRO-50",
+          "quantity": "20",
+          "issues": []
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "input": "Need 20 bags cement for plastering. Prefer fast setting, do not pick up; deliver to Shah Alam.",
+      "status": "READY",
+      "items": [
+        {
+          "sku": "CEM-A-FAST-50",
+          "quantity": "20",
+          "issues": []
+        }
+      ],
+      "fulfilment": "delivery"
+    },
+    {
+      "invalid_quantity": "oops",
+      "status": 422,
+      "detail": "{\"detail\":\"Invalid quantity\"}"
+    },
+    {
+      "invalid_quantity": "NaN",
+      "status": 422,
+      "detail": "{\"detail\":\"quantity must be greater than zero and at most 1000000\"}"
+    },
+    {
+      "invalid_quantity": "Infinity",
+      "status": 422,
+      "detail": "{\"detail\":\"quantity must be greater than zero and at most 1000000\"}"
+    },
+    {
+      "invalid_quantity": "1e10000000",
+      "status": 422,
+      "detail": "{\"detail\":\"quantity must be greater than zero and at most 1000000\"}"
+    },
+    {
+      "extra_item_review": 200,
+      "problems": [
+        {
+          "code": "extra_product",
+          "source_id": "extra-1",
+          "item_index": 1,
+          "expected_value": {
+            "sku": "NAIL-A-1",
+            "quantity": "5"
+          }
+        }
+      ]
+    }
+  ]
+}

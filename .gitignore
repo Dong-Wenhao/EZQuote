@@ -1,0 +1,31 @@
+.venv/
+node_modules/
+data/
+__pycache__/
+.pytest_cache/
+*.pyc
+test-results/
+independent-results/remaining-*.json
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.db
+
+# Local tools, caches and release outputs
+.cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+playwright-report/
+*.log
+*.zip
+.DS_Store
+Thumbs.db

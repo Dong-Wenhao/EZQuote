@@ -1,0 +1,82 @@
+# MVP 1.5.4 验证记录
+
+本轮完成队友 1.5.3 一次性清单的两项修正，并优化蓝白页面。环境为 Linux、Python 3.12.14、Chrome Headless Shell 140.0.7339.207，使用真实本地后台和本地手机网关。店铺、商品、客户和凭据均为合成数据。
+
+## 后端 329 项通过
+
+实际命令：
+
+    python -m pytest tests independent-results retest-results -q --disable-warnings --tb=short
+
+结果：329 passed, 1 warning in 45.45s。原有 301 项完整保留，新增 tests/test_limits_v153.py 的 27 项，以及 retest-results/test_long_inquiry.py 的 1 项。tests 合计 317 项，历史独立用例 11 项，正式长输入复测 1 项。警告仍为 Starlette/httpx 的兼容弃用提示。
+
+新增验证包括：
+
+- 40 条商品需求按换行、分号、中英马来连接词拆分，保留全部数量、原文位置及独立 source_id；核对后实际保存 40 条报价明细。
+- 配送与问候不占商品额度；缺数量仍列出 40 条待补需求。
+- 41 条已知或混有未知商品需求整体拒绝；各拆分预算分别触发受控错误。
+- parse 与 review 均对原报告的 1,000 片段返回 HTTP 422 和明确分批提示；不生成报价或核对记录，请求后 health=200。
+- 12,000 字符内受拆分预算约束；12,001 字符继续由请求体验证返回 422。
+- 超限请求预热后响应时间低于固定测试机的 2 秒目标，保留实际耗时断言。
+
+正式原例为 11,024 字符。此次 parse 为 0.1126 秒，review 为 0.1113 秒，均返回 422；quotes 与 requirement_reviews 的计数均从 0 保持 0。详细事实见 qa-results/long-inquiry-v154-after.json。原报告 18.066 秒及 HTTP 500 的证据保留为 long-inquiry-v153-before.json。这些耗时是该测试机的单次记录，不是所有设备或输入的性能承诺。
+
+已有数量完整性、三语文字数量、未知商品与未解释原文、否定、库存合计、权限、核对绑定、人工更正、Decimal 金额、幂等审批、历史快照、导出、迁移等用例全部继续通过。没有更改原有断言以放宽业务规则。
+
+## 浏览器 62 组通过
+
+原有八个脚本顺序执行，共 58 组；新增界面检查四组，合计九个脚本、62 组，无未处理 JavaScript 错误。八个原业务脚本的库存、金额、审批、导出和反馈断言保留；browser_smoke 的背景颜色断言随本次色板更新为 #f4f7fc。
+
+| 脚本 | 组数 | 覆盖 |
+| --- | ---: | --- |
+| browser_smoke.mjs | 8 | 首次设置、真实界面 Excel 导入、提交批准、PDF/Excel 下载、三语和缺信息 |
+| chat_integration.mjs | 6 | 合成 WhatsApp 来源、追问、保留草稿、回填和切错聊天拦截 |
+| mobile_browser.mjs | 6 | 合成通知提供者、本地手机网关、密码校验、三语审批和窄屏 |
+| copilot_browser.mjs | 7 | 完整经营导入、库存推荐、最低毛利与改价、正式输出、反馈及手机改价 |
+| guided_browser.mjs | 7 | 角色首页、分步报价、返回修改、草稿恢复、老板批准退回、结果筛选 |
+| semantic_browser.mjs | 6 | 1020、同数量多商品、否定及换行偏好、异步输入和实际 PDF |
+| self_review_browser.mjs | 10 | 全角范围、异常数字、未知商品、取消记录、手机更正、缓存和链接切换 |
+| audit_browser.mjs | 8 | 桌面迟到响应、保存期间编辑、来源确认、PDF 归属、异常文字数量和原文覆盖 |
+| ui_polish_browser.mjs | 4 | 三语输入提示与计数、真实延迟下的核对状态、数字依据可展开、三语 320/430/1160px 金额布局、超长错误和键盘关闭提示及恢复 |
+
+copilot_browser 原来在商品卡出现后立即断言预览金额，存在异步误报。队友在 1.5.3 原正式脚本上两次复现，诊断副本加等待后通过。本轮将 waitForFunction 合入正式原脚本，明确等到合成样例的 495.00 出现，10 秒超时；超时仍失败并保存截图、cpPreview/cpPreviewHint 和后台日志。修改后的正式脚本已直接运行通过七组；没有用诊断副本代替它验收。原失败与诊断日志保留为 qa-results/copilot-v153-original-failure.txt 和 copilot-v153-diagnostic-wait.txt。
+
+原来的 qa-results/browser-results-v153.json 是上一环境的一次执行记录；队友复测发现的等待风险已在本轮修正，不能据旧记录声称旧原脚本在所有环境稳定通过。
+
+本轮界面检查在真实 HTTP review 请求上人为保持响应，验证“正在核对”与 aria-busy，再放行到“核对通过”和 RM471.20。1,000 片段三语提示保留输入、不创建报价，改回正常文本可恢复。三语在 320、430、1160px 下没有水平溢出，金额卡没有裁切。
+
+各脚本输出保存在 qa-results，对应汇总为 browser-results.json。浏览器截图仅作内部版面检查，不放入发布包。
+
+## 插件逻辑 10 组通过
+
+    node tests/extension_checks.mjs
+
+覆盖 Manifest 权限和 JS 语法、英马文案、消息顺序和来源、过长消息、右键带入、待审徽标、批准检查、追问与回复回填、本机通知去重。扩展 API 为模拟桥接，不能据此声称原生扩展和真实 WhatsApp 已通过实机联调。
+
+## 开发复现
+
+    python -m pip install -r requirements-dev.txt
+    python -m pytest tests independent-results retest-results -q
+    npm install
+    node tests/extension_checks.mjs
+
+设置 TEST_PYTHON 和 BROWSER_EXECUTABLE 为实际 Python、Chrome 可执行文件路径，再顺序运行上表各脚本，例如：
+
+    node tests/copilot_browser.mjs
+    node tests/ui_polish_browser.mjs
+
+这些脚本共用 8765/8766 端口，不可并行启动。普通用户启动程序不需要 Node。Windows PowerShell 使用 $env:TEST_PYTHON 和 $env:BROWSER_EXECUTABLE 设置路径。
+
+## 文档与发布包
+
+两页队友 Word 指南已更新到 1.5.4，重新渲染并逐页检查。界面检查已目视查看首页、商品页、报价页、核对中和 320px 超长错误提示，未发现文字重叠、裁切或布局溢出。发布器检查 ZIP CRC、逐文件 SHA-256、运行版本、测试汇总及必需模块，不包含 data、账号、密钥、虚拟环境、数据库或内部截图。
+
+## 实现边界与实机待验
+
+- 没有执行 Windows 干净环境首次安装、双击 BAT 和 Chrome 原生扩展安装。没有登录真实 WhatsApp；真实 DOM、聊天绑定及草稿回填需本机试用。
+- 真实模型、Meta 权限、真实手机收件和公网隧道未联调。通知相关测试使用合成提供者，手机网关仅为真实本地 HTTP；默认外部连接关闭。
+- 需求整理是常见建材表达的本地规则，历史建议是统计与店铺规则。复杂或未理解内容仍须人工确认或分行改写。
+- 库存是导入快照，不预留、不出库；客户成交人工登记。回复由人发送，PDF 单独附加。
+- 本轮不新增数据库表、不改变 v5 核对格式、不改已批准报价快照。升级保留 data 和 .venv；各电脑数据独立。
+
+历史修复及升级证据保留在各版本说明和 qa-results；当前验收以本文件与 1.5.4_优化与验收说明.md 为准。

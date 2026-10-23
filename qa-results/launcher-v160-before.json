@@ -1,0 +1,8 @@
+{
+  "old_service_occupied_port": true,
+  "launcher_exit": 3,
+  "browser_opened": [
+    "http://127.0.0.1:8765/"
+  ],
+  "wrong_service_opened": true
+}

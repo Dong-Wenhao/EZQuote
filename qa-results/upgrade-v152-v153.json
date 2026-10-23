@@ -1,0 +1,58 @@
+{
+  "from_version": "1.5.2",
+  "to_version": "1.5.3",
+  "old_sessions_valid": true,
+  "users_and_password_hashes_preserved": true,
+  "approved_rows": [
+    {
+      "case": "word_number",
+      "id": "Q-20261022-92D5E127",
+      "status": "COMPLETED",
+      "items": [
+        {
+          "sku": "CEM-A-50",
+          "quantity": "50"
+        }
+      ],
+      "total": "953.00",
+      "pdf_sha256": "a69758e094723f591e3bc3e303ae553022ee3b9700a78f669c5a4e11f038c4e8",
+      "approved_snapshot_preserved": true,
+      "pdf_identical": true
+    },
+    {
+      "case": "unknown",
+      "id": "Q-20261022-EB3B58A1",
+      "status": "COMPLETED",
+      "items": [
+        {
+          "sku": "CEM-A-50",
+          "quantity": "20"
+        }
+      ],
+      "total": "398.00",
+      "pdf_sha256": "8de9557014c16a4b31948b6405eec042a197b6d85896553a22dd392f424dcc28",
+      "approved_snapshot_preserved": true,
+      "pdf_identical": true
+    },
+    {
+      "case": "curly_negation",
+      "id": "Q-20261022-FA600C0A",
+      "status": "COMPLETED",
+      "items": [
+        {
+          "sku": "CEM-A-FAST-50",
+          "quantity": "20"
+        }
+      ],
+      "total": "471.20",
+      "pdf_sha256": "e9d3f04a489727f4827473f2e90ab62db21b426860552f2b9883f1a62eaebd51",
+      "approved_snapshot_preserved": true,
+      "pdf_identical": true
+    }
+  ],
+  "outdated_pending_requires_review": true,
+  "old_approval_blocked_status": 409,
+  "corrected_new_revision_approved": true,
+  "migration_repeatable": true,
+  "external_APIs": "not called"
+}

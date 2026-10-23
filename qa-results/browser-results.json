@@ -1,0 +1,274 @@
+{
+  "version": "1.6.1",
+  "passed_groups": 64,
+  "reports": [
+    {
+      "passed": true,
+      "browser": "140.0.7339.207",
+      "steps": [
+        "First-run setup and styled workspace",
+        "Excel file selected, checked and imported through the UI",
+        "Staff inquiry parsed, priced, saved and submitted",
+        "Boss inbox refresh and separate-account approval; staff status update",
+        "PDF and Excel downloaded; Malay approved reply copied",
+        "English and Malay UI labels and inquiry parsing",
+        "Missing specification blocks draft; 360px layout has no horizontal overflow",
+        "Synthetic WhatsApp page: one content-script button and selected-text message (Chrome runtime stubbed)"
+      ],
+      "errors": [],
+      "script": "tests/browser_smoke.mjs"
+    },
+    {
+      "passed": true,
+      "browser": "140.0.7339.207",
+      "steps": [
+        "Message action captures customer and original, auto-parses missing spec, inserts clarification without sending",
+        "Incoming capture preserves unsaved work; explicit replacement and edited quantities survive reopening",
+        "Combined save and submit preserves the source on the real backend",
+        "Boss approval updates sidebar; approved Malay reply inserts once, logs draft only, and preserves existing composer text",
+        "Wrong chat is blocked; returning to the original visible message permits insertion",
+        "Chat action language follows sidebar language; 430px sidebar stays within viewport"
+      ],
+      "errors": [],
+      "nativeChromeAPIs": false,
+      "realWhatsAppAccount": false,
+      "script": "tests/chat_integration.mjs"
+    },
+    {
+      "passed": true,
+      "browser": "140.0.7339.207",
+      "steps": [
+        "Boss configures AI, verified phone recipient and HTTPS origin; credentials clear from the form",
+        "Staff has no settings access; structured extraction separates two products and the catalog computes RM413.75",
+        "Background outbox submits one template with the correct amount and scoped link; UI distinguishes acceptance from delivery",
+        "Separate phone context reviews only this quotation; wrong boss password cannot approve and is cleared",
+        "Malay mobile approval updates the staff workspace and downloads the actual generated PDF through the gateway",
+        "Mobile and settings layouts fit narrow screens; language labels switch; public gateway has no catalog route"
+      ],
+      "errors": [],
+      "externalAI": "synthetic provider",
+      "phoneDelivery": "not attempted",
+      "publicTunnel": "not used",
+      "actualGatewayHTTP": true,
+      "script": "tests/mobile_browser.mjs"
+    },
+    {
+      "passed": true,
+      "browser": "140.0.7339.207",
+      "steps": [
+        "Owner imports the complete business workbook with products, inventory, history, delivery and rules",
+        "Unbranded natural inquiry matches 85-stock fast cement and shows structured requirements, alternatives and RM471.20 recommendation",
+        "Minimum-margin violation is blocked; owner edits to 4% and RM30 then approves RM471.60 while the original recommendation remains",
+        "Actual PDF and Excel downloads use the approved amount; all three customer replies include the final discount and freight",
+        "Recording a won result and actual delivery cost changes the next recommendation to 9 similar orders and a 3.17% discount",
+        "Missing delivery area blocks submission, new labels switch across three languages and the 360px workflow fits without overflow",
+        "The real isolated mobile gateway supports Malay owner edits and approval, including a 320px layout; no external API or tunnel is used"
+      ],
+      "errors": [],
+      "externalAPIs": "not called",
+      "publicTunnel": "not used",
+      "realWhatsAppAccount": false,
+      "script": "tests/copilot_browser.mjs"
+    },
+    {
+      "passed": true,
+      "browser": "140.0.7339.207",
+      "steps": [
+        "Role-based home has one prominent new-quote action, accurate empty counts, two staff tabs and three owner tabs",
+        "Product and price steps show separately; quantity edits affect real prices and language switches preserve the recommendation",
+        "Back navigation retains products; a reloaded draft resumes the correct step and delivery area and requires source confirmation again",
+        "Changed inquiry is reparsed; cancelling a new-quote request preserves unsaved work and home can resume it",
+        "Owner approves the saved recommendation directly with edit fields, history reasons and return controls collapsed",
+        "Return reason is saved; home counts and filters use current approval and customer outcomes rather than calling approvals sales",
+        "All administration is grouped in owner settings; three languages fit 320px, 430px and desktop without horizontal overflow"
+      ],
+      "errors": [],
+      "realWhatsAppAccount": false,
+      "externalAPIs": "not called",
+      "script": "tests/guided_browser.mjs"
+    },
+    {
+      "passed": true,
+      "browser": "140.0.7339.207",
+      "steps": [
+        "1,020 stays 1020 and is blocked by stock; correcting the original inquiry to 20 produces a reviewed PDF and three replies",
+        "Two equal quantities remain two products through approval, PDF and all customer replies",
+        "Negated collection retains delivery and nonzero freight in the approved quotation and outputs",
+        "English and Chinese exclusions show their meaning and select valid alternatives through approval and generated files",
+        "A separate preference line attaches to its one product without creating a ghost item",
+        "A delayed response cannot advance changed inputs; changing 21 to 22 requires a fresh reason, preserved across languages and recorded on approval"
+      ],
+      "verified": [
+        {
+          "case": "corrected-thousand",
+          "items": [
+            {
+              "sku": "CEM-A-50",
+              "quantity": "20"
+            }
+          ],
+          "fulfilment": "delivery",
+          "area": "Shah Alam",
+          "freight": "28.00",
+          "total": "398.00",
+          "pdf": "verified",
+          "replyLanguages": 3
+        },
+        {
+          "case": "two-products",
+          "items": [
+            {
+              "sku": "CEM-A-25",
+              "quantity": "20"
+            },
+            {
+              "sku": "NAIL-A-1",
+              "quantity": "20"
+            }
+          ],
+          "fulfilment": "delivery",
+          "area": "Shah Alam",
+          "freight": "28.00",
+          "total": "364.00",
+          "pdf": "verified",
+          "replyLanguages": 3
+        },
+        {
+          "case": "negated-pickup",
+          "items": [
+            {
+              "sku": "CEM-A-50",
+              "quantity": "20"
+            }
+          ],
+          "fulfilment": "delivery",
+          "area": "Shah Alam",
+          "freight": "28.00",
+          "total": "398.00",
+          "pdf": "verified",
+          "replyLanguages": 3
+        },
+        {
+          "case": "not-fast-en",
+          "items": [
+            {
+              "sku": "CEM-A-25",
+              "quantity": "20"
+            }
+          ],
+          "fulfilment": "delivery",
+          "area": "Shah Alam",
+          "freight": "28.00",
+          "total": "228.00",
+          "pdf": "verified",
+          "replyLanguages": 3
+        },
+        {
+          "case": "not-fast-zh",
+          "items": [
+            {
+              "sku": "CEM-A-25",
+              "quantity": "20"
+            }
+          ],
+          "fulfilment": "delivery",
+          "area": "Shah Alam",
+          "freight": "28.00",
+          "total": "228.00",
+          "pdf": "verified",
+          "replyLanguages": 3
+        },
+        {
+          "case": "not-brand",
+          "items": [
+            {
+              "sku": "CEM-C-PRO-50",
+              "quantity": "20"
+            }
+          ],
+          "fulfilment": "delivery",
+          "area": "Shah Alam",
+          "freight": "28.00",
+          "total": "504.00",
+          "pdf": "verified",
+          "replyLanguages": 3
+        },
+        {
+          "case": "manual-correction",
+          "items": [
+            {
+              "sku": "CEM-A-FAST-50",
+              "quantity": "22"
+            }
+          ],
+          "fulfilment": "delivery",
+          "area": "Shah Alam",
+          "freight": "25.00",
+          "total": "515.82",
+          "pdf": "verified",
+          "replyLanguages": 3
+        }
+      ],
+      "errors": [],
+      "externalAPIs": "not called",
+      "realWhatsAppAccount": false,
+      "script": "tests/semantic_browser.mjs"
+    },
+    {
+      "passed": true,
+      "browser": "140.0.7339.207",
+      "steps": [
+        "Fullwidth quantity alternatives retain the whole original expression and cannot become an approved 30-bag quotation",
+        "Unsupported underscore quantities show the complete number and require clarification; correcting the inquiry restores pricing",
+        "English, Chinese and Malay coordinated unknown goods remain visible; deleting sand needs an explicit cancellation and saved reason",
+        "Range quantity cannot become the last endpoint or be dismissed with a general confirmation; editing the inquiry restores pricing",
+        "Unknown goods on a delivery line stay visible; deleting them requires a specific cancellation and saved reason",
+        "A manually added product can be confirmed through its actual row and persists as two quotation lines with a correction reason",
+        "The owner sees the exact manual correction and reason in all three phone languages before approving; actual PDF contains both products and final price",
+        "A draft cached by the old parser preserves its original inquiry but must reparse instead of reusing obsolete correction IDs",
+        "After business data changes, the phone explains that a new review is required and disables approval while keeping return available",
+        "Reusing a phone tab adopts the new quotation link and ignores a delayed response for the previous quotation"
+      ],
+      "errors": [],
+      "externalAPIs": "not called",
+      "publicTunnel": "not used",
+      "realWhatsAppAccount": false,
+      "manualAddedTotal": "522.00",
+      "script": "tests/self_review_browser.mjs"
+    },
+    {
+      "passed": true,
+      "browser": "140.0.7339.207",
+      "steps": [
+        "A delayed quotation open cannot overwrite the customer selected afterwards",
+        "Approval finishes for its original quotation while a newly entered draft stays intact",
+        "Save and submit target the original request without clearing the new draft or its persisted input",
+        "Edits made to the same draft after a save request stay unsaved and can be reviewed and submitted as the next revision",
+        "Changing the customer during server review clears source confirmation and cannot silently save for that customer",
+        "A delayed status poll for a completed quote cannot replace the different quote currently being reviewed",
+        "A delayed PDF download keeps its original filename and writes its preparation record to the original quotation",
+        "Malformed word numbers and unclassified goods block pricing, explain the next step in three languages, and recover after rewriting the inquiry"
+      ],
+      "errors": [],
+      "externalAPIs": "not called",
+      "realWhatsAppAccount": false,
+      "script": "tests/audit_browser.mjs"
+    },
+    {
+      "passed": true,
+      "browser": "140.0.7339.207",
+      "steps": [
+        "The real emerald theme loads, desktop navigation is fixed, staff sees two permitted sections and the sidebar shortcut opens the actual quotation flow",
+        "Chinese, English and Malay switch between desktop rail and compact navigation at six widths from 320 to 1440px without overflow",
+        "Input guidance, live character count and dismiss-button labels support Chinese, English and Malay",
+        "Delayed server review shows a checking state, then ready; original numeric evidence remains accessible and the actual recommendation stays RM471.20",
+        "The original and recommended amounts fit three languages at 320, 430 and 1160px without horizontal overflow or clipped price tiles",
+        "A 1,000-product inquiry has localized batch guidance, preserves its original text, creates no quote and recovers after editing; dismiss works by keyboard"
+      ],
+      "errors": [],
+      "externalAPIs": "not called",
+      "realWhatsAppAccount": false,
+      "script": "tests/ui_polish_browser.mjs"
+    }
+  ]
+}

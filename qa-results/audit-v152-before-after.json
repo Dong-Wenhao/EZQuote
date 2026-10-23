@@ -1,0 +1,2542 @@
+{
+  "before_version": "1.5.2",
+  "after_version": "1.5.3",
+  "baseline_zip_sha256": "de709be77787f47ec6606390910c7bb560f8be6fc8d037f09d0ed8d04d5e8a83",
+  "cases": [
+    {
+      "case": "twenty and thirty",
+      "kind": "quantity",
+      "before": {
+        "kind": "quantity",
+        "case": "twenty and thirty",
+        "text": "Need twenty and thirty bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "50",
+            "source_text": "Need twenty and thirty bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "twenty and thirty",
+                "value": "50",
+                "unit": "bag",
+                "span": [
+                  5,
+                  27
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "quantity",
+        "case": "twenty and thirty",
+        "text": "Need twenty and thirty bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "Need twenty and thirty bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [
+              "quantity_format"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "twenty and thirty",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  27
+                ],
+                "error": "quantity_format"
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "quantity_format"
+        ]
+      }
+    },
+    {
+      "case": "two two",
+      "kind": "quantity",
+      "before": {
+        "kind": "quantity",
+        "case": "two two",
+        "text": "Need two two bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "4",
+            "source_text": "Need two two bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "two two",
+                "value": "4",
+                "unit": "bag",
+                "span": [
+                  5,
+                  17
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "quantity",
+        "case": "two two",
+        "text": "Need two two bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "Need two two bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [
+              "quantity_format"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "two two",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  17
+                ],
+                "error": "quantity_format"
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "quantity_format"
+        ]
+      }
+    },
+    {
+      "case": "dua puluh tiga puluh",
+      "kind": "quantity",
+      "before": {
+        "kind": "quantity",
+        "case": "dua puluh tiga puluh",
+        "text": "Need dua puluh tiga puluh bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "50",
+            "source_text": "Need dua puluh tiga puluh bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "dua puluh tiga puluh",
+                "value": "50",
+                "unit": "bag",
+                "span": [
+                  5,
+                  30
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "quantity",
+        "case": "dua puluh tiga puluh",
+        "text": "Need dua puluh tiga puluh bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "Need dua puluh tiga puluh bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [
+              "quantity_format"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "dua puluh tiga puluh",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  30
+                ],
+                "error": "quantity_format"
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "quantity_format"
+        ]
+      }
+    },
+    {
+      "case": "one million twenty",
+      "kind": "quantity",
+      "before": {
+        "kind": "quantity",
+        "case": "one million twenty",
+        "text": "Need one million twenty bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need one million twenty bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "twenty",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  17,
+                  28
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "quantity",
+        "case": "one million twenty",
+        "text": "Need one million twenty bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "Need one million twenty bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [
+              "quantity_format"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "one million twenty",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  28
+                ],
+                "error": "quantity_format"
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "quantity_format"
+        ]
+      }
+    },
+    {
+      "case": "one million 20",
+      "kind": "quantity",
+      "before": {
+        "kind": "quantity",
+        "case": "one million 20",
+        "text": "Need one million 20 bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need one million 20 bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  17,
+                  24
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "quantity",
+        "case": "one million 20",
+        "text": "Need one million 20 bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "Need one million 20 bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [
+              "quantity_format"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "one million 20",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  24
+                ],
+                "error": "quantity_format"
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "quantity_format"
+        ]
+      }
+    },
+    {
+      "case": "20 or 30 or 40",
+      "kind": "quantity",
+      "before": {
+        "kind": "quantity",
+        "case": "20 or 30 or 40",
+        "text": "Need 20 or 30 or 40 bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "Need 20 or 30 or 40 bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [
+              "quantity_format"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20 or 30 or 40",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  24
+                ],
+                "error": "quantity_format"
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "quantity_format"
+        ]
+      },
+      "after": {
+        "kind": "quantity",
+        "case": "20 or 30 or 40",
+        "text": "Need 20 or 30 or 40 bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "Need 20 or 30 or 40 bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [
+              "quantity_format"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20 or 30 or 40",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  24
+                ],
+                "error": "quantity_format"
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "quantity_format"
+        ]
+      }
+    },
+    {
+      "case": "二十二十",
+      "kind": "quantity",
+      "before": {
+        "kind": "quantity",
+        "case": "二十二十",
+        "text": "Need 二十二十 bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "40",
+            "source_text": "Need 二十二十 bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "二十二十",
+                "value": "40",
+                "unit": "bag",
+                "span": [
+                  5,
+                  14
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "quantity",
+        "case": "二十二十",
+        "text": "Need 二十二十 bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "Need 二十二十 bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [
+              "quantity_format"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "二十二十",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  14
+                ],
+                "error": "quantity_format"
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "quantity_format"
+        ]
+      }
+    },
+    {
+      "case": "二十三十",
+      "kind": "quantity",
+      "before": {
+        "kind": "quantity",
+        "case": "二十三十",
+        "text": "Need 二十三十 bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "50",
+            "source_text": "Need 二十三十 bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "二十三十",
+                "value": "50",
+                "unit": "bag",
+                "span": [
+                  5,
+                  14
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "quantity",
+        "case": "二十三十",
+        "text": "Need 二十三十 bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "Need 二十三十 bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [
+              "quantity_format"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "二十三十",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  14
+                ],
+                "error": "quantity_format"
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "quantity_format"
+        ]
+      }
+    },
+    {
+      "case": "20／30",
+      "kind": "quantity",
+      "before": {
+        "kind": "quantity",
+        "case": "20／30",
+        "text": "Need 20／30 bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "Need 20／30 bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [
+              "multiple_quantities"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20／30",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  15
+                ],
+                "error": "multiple_quantities"
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "multiple_quantities"
+        ]
+      },
+      "after": {
+        "kind": "quantity",
+        "case": "20／30",
+        "text": "Need 20／30 bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "Need 20／30 bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [
+              "multiple_quantities"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20／30",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  15
+                ],
+                "error": "multiple_quantities"
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "multiple_quantities"
+        ]
+      }
+    },
+    {
+      "case": "1_020",
+      "kind": "quantity",
+      "before": {
+        "kind": "quantity",
+        "case": "1_020",
+        "text": "Need 1_020 bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "Need 1_020 bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [
+              "quantity_format"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "1_020",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  15
+                ],
+                "error": "quantity_format"
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "quantity_format"
+        ]
+      },
+      "after": {
+        "kind": "quantity",
+        "case": "1_020",
+        "text": "Need 1_020 bags cement 50kg. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "Need 1_020 bags cement 50kg. Deliver to Shah Alam.",
+            "issues": [
+              "quantity_format"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "1_020",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  15
+                ],
+                "error": "quantity_format"
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "quantity_format"
+        ]
+      }
+    },
+    {
+      "case": "&",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "&",
+        "text": "Need 20 bags cement 50kg & sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg & sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "&",
+        "text": "Need 20 bags cement 50kg & sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg & sand. Deliver to Shah Alam.",
+            "issues": [
+              "uncovered_text"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "uncovered_text"
+        ]
+      }
+    },
+    {
+      "case": "＆",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "＆",
+        "text": "Need 20 bags cement 50kg ＆ sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg ＆ sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "＆",
+        "text": "Need 20 bags cement 50kg ＆ sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg ＆ sand. Deliver to Shah Alam.",
+            "issues": [
+              "uncovered_text"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "uncovered_text"
+        ]
+      }
+    },
+    {
+      "case": "+",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "+",
+        "text": "Need 20 bags cement 50kg + sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg + sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "+",
+        "text": "Need 20 bags cement 50kg + sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg + sand. Deliver to Shah Alam.",
+            "issues": [
+              "uncovered_text"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "uncovered_text"
+        ]
+      }
+    },
+    {
+      "case": "plus",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "plus",
+        "text": "Need 20 bags cement 50kg plus sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg plus sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "plus",
+        "text": "Need 20 bags cement 50kg plus sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg plus sand. Deliver to Shah Alam.",
+            "issues": [
+              "uncovered_text"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "uncovered_text"
+        ]
+      }
+    },
+    {
+      "case": "with",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "with",
+        "text": "Need 20 bags cement 50kg with sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg with sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "with",
+        "text": "Need 20 bags cement 50kg with sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg with sand. Deliver to Shah Alam.",
+            "issues": [
+              "uncovered_text"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "uncovered_text"
+        ]
+      }
+    },
+    {
+      "case": "serta",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "serta",
+        "text": "Need 20 bags cement 50kg serta sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg serta sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "serta",
+        "text": "Need 20 bags cement 50kg serta sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg serta sand. Deliver to Shah Alam.",
+            "issues": [
+              "uncovered_text"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "uncovered_text"
+        ]
+      }
+    },
+    {
+      "case": "bersama",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "bersama",
+        "text": "Need 20 bags cement 50kg bersama sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg bersama sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "bersama",
+        "text": "Need 20 bags cement 50kg bersama sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg bersama sand. Deliver to Shah Alam.",
+            "issues": [
+              "uncovered_text"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "uncovered_text"
+        ]
+      }
+    },
+    {
+      "case": "及",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "及",
+        "text": "Need 20 bags cement 50kg 及 sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg 及 sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "及",
+        "text": "Need 20 bags cement 50kg 及 sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg 及 sand. Deliver to Shah Alam.",
+            "issues": [
+              "uncovered_text"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "uncovered_text"
+        ]
+      }
+    },
+    {
+      "case": "与",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "与",
+        "text": "Need 20 bags cement 50kg 与 sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg 与 sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "与",
+        "text": "Need 20 bags cement 50kg 与 sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg 与 sand. Deliver to Shah Alam.",
+            "issues": [
+              "uncovered_text"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "uncovered_text"
+        ]
+      }
+    },
+    {
+      "case": "並且",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "並且",
+        "text": "Need 20 bags cement 50kg 並且 sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg 並且 sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "並且",
+        "text": "Need 20 bags cement 50kg 並且 sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg 並且 sand. Deliver to Shah Alam.",
+            "issues": [
+              "uncovered_text"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "uncovered_text"
+        ]
+      }
+    },
+    {
+      "case": "并且",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "并且",
+        "text": "Need 20 bags cement 50kg 并且 sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg 并且 sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "并且",
+        "text": "Need 20 bags cement 50kg 并且 sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg 并且 sand. Deliver to Shah Alam.",
+            "issues": [
+              "uncovered_text"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "uncovered_text"
+        ]
+      }
+    },
+    {
+      "case": "和",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "和",
+        "text": "Need 20 bags cement 50kg 和 sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "和",
+        "text": "Need 20 bags cement 50kg 和 sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      }
+    },
+    {
+      "case": "and",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "and",
+        "text": "Need 20 bags cement 50kg and sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "and",
+        "text": "Need 20 bags cement 50kg and sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      }
+    },
+    {
+      "case": "dan",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "dan",
+        "text": "Need 20 bags cement 50kg dan sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "dan",
+        "text": "Need 20 bags cement 50kg dan sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      }
+    },
+    {
+      "case": ",",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": ",",
+        "text": "Need 20 bags cement 50kg , sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      },
+      "after": {
+        "kind": "unknown",
+        "case": ",",
+        "text": "Need 20 bags cement 50kg , sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      }
+    },
+    {
+      "case": "，",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "，",
+        "text": "Need 20 bags cement 50kg ， sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "，",
+        "text": "Need 20 bags cement 50kg ， sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      }
+    },
+    {
+      "case": "、",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "、",
+        "text": "Need 20 bags cement 50kg 、 sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "、",
+        "text": "Need 20 bags cement 50kg 、 sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      }
+    },
+    {
+      "case": ". Need",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": ". Need",
+        "text": "Need 20 bags cement 50kg . Need sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg . Need sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": ". Need",
+        "text": "Need 20 bags cement 50kg . Need sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg . Need sand. Deliver to Shah Alam.",
+            "issues": [
+              "uncovered_text"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "uncovered_text"
+        ]
+      }
+    },
+    {
+      "case": "\r",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": "\r",
+        "text": "Need 20 bags cement 50kg \r sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg \r sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": "\r",
+        "text": "Need 20 bags cement 50kg \r sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      }
+    },
+    {
+      "case": " ",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": " ",
+        "text": "Need 20 bags cement 50kg   sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg   sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": " ",
+        "text": "Need 20 bags cement 50kg   sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      }
+    },
+    {
+      "case": " ",
+      "kind": "unknown",
+      "before": {
+        "kind": "unknown",
+        "case": " ",
+        "text": "Need 20 bags cement 50kg   sand. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg   sand. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "unknown",
+        "case": " ",
+        "text": "Need 20 bags cement 50kg   sand. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement 50kg",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "sku": "",
+            "quantity": "",
+            "source_text": "sand. Deliver to Shah Alam.",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "issues": [
+          "quantity",
+          "unknown_product"
+        ]
+      }
+    },
+    {
+      "case": "I don’t want fast setting",
+      "kind": "negation",
+      "before": {
+        "kind": "negation",
+        "case": "I don’t want fast setting",
+        "text": "Need 20 bags cement for plastering. I don’t want fast setting. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-FAST-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement for plastering. I don’t want fast setting. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "negation",
+        "case": "I don’t want fast setting",
+        "text": "Need 20 bags cement for plastering. I don’t want fast setting. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-25",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement for plastering. I don’t want fast setting. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      }
+    },
+    {
+      "case": "I don't want fast setting",
+      "kind": "negation",
+      "before": {
+        "kind": "negation",
+        "case": "I don't want fast setting",
+        "text": "Need 20 bags cement for plastering. I don't want fast setting. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-25",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement for plastering. I don't want fast setting. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "negation",
+        "case": "I don't want fast setting",
+        "text": "Need 20 bags cement for plastering. I don't want fast setting. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-25",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement for plastering. I don't want fast setting. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      }
+    },
+    {
+      "case": "fast setting is unwanted",
+      "kind": "negation",
+      "before": {
+        "kind": "negation",
+        "case": "fast setting is unwanted",
+        "text": "Need 20 bags cement for plastering. fast setting is unwanted. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-FAST-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement for plastering. fast setting is unwanted. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "negation",
+        "case": "fast setting is unwanted",
+        "text": "Need 20 bags cement for plastering. fast setting is unwanted. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement for plastering. fast setting is unwanted. Deliver to Shah Alam.",
+            "issues": [
+              "uncovered_text"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "uncovered_text"
+        ]
+      }
+    },
+    {
+      "case": "tak nak cepat kering",
+      "kind": "negation",
+      "before": {
+        "kind": "negation",
+        "case": "tak nak cepat kering",
+        "text": "Need 20 bags cement for plastering. tak nak cepat kering. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-25",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement for plastering. tak nak cepat kering. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "negation",
+        "case": "tak nak cepat kering",
+        "text": "Need 20 bags cement for plastering. tak nak cepat kering. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-25",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement for plastering. tak nak cepat kering. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      }
+    },
+    {
+      "case": "不要速凝",
+      "kind": "negation",
+      "before": {
+        "kind": "negation",
+        "case": "不要速凝",
+        "text": "Need 20 bags cement for plastering. 不要速凝. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-25",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement for plastering. 不要速凝. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "negation",
+        "case": "不要速凝",
+        "text": "Need 20 bags cement for plastering. 不要速凝. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-25",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement for plastering. 不要速凝. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      }
+    },
+    {
+      "case": "速凝免了",
+      "kind": "negation",
+      "before": {
+        "kind": "negation",
+        "case": "速凝免了",
+        "text": "Need 20 bags cement for plastering. 速凝免了. Deliver to Shah Alam.",
+        "can_quote": true,
+        "status": "READY",
+        "items": [
+          {
+            "sku": "CEM-A-FAST-50",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement for plastering. 速凝免了. Deliver to Shah Alam.",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "after": {
+        "kind": "negation",
+        "case": "速凝免了",
+        "text": "Need 20 bags cement for plastering. 速凝免了. Deliver to Shah Alam.",
+        "can_quote": false,
+        "status": "NEEDS_INFO",
+        "items": [
+          {
+            "sku": "",
+            "quantity": "20",
+            "source_text": "Need 20 bags cement for plastering. 速凝免了. Deliver to Shah Alam.",
+            "issues": [
+              "uncovered_text"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          }
+        ],
+        "issues": [
+          "uncovered_text"
+        ]
+      }
+    }
+  ],
+  "independent_test_sources": [
+    {
+      "file": "independent-results/test_previous_eight.py",
+      "sha256": "52f33e338fb6cb363bc063d321a16cccf577704ffd19e2e415bdf66ee7967ce6",
+      "unchanged_since_v152": true
+    },
+    {
+      "file": "independent-results/test_remaining_edges.py",
+      "sha256": "0225293208cd7261456b17365f0834f3c77f203ad2af814d61c32cd16aba6271",
+      "unchanged_since_v152": true
+    }
+  ]
+}

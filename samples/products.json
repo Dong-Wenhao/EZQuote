@@ -1,0 +1,8 @@
+[
+  {"sku":"CEM-A-50","name_zh":"水泥","name_en":"Cement","name_ms":"Simen","brand":"Brand A","spec":"50kg","unit":"bag","unit_price":"18.50","aliases":"水泥|cement|simen|A牌水泥"},
+  {"sku":"CEM-A-25","name_zh":"水泥","name_en":"Cement","name_ms":"Simen","brand":"Brand A","spec":"25kg","unit":"bag","unit_price":"10.00","aliases":"水泥|cement|simen|A牌水泥"},
+  {"sku":"CEM-B-50","name_zh":"水泥","name_en":"Cement","name_ms":"Simen","brand":"Brand B","spec":"50kg","unit":"bag","unit_price":"19.20","aliases":"水泥|cement|simen|B牌水泥"},
+  {"sku":"PVC-A-20","name_zh":"PVC水管","name_en":"PVC pipe","name_ms":"Paip PVC","brand":"Brand A","spec":"20mm","unit":"piece","unit_price":"8.75","aliases":"水管|PVC管|pvc pipe|paip|paip pvc"},
+  {"sku":"PAINT-A-5","name_zh":"油漆","name_en":"Paint","name_ms":"Cat","brand":"Brand A","spec":"5L","unit":"piece","unit_price":"65.00","aliases":"油漆|paint|cat"},
+  {"sku":"NAIL-A-1","name_zh":"铁钉","name_en":"Nails","name_ms":"Paku","brand":"Brand A","spec":"1kg","unit":"bag","unit_price":"6.80","aliases":"铁钉|钉子|nails|paku"}
+]

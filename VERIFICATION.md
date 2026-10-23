@@ -1,0 +1,78 @@
+# EzQuote 1.6.1 验证记录
+
+本轮为 1.6 系列最终交付检查，修正重复启动与正常停止的处理。候选 ZIP 解压到含空格目录后，执行全部回归，并通过实际 run.py 启动器验证 1.6.0 覆盖升级、原有虚拟环境重用及再次重启。依赖事先在测试环境准备，未验证 Windows 首次联网安装。使用 Linux、Python 3.12.14、Chrome Headless Shell 140.0.7339.207、真实本地 FastAPI 服务与手机网关。数据、账号、历史订单、聊天 DOM 和外部提供者响应均为合成测试输入。
+
+## 后端 331 项通过
+
+实际执行：
+
+    python -m pytest tests independent-results retest-results -q --disable-warnings --tb=short
+
+结果：331 passed, 1 warning in 39.19s。原有 329 项全部保留，新增 2 项启动器回归，检查端口占用时不启动错误页面或手机隧道，以及正常 Ctrl+C 时等待子进程清理。完整输出为 qa-results/backend-pytest.txt。警告是既有 Starlette/httpx 兼容弃用提示。
+
+本轮业务后台仅更新运行版本，启动器先占用自身端口、等待本进程就绪后才打开浏览器，并正常处理 Ctrl+C；没有新增业务接口、数据库表或变更定价、核对、库存和审批合同。原有数字完整性、三语语法、未解释原文、库存合计、权限、人工更正、核对绑定、幂等、PDF/Excel、历史快照、导出恢复、迁移和 40/41/1,000 片段边界检查全部继续通过。
+
+本次长输入结果在 qa-results/long-inquiry-current.json，版本自动从健康接口读取，不再覆盖历史证据。1.5.4 的性能证据及验证说明保留在 qa-results/long-inquiry-v154-after.json、verification-v154.txt 与对应版本说明；本轮不据此增加新的性能承诺。
+
+## 启动与升级 5 组实测通过
+
+对实际解压目录运行 1.6.0，创建老板与员工账号、导入经营表，并保存草稿、待审批单及 RM471.20 已批准单。停机覆盖新版后，由普通 python run.py 通过原虚拟环境启动 1.6.1；原有用户、密码、有效登录、经营表、报价状态、批准快照均保留，原 PDF 字节一致、Excel 全部工作表的单元格值一致。
+
+再次启动会明确提示端口占用，不打开浏览器、不尝试手机隧道，也不停止正在使用的服务。真实浏览器交接调用由本地探针记录，确认只交接本次已就绪的版本。升级后继续批准、退回和登记成交，并再次正常停止、启动；无异常堆栈，数据仍在。已有 .venv 的标记和保留文件未变。完整记录在 qa-results/upgrade-v160-v161.json；旧版重复启动复现见 launcher-v160-before.json。
+
+## 浏览器 64 组通过
+
+九个脚本顺序执行，不并用 8765/8766 端口；无未处理 JavaScript 错误。各脚本原有业务断言保留，固定背景颜色断言随参考配色更新为 #f4f8f6。
+
+| 脚本 | 通过组数 | 范围 |
+| --- | ---: | --- |
+| browser_smoke.mjs | 8 | 首次设置、真实界面 Excel 导入、员工提交、老板批准、文件下载、三语和缺信息 |
+| chat_integration.mjs | 6 | 合成 WhatsApp 来源、追问、保留未保存内容、提交、正确聊天回填与切错聊天拦截 |
+| mobile_browser.mjs | 6 | 合成通知提供者、真实本地手机网关、密码、马来语审批、PDF和窄屏 |
+| copilot_browser.mjs | 7 | 完整经营导入、库存推荐、最低毛利拦截、老板改价、正式输出、成交反馈和手机改价 |
+| guided_browser.mjs | 7 | 角色导航、分步核对、草稿恢复、返回修改、审批退回、筛选与三语布局 |
+| semantic_browser.mjs | 6 | 完整数量、同数量多商品、否定、换行偏好、输入异步隔离和实际 PDF |
+| self_review_browser.mjs | 10 | 全角范围、异常数字、未知商品与取消、更正记录、缓存及手机切换 |
+| audit_browser.mjs | 8 | 桌面迟到响应、同草稿等待期间编辑、来源确认、PDF归属与原文覆盖 |
+| ui_polish_browser.mjs | 6 | 真实主题资源、侧栏入口、角色限制、六种宽度切换、三语、核对中/通过、依据折叠、金额布局、超长错误、键盘关闭及退出清理 |
+
+界面脚本中，桌面新建入口实际进入报价流程，返回首页后验证 aria-current；员工仍只有首页和报价记录两个导航，老板设置入口由已有角色检查保护。三语首页在 320、430、768、900、1160、1440px 下无水平溢出，900px 是侧栏切换点。
+
+实际保持 review HTTP 响应验证“正在核对”和 aria-busy，再放行到“核对通过”及 RM471.20。原文与普通数量依据仍可展开，错误数量继续提示。三语报价金额在 320、430、1160px 下没有横向溢出或金额卡裁切。1,000 片段仍可控拒绝、保留原文、不生成报价；改回正常输入可恢复。退出后隐藏工作区和侧栏。
+
+完整经营脚本保留原价 RM495、建议 RM471.20、违规改价拦截、老板改为 4%+RM30 后 RM471.60、正式 PDF/Excel 与三语回复、反馈后下笔建议 3.17% 的原断言。此前修正的明确金额等待继续生效。
+
+各脚本日志在 qa-results，汇总在 browser-results.json。1.5.4 的浏览器汇总另存 browser-results-v154.json；截图仅用于内部目视检查，不放入发布包。
+
+## 插件逻辑 10 组通过
+
+    node tests/extension_checks.mjs
+
+Manifest 权限和五个 JS 文件语法、英马静态文案、消息顺序与来源、过长消息、右键入口、徽标、服务端批准与来源核对、追问回填和通知去重均通过。扩展 API 是模拟桥接，真实 WhatsApp 页面是合成 DOM，不等于实机联调。
+
+## 版面与交付
+
+- 已查看中文桌面首页、商品页、报价页、老板审批页与马来语 320px 首页、手机审批。绿色按钮、金额、状态和导航可读；没有发现重叠、裁切或横向溢出。中文截图使用包内 Noto Sans SC 字体安装到测试环境。
+- 两页队友 Word 指南已更新为 EzQuote 1.6.1 并补充端口占用处理，重新渲染并逐页检查。
+- ZIP 发布器检查版本、theme.css、必需模块/样例/指南、64组汇总、331项日志与升级实测结果、CRC和逐文件 SHA-256；不包含账号、密钥、data、数据库、虚拟环境或内部截图。
+
+## 开发复现
+
+    python -m pip install -r requirements-dev.txt
+    python -m pytest tests independent-results retest-results -q
+    npm install
+    node tests/extension_checks.mjs
+
+为浏览器脚本设置 TEST_PYTHON 和 BROWSER_EXECUTABLE，再顺序执行上表九个脚本。例如：
+
+    node tests/ui_polish_browser.mjs
+    node tests/guided_browser.mjs
+    node tests/copilot_browser.mjs
+
+Windows PowerShell 用 $env:TEST_PYTHON 与 $env:BROWSER_EXECUTABLE 设置实际路径。普通用户启动应用无需 Node。
+
+## 未完成的实机验证与边界
+
+Windows 干净环境首次安装、原生 Chrome 扩展、真实 WhatsApp DOM/来源绑定/草稿回填仍需本机联调。没有调用付费模型、真实 Meta 接口、真实手机收件或公网隧道。手机测试仅覆盖真实本地网关配合合成提供者。
+
+需求整理仍为常见建材表达的本地规则，历史建议为统计和店铺规则。库存是 Excel 快照，不预留或出库；客户结果人工登记；批准不等于成交。客户回复由人核对发送，PDF 单独附加。各电脑数据独立，升级保留 data 和 .venv。

@@ -1,0 +1,224 @@
+{
+  "date": "2026-10-22",
+  "records": [
+    {
+      "case": "fullwidth-range",
+      "before_version": "1.5.1",
+      "before": {
+        "case": "fullwidth-range",
+        "text": "Need 20／30 bags cement 50kg. Deliver to Shah Alam.",
+        "parsed_status": "READY",
+        "parsed_can_quote": true,
+        "selected": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "30",
+            "source_id": "s-0-50"
+          }
+        ],
+        "review_status": 200,
+        "review_can_quote": true,
+        "create_status": 200,
+        "submit_status": 200,
+        "approve_status": 200,
+        "final_status": "COMPLETED",
+        "total": "583.00",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "30"
+          }
+        ]
+      },
+      "after_version": "1.5.2",
+      "after": {
+        "parsed_status": "NEEDS_INFO",
+        "parsed_can_quote": false,
+        "items": [
+          {
+            "source_text": "Need 20／30 bags cement 50kg. Deliver to Shah Alam.",
+            "sku": "",
+            "quantity": "",
+            "issues": [
+              "multiple_quantities"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "20／30",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  15
+                ],
+                "error": "multiple_quantities"
+              }
+            ]
+          }
+        ],
+        "review_with_old_wrong_selection_status": 200,
+        "review_can_quote": false,
+        "review_id_issued": false,
+        "review_issue_codes": [
+          "multiple_quantities"
+        ],
+        "direct_create_without_review_status": 409,
+        "create_error": "review_stale",
+        "quotes_created": 0
+      }
+    },
+    {
+      "case": "underscore-number",
+      "before_version": "1.5.1",
+      "before": {
+        "case": "underscore-number",
+        "text": "Need 1_020 bags cement 50kg. Deliver to Shah Alam.",
+        "parsed_status": "READY",
+        "parsed_can_quote": true,
+        "selected": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_id": "s-0-50"
+          }
+        ],
+        "review_status": 200,
+        "review_can_quote": true,
+        "create_status": 200,
+        "submit_status": 200,
+        "approve_status": 200,
+        "final_status": "COMPLETED",
+        "total": "398.00",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20"
+          }
+        ]
+      },
+      "after_version": "1.5.2",
+      "after": {
+        "parsed_status": "NEEDS_INFO",
+        "parsed_can_quote": false,
+        "items": [
+          {
+            "source_text": "Need 1_020 bags cement 50kg. Deliver to Shah Alam.",
+            "sku": "",
+            "quantity": "",
+            "issues": [
+              "quantity_format"
+            ],
+            "quantity_mentions": [
+              {
+                "raw": "1_020",
+                "value": null,
+                "unit": "bag",
+                "span": [
+                  5,
+                  15
+                ],
+                "error": "quantity_format"
+              }
+            ]
+          }
+        ],
+        "review_with_old_wrong_selection_status": 200,
+        "review_can_quote": false,
+        "review_id_issued": false,
+        "review_issue_codes": [
+          "quantity_format"
+        ],
+        "direct_create_without_review_status": 409,
+        "create_error": "review_stale",
+        "quotes_created": 0
+      }
+    },
+    {
+      "case": "unknown-extra",
+      "before_version": "1.5.1",
+      "before": {
+        "case": "unknown-extra",
+        "text": "Need 20 bags cement 50kg and sand. Deliver to Shah Alam.",
+        "parsed_status": "READY",
+        "parsed_can_quote": true,
+        "selected": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "source_id": "s-0-56"
+          }
+        ],
+        "review_status": 200,
+        "review_can_quote": true,
+        "create_status": 200,
+        "submit_status": 200,
+        "approve_status": 200,
+        "final_status": "COMPLETED",
+        "total": "398.00",
+        "items": [
+          {
+            "sku": "CEM-A-50",
+            "quantity": "20"
+          }
+        ]
+      },
+      "after_version": "1.5.2",
+      "after": {
+        "parsed_status": "NEEDS_INFO",
+        "parsed_can_quote": false,
+        "items": [
+          {
+            "source_text": "Need 20 bags cement 50kg",
+            "sku": "CEM-A-50",
+            "quantity": "20",
+            "issues": [],
+            "quantity_mentions": [
+              {
+                "raw": "20",
+                "value": "20",
+                "unit": "bag",
+                "span": [
+                  5,
+                  12
+                ],
+                "error": null
+              }
+            ]
+          },
+          {
+            "source_text": "sand. Deliver to Shah Alam.",
+            "sku": "",
+            "quantity": "",
+            "issues": [
+              "quantity",
+              "unknown_product"
+            ],
+            "quantity_mentions": []
+          }
+        ],
+        "review_with_old_wrong_selection_status": 200,
+        "review_can_quote": false,
+        "review_id_issued": false,
+        "review_issue_codes": [
+          "missing_product"
+        ],
+        "direct_create_without_review_status": 409,
+        "create_error": "review_stale",
+        "quotes_created": 0
+      }
+    }
+  ],
+  "test_source_checksums": [
+    {
+      "file": "independent-results/test_remaining_edges.py",
+      "sha256": "0225293208cd7261456b17365f0834f3c77f203ad2af814d61c32cd16aba6271",
+      "matches_report_attachment": true
+    },
+    {
+      "file": "independent-results/test_previous_eight.py",
+      "sha256": "52f33e338fb6cb363bc063d321a16cccf577704ffd19e2e415bdf66ee7967ce6",
+      "matches_report_attachment": true
+    }
+  ],
+  "scope": "Synthetic customers, isolated local databases, no external API or real WhatsApp messages"
+}

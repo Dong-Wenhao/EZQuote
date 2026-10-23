@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "EzQuote · WhatsApp Quote Desk",
+  "version": "1.6.1",
+  "description": "三语询价、Excel 计价、老板审批与 PDF 报价工作台。",
+  "minimum_chrome_version": "116",
+  "permissions": ["sidePanel", "storage", "contextMenus", "alarms"],
+  "optional_permissions": ["notifications"],
+  "host_permissions": ["http://127.0.0.1:8765/*"],
+  "background": {"service_worker": "background.js"},
+  "action": {"default_title": "打开报价工作台"},
+  "icons": {"128": "icon128.png"},
+  "side_panel": {"default_path": "panel.html"},
+  "content_scripts": [{"matches": ["https://web.whatsapp.com/*"], "js": ["content.js"], "css": ["content.css"], "run_at": "document_idle"}]
+}

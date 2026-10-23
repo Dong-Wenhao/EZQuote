@@ -1,0 +1,58 @@
+/1.1" 200 OK
+INFO:     127.0.0.1:65238 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58093 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58093 - "GET /panel.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53417 - "GET /copilot.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "GET /i18n.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53603 - "GET /panel.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:62454 - "POST /api/setup HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "GET /api/catalog HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "GET /api/shop HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "GET /api/integrations/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "GET /api/business HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "GET /api/integrations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "GET /api/quotes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "GET /api/integrations/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "GET /api/notifications HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "GET /api/quotes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "POST /api/business/preview HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "POST /api/business/import HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62454 - "GET /api/catalog HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64458 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64458 - "GET /panel.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51996 - "GET /i18n.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53238 - "GET /copilot.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51902 - "GET /panel.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51996 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51996 - "POST /api/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51996 - "GET /api/catalog HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51996 - "GET /api/shop HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51996 - "GET /api/integrations/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51996 - "GET /api/business HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51996 - "GET /api/quotes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51996 - "GET /api/integrations/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51996 - "GET /api/notifications HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51996 - "GET /api/quotes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51996 - "POST /api/inquiries/parse HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51996 - "POST /api/requirements/review HTTP/1.1" 200 OK
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert((await staff.locator("#cpPreview").textContent()).includes("495.00"))
+
+    at file:///C:/Users/27925/Documents/ChatGPT/S.D.C/plugin-retest-153/wa_quote_mvp/tests/copilot_browser.mjs:38:69 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.18.0

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "browser": "140.0.7339.207",
+  "steps": [
+    "The real emerald theme loads, desktop navigation is fixed, staff sees two permitted sections and the sidebar shortcut opens the actual quotation flow",
+    "Chinese, English and Malay switch between desktop rail and compact navigation at six widths from 320 to 1440px without overflow",
+    "Input guidance, live character count and dismiss-button labels support Chinese, English and Malay",
+    "Delayed server review shows a checking state, then ready; original numeric evidence remains accessible and the actual recommendation stays RM471.20",
+    "The original and recommended amounts fit three languages at 320, 430 and 1160px without horizontal overflow or clipped price tiles",
+    "A 1,000-product inquiry has localized batch guidance, preserves its original text, creates no quote and recovers after editing; dismiss works by keyboard"
+  ],
+  "errors": [],
+  "externalAPIs": "not called",
+  "realWhatsAppAccount": false
+}
