@@ -1,3 +1,0 @@
-Historical standalone run in 1.5.2. Current 11 independent cases are included in the 301 passing combined run in backend-pytest.txt.
-...........                                                              [100%]
-11 passed, 1 warning in 2.88s

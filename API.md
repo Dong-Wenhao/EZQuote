@@ -205,7 +205,7 @@ Budget exceptions are consistently returned by CatalogError as HTTP 422 with thi
 
 The Chinese, English and Malay workspaces map this stable message to their respective smaller-batch prompts. Pydantic continues to validate the 12,000-character request-body limit for text/inquiry, with oversized input still producing a 422 validation error. Neither error represents a quotable result.
 
-This change adds no database tables, does not change requirements_rules_v5 or the review digest format, and does not recalculate existing approved quotations. Performance targets and results on the fixed test machine are documented in VERIFICATION.md. The 2-second target is not a performance guarantee for arbitrary computers, catalogs and inputs.
+The parser uses requirements_rules_v5 and the existing review digest format; existing approved quotations are not recalculated. See [testing](docs/TESTING.md) for the long-input regression and current test commands. The 2-second test target is not a performance guarantee for arbitrary computers, catalogs and inputs.
 
 
 ## 1.6.1 Interface assets

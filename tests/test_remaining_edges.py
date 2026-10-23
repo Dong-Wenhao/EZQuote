@@ -33,5 +33,7 @@ def test_ambiguous_or_uncovered_input_cannot_become_approved_quote(business,name
                 evidence.update(submit_status=submit.status_code,approve_status=approve.status_code)
                 if approve.status_code==200:
                     q=approve.json();evidence.update(final_status=q['status'],total=q['total'],items=[{k:i[k] for k in ('sku','quantity')} for i in q['items']])
-    (ROOT/'independent-results'/('remaining-'+name+'.json')).write_text(json.dumps(evidence,ensure_ascii=False,indent=2),encoding='utf-8')
+    output=ROOT/'test-results'
+    output.mkdir(parents=True,exist_ok=True)
+    (output/('remaining-'+name+'.json')).write_text(json.dumps(evidence,ensure_ascii=False,indent=2),encoding='utf-8')
     assert not parsed['can_quote'],evidence

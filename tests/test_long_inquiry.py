@@ -39,6 +39,8 @@ def test_many_product_segments_are_rejected_without_server_error(business):
         with store.transaction() as db:
             after=[db.execute('SELECT count(*) FROM '+t).fetchone()[0] for t in ['quotes','requirement_reviews']]
         assert after==before
-        (ROOT/'qa-results/long-inquiry-current.json').write_text(json.dumps({
+        output=ROOT/'test-results'
+        output.mkdir(parents=True,exist_ok=True)
+        (output/'long-inquiry-current.json').write_text(json.dumps({
             'version':c.get('/api/health').json()['version'],'results':results,'quotes_before_after':[before[0],after[0]],
             'reviews_before_after':[before[1],after[1]],'partial_quote_created':False},indent=2),encoding='utf-8')

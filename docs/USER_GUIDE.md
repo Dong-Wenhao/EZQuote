@@ -1,34 +1,16 @@
 # EzQuote MVP 1.6.1
 
-This version implements the team's updated complete workflow: customer requirements → trilingual requirement organization → product and stock matching → original product prices and base delivery → historical discount and delivery suggestions → owner approval with or without edits → PDF and customer replies → customer-outcome feedback.
+The quotation workflow is: customer requirements → trilingual requirement organization → product and stock matching → original product prices and base delivery → historical discount and delivery suggestions → owner approval with or without edits → PDF and customer replies → customer-outcome feedback.
 
-The team's chosen API-free approach is retained. Requirement understanding uses local catalog rules, while Pricing Intelligence runs actual historical statistics and store rules. OpenAI and WhatsApp Cloud API are not called by default. The interface, approval workflow and customer replies support Chinese, English and Malay. All sample business data is synthetic.
+The default workflow is API-free. Requirement understanding uses local catalog rules, while Pricing Intelligence runs actual historical statistics and store rules. OpenAI and WhatsApp Cloud API are not called by default. The interface, approval workflow and customer replies support Chinese, English and Malay. All sample business data is synthetic.
 
-## 1.6.1 Final-check fixes
+## Workspace and launcher
 
-When an older service is still running, the new launcher asks the user to close that window and keep data and .venv, rather than opening the old page. The browser opens only after this service instance has started. Windows startup failures display the relevant error instead of attributing every failure to the Python installation. A normal Ctrl+C stop waits for backend cleanup without displaying a traceback. See “1.6.1_最终交付检查.md” for final-check details.
+The desktop workspace provides sidebar navigation, quotation summaries and recent records. Narrow screens use top navigation and retain the four-step review workflow. Approved, pending and returned states use green, yellow and red indicators. Wide screens place customer and product summaries beside pricing suggestions; narrow screens use a vertical layout.
 
-## 1.6.0 Dark-green interface
+The launcher opens a browser only after its service has started. If port 8765 is already occupied, close the old service window before starting this installation. Preserve the data and .venv directories. Press Ctrl+C for a normal stop and allow backend cleanup to finish.
 
-The interface follows the team's reference image: a dark-green sidebar, pale gray-green background, white cards and mint-green amount highlights, with consistent EzQuote branding. The desktop workspace shows left navigation, overview figures, recent quotations and workflow guidance. Narrow screens use top navigation and retain the four-step quotation review. Approved, pending and returned states use green, yellow and red indicators, respectively, each reflecting the actual record state.
-
-Product and quotation pages have revised spacing and columns. Wide screens place customer and product summaries on the left and pricing suggestions on the right; narrow screens return to a vertical layout. The WhatsApp message entry, extension icon and optional mobile approval page share the green theme. Only existing features are shown; there are no unimplemented customer, report or sending-status menus. See “1.6_界面更新说明.md” for release notes.
-
-## Historical 1.5.4 Page polish and checklist fixes
-
-That release retained the existing workflow and blue-and-white style, reduced blank space at the top of narrow screens, and emphasized amounts, states and primary buttons. Ordinary quantity evidence was moved into “View the original text for this line,” while unusual quantities remained prominent. The product page shows review in progress, review passed or confirmation needed. The input area adds trilingual entry tips, a character count and batch guidance; notices can be dismissed.
-
-Two items from the team's 1.5.3 checklist were also fixed: splitting is no longer recursive, and exceeding the product count or processing budget returns 422 for the entire inquiry instead of quoting a partial subset. The complete-business browser script waits for the expected amount before asserting it. Each inquiry allows at most 40 product requirements, with separate segment budgets for delivery and greetings. See “1.5.4_优化与验收说明.md”.
-
-## Earlier revisions
-
-The 1.5.3 self-review fixed the addition or truncation of written quantities, omitted products joined in other ways, negation with curly apostrophes, and late desktop responses overwriting another quotation or a new draft. Unexplained original text blocks quotation creation and requires clarification followed by rewriting on separate lines. Save, approval and PDF operations remain tied to the quotation that initiated them. See “1.5.3_自查与修复说明.md” for results and limits.
-
-The preceding 1.5.2 release addressed two omissions identified by independent retesting: unusual separators such as `20／30` trigger clarification, and unsupported formats such as `1_020` preserve the entire number instead of using its tail. Unknown products in the same sentence, such as `cement and sand`, `simen dan pasir` and `水泥和沙子`, are retained. The user must provide the missing product and quantity, or explicitly cancel the item with a recorded reason, before proceeding. See “1.5.2_复测修复说明.md” for reproduction, fixes and validation.
-
-The self-review also fixed quantity ranges, products swallowed by delivery continuation lines, trailing negation, confirmation of manually added items, invalid-number exceptions, number handling in legacy mode, old draft caches and switching quotations within the same mobile tab. The mobile page shows manual corrections and their reasons. See “1.5_自查修订说明.md” for reproduction details, tests and functional limits. If a range or several quantities cannot be assigned unambiguously, verify them, edit the original text and organize the inquiry again.
-
-## Fixes included
+## Requirement review safeguards
 
 - `1,020` is recognized in full as `1020`; insufficient stock blocks the quotation instead of the quantity being truncated to `20`. Malformed numbers require manual verification.
 - Twenty bags of cement and twenty bags of nails in the same sentence are retained separately. A continuation-line preference for one product is attached to that product. Conditions whose association across multiple products is unclear still require clarification.
@@ -36,9 +18,11 @@ The self-review also fixed quantity ranges, products swallowed by delivery conti
 - The backend reviews the original text, product lines, quantities and delivery. Review records bind to the current input, catalog, business data and quotation revision. Frontend checkboxes or deleted lines cannot bypass them.
 - When quantities, products or delivery are changed manually, the page lists the differences. Enter a confirmation reason and review again. Confirmation applies only to the specific values confirmed; further changes require another confirmation.
 
-See “1.5_修复与测试对照.md” for the mapping between fixes and regression cases.
+Unknown products remain in the requirements, including mixed known and unknown items in the same sentence. Provide the product and quantity, or explicitly cancel the item with a recorded reason. Unsupported or ambiguous expressions such as `20／30`, `1_020`, invalid number words, double negation and unexplained text require clarification. Verify the original inquiry and rewrite it on separate lines when the association of quantities or conditions is unclear.
 
-## Updated pages
+Each inquiry supports up to 40 product requirements. Delivery and greeting segments have separate parsing budgets. Exceeding the product limit or processing budget rejects the entire request rather than producing a partial quotation; submit it in batches. Input tips, a character counter, review-in-progress and review-passed states help track the operation. Expand ordinary quantity evidence to compare it with the source; unusual quantities and manual corrections remain prominent.
+
+## Workspace and roles
 
 - Staff home: create a quotation, continue an unfinished quotation, pending approval, follow-up and recent records.
 - Guided quotation: customer requirements → product review → quotation confirmation; approved quotations show customer replies and files.
@@ -46,15 +30,17 @@ See “1.5_修复与测试对照.md” for the mapping between fixes and regress
 - Owner settings: business data, the product catalog, shop details and optional connections are managed together. Staff do not see the settings entry.
 - “Follow-up” means an approved quotation whose customer outcome is still open. “Closed” filters won or lost outcomes. Owner approval does not mean a sale was won.
 
-When upgrading from 1.4 or earlier, retain data and .venv. Complete business data already imported does not need to be imported again. Update the backend and extension together to 1.6.1. For old unapproved business quotations, select “Review this quotation again,” save a new revision and submit it again. Approved PDFs and amounts are retained.
+When upgrading an existing installation, first stop the service and back up the project, then replace the application files while retaining data and .venv. Complete business data already imported does not need to be imported again. Update the backend and extension together to 1.6.1. For old unapproved business quotations, select “Review this quotation again,” save a new revision and submit it again. Approved PDFs and amounts are retained.
 
-## Which guide to read
+## Related guides
 
-- Existing installation: read “更新到1.5_先看这里.md” and retain data.
-- First-time teammate experience: read “队友使用指南_1.6.docx” or “先看这里.txt”.
-- Editing business data: read “经营数据模板说明.md”.
-- Comparing the team's requirements: read “功能覆盖说明_1.5.md”; the original is in docs/需求流程原文.docx.
-- Technical interfaces and verification scope: API.md and VERIFICATION.md.
+- [Project overview](../README.md)
+- [Business workbook format](DATA_FORMAT.md)
+- [Optional AI and mobile integrations](INTEGRATIONS.md)
+- [API contract](../API.md)
+- [Development and testing](TESTING.md)
+
+All application paths and commands below are relative to the repository root, the folder containing run.py.
 
 ## Startup and import
 
@@ -128,17 +114,17 @@ Editing a completed quotation creates a new revision and requires approval again
 
 Accounts, catalogs, quotations and logs are stored in data/quotes.sqlite3; original uploads in data/uploads; PDFs in data/pdf; and the ledger in data/exports/quotations.xlsx.
 
-Select Save draft or Submit to persist a quotation. Running python run.py again in the same directory reuses the existing accounts. Before backing up, stop the service with Ctrl+C, then copy the entire project folder or the complete data directory. Send teammates a clean installation package so that each creates their own accounts and data. Different computers do not synchronize automatically.
+Select Save draft or Submit to persist a quotation. Running python run.py again in the same directory reuses the existing accounts. Before backing up, stop the service with Ctrl+C, then copy the entire project folder or the complete data directory. Each installation has its own accounts and data. Different computers do not synchronize automatically.
 
 This package contains no real accounts, keys or customer information. Optional keys are still stored in the local connection-settings file without hardware-keystore encryption. Do not share your own data directory.
 
 ## Optional APIs and mobile approval
 
-The existing optional OpenAI connection, WhatsApp notification queue, signed mobile links and independent gateway are retained. Legacy catalog mode can use a real model; the new requirement matching and historical pricing default to local rules and statistics throughout.
+Optional integrations include an OpenAI connection, a WhatsApp notification queue, signed mobile links and an independent gateway. Legacy catalog mode can use a real model; the new requirement matching and historical pricing default to local rules and statistics throughout.
 
 When a mobile entry is configured, the mobile page also shows original prices, suggestions, discounts and delivery. The owner can accept or edit them, then enter the owner password to approve. The full workspace remains bound to 127.0.0.1:8765 and the separate mobile gateway to 8766. Temporary HTTPS tunnels and real incoming messages still require integration tests with the user's account.
 
-See “接入AI与手机通知_1.2.md” for the historical connection guide. These connections are not prerequisites for the API-free demonstration. Provider acceptance does not mean mobile delivery; delivery/read webhooks are not implemented. Customer replies are still sent by a person.
+See the [integration guide](INTEGRATIONS.md) for connection settings and account requirements. These connections are not prerequisites for the API-free demonstration. Provider acceptance does not mean mobile delivery; delivery/read webhooks are not implemented. Customer replies are still sent by a person.
 
 ## Development and reproduction
 
@@ -148,6 +134,6 @@ The backend uses FastAPI, SQLite, openpyxl and ReportLab, with Decimal amounts. 
     python -m pytest tests -q
     node tests/extension_checks.mjs
 
-See VERIFICATION.md for browser scripts. Ordinary application use does not require Node. The development sample-generation script tools/build_business_sample.mjs uses artifact-tool provided by Codex, which is not an end-user dependency. Sample Excel files are already included in the installation package and can be edited directly.
+See [development and testing](TESTING.md) for browser scripts. Ordinary application use does not require Node. Sample Excel files are included in the installation package and can be edited directly.
 
-The PDF font is Noto Sans SC, distributed under the SIL Open Font License. See assets/OFL.txt.
+The PDF font is Noto Sans SC, distributed under the SIL Open Font License. See the [font license](../assets/OFL.txt).

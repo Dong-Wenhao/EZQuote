@@ -1,10 +1,12 @@
 # AI and owner mobile notifications: local integration guide
 
-First replace the original project with the 1.2 code while keeping data, then sign in with the existing boss account and open “Connection settings” in the full workspace.
+Sign in with the boss account and open “Connection settings” in the full workspace. The default quotation workflow does not require these optional connections. See the [user guide](USER_GUIDE.md) for initial setup, business-data import and the local workflow.
 
 This guide covers account configuration and final integration testing together. The code is prepared, but access to real services still depends on your API permissions, quota, Meta test numbers, and network.
 
 ## 1. AI service
+
+Real AI inquiry understanding is optional in legacy catalog mode. The complete business workflow's requirement matching and historical pricing use local rules and statistics. The AI integration example below uses the supplied synthetic catalog price list.
 
 1. Create your own API key on the [OpenAI API platform](https://platform.openai.com/api-keys) and confirm that this project has permission to call the model.
 2. Enter the key locally under “Connection settings → AI inquiry understanding.” The default model is gpt-5.4-mini. You can instead enter a model available to your account that supports structured output through the Responses API.
@@ -60,11 +62,11 @@ The temporary gateway is intended for development demonstrations and has no avai
 
 Even without Meta credentials, once the mobile gateway is running and saved, staff can select “Copy mobile approval link” after submitting a quotation and manually forward it to the owner to check the mobile approval page. This does not send a message automatically.
 
-The owner opens the link, checks the line items, enters the owner password created during initial store setup, and approves or rejects the quotation. Links are valid for 60 minutes by default. Editing a quotation invalidates old links, and repeated clicks cannot approve it twice. Mobile approval uses the same backend approval and archiving logic.
+The owner opens the link, checks the line items, enters the owner password created during initial store setup, and approves or returns the quotation for revision. Links are valid for 60 minutes by default. Editing a quotation invalidates old links, and repeated clicks cannot approve it twice. Mobile approval uses the same backend approval and archiving logic.
 
 ## 3. Connecting WhatsApp mobile notifications
 
-The extension uses the WhatsApp Cloud API to send notifications; it does not reuse the WhatsApp login session in Chrome. A Meta-assigned test business number can be the notification sender, while staff continue to use their existing WhatsApp accounts with the extension.
+Mobile notifications use the WhatsApp Cloud API; they do not reuse the WhatsApp login session in Chrome. A Meta-assigned test business number can be the notification sender, while staff continue to use their existing WhatsApp accounts with the extension.
 
 Open [Meta WhatsApp developer getting started](https://developers.facebook.com/documentation/business-messaging/whatsapp/get-started) and prepare an application with WhatsApp business messaging enabled in your own developer account. Use that account's API Setup / getting-started page to obtain a test sender and access token, then add and verify the actual owner as a test recipient. Interface names depend on the account's current pages.
 
@@ -107,7 +109,7 @@ The following synthetic body can be a starting point when creating a template; M
 
 You can apply for the name quote_approval. The language code must match the approved version, for example en_US. The application fills only the four body parameters; it does not currently send template button or media-header parameters. Choose a template with this structure.
 
-Meta's built-in hello_world template does not follow this four-body-variable contract. Do not use it as the extension's four-parameter quotation template.
+Meta's built-in hello_world template does not follow this four-body-variable contract. Do not use it as the application's four-parameter quotation template.
 
 ## 4. Perform one complete integration test
 
@@ -140,13 +142,11 @@ For the first real test, prefer a synthetic demonstration inquiry that both part
 
 Delivery / read webhooks are not currently integrated, so API acceptance is not shown as delivery. If the process is interrupted, notifications being sent are marked as uncertain rather than automatically resent.
 
-## 6. Data and code
+## 6. Data and credentials
 
-Credentials are stored in the connection settings file under local data, without hardware-backed key-store encryption. Do not share data with teammates or upload it to GitHub; share the source archive instead. Stop the service before backing up the entire data directory to retain accounts, records, and mobile-link signing information.
+Credentials are stored in the connection settings file under local data, without hardware-backed key-store encryption. Do not distribute the data directory or upload it to GitHub. Stop the service before backing up the entire data directory to retain accounts, records, and mobile-link signing information.
 
-The new code is mainly in backend/ai.py, connections.py, mobile.py, mobile_gateway.py, and the mobile directory. End users do not need to read these files.
-
-Development verification commands and completed coverage are in VERIFICATION.md. The included test provider exists only in tests/mobile_fixture_server.py and is explicitly started by test scripts. It does not participate in real run.py execution and does not use real credentials.
+Development verification commands and coverage are described in [testing](TESTING.md). The included test provider exists only in tests/mobile_fixture_server.py and is explicitly started by test scripts. It does not participate in real run.py execution and does not use real credentials.
 
 ## Official API references
 
@@ -158,4 +158,4 @@ Development verification commands and completed coverage are in VERIFICATION.md.
 - [Meta Graph API changelog](https://developers.facebook.com/docs/graph-api/changelog/)
 - [Cloudflare Quick Tunnels](https://developers.cloudflare.com/tunnel/get-started/quick-tunnels/)
 
-Documentation checked: October 20, 2026. Some Meta pages could not be fully opened in the reference-reading environment. The template request structure was also checked against documentation from Meta's official historical SDK. Actual account permissions, template validation, and message delivery still require real integration testing.
+Actual account permissions, template validation, and message delivery require integration testing with the configured accounts.

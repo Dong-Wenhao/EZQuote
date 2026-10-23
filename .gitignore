@@ -5,7 +5,6 @@ __pycache__/
 .pytest_cache/
 *.pyc
 test-results/
-independent-results/remaining-*.json
 
 # Local configuration and credentials
 .env

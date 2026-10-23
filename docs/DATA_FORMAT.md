@@ -1,6 +1,6 @@
 # Business data template guide
 
-Use samples/business_demo.xlsx. Its five worksheets represent different parts of the business and must be imported together. The first row contains English column names; do not add a title row. The source field only identifies the synthetic sample source and does not affect pricing. The sample is neither a research report nor real company data.
+Use [samples/business_demo.xlsx](../samples/business_demo.xlsx). Its five worksheets represent different parts of the business and must be imported together. The first row contains English column names; do not add a title row. The source field only identifies the synthetic sample source and does not affect pricing. The sample is neither a research report nor real company data.
 
 ## Products
 

@@ -1,68 +1,70 @@
 # EZQuote
 
-EzQuote MVP 1.6.1 is a trilingual quotation workspace for building-materials stores. It supports Chinese, English and Malay: organize inquiries, check products and stock, generate pricing suggestions, obtain owner approval, export PDF / Excel files, and record customer outcomes.
+EzQuote MVP 1.6.1 is a local quotation workspace and WhatsApp Web Chrome extension for building-materials stores. It supports Chinese, English and Malay throughout inquiry review, product matching, pricing, owner approval and customer replies.
 
-The project includes a FastAPI backend, local SQLite storage, a plain web interface and a WhatsApp Web Chrome extension. The default workflow uses local rules and historical statistics, without AI or WhatsApp API keys.
+The default workflow uses local rules and historical business statistics. No AI or WhatsApp API key is required. The backend uses FastAPI and SQLite; the interface and extension use plain HTML, CSS and JavaScript.
 
-## Quick start
+## Run the application
 
-Python 3.10+ is required; Python 3.12 is recommended. From the repository root, run:
+Install Python 3.10+ (3.12 recommended), then run this command from the repository root:
 
 ```bash
 python run.py
 ```
 
-On macOS / Linux, use `python3 run.py` if the `python` command is unavailable. The launcher automatically creates `.venv`, installs runtime dependencies and opens the local workspace. Keep the terminal running and press `Ctrl+C` to stop. On Windows, you can also double-click `Start Windows.bat`; on macOS / Linux, run `Start Mac Linux.command`.
+On macOS / Linux, use `python3 run.py` if `python` is unavailable. The launcher creates `.venv`, installs runtime dependencies and opens the workspace. Keep the terminal open; press `Ctrl+C` to stop. Windows users can also double-click `Start Windows.bat`; macOS / Linux users can run `Start Mac Linux.command`.
 
-On first launch, set your shop name and separate owner and staff passwords. As the owner, open Settings → Business data, check and import `samples/business_demo.xlsx`, then try the complete quotation workflow. See the [user guide](README_先读我.md) for detailed steps.
+On first launch, create a shop and separate owner and staff passwords. The account names are `boss` and `staff`.
 
-This is a local application; the service and extension use local port 8765. Uploading the source to GitHub does not publish a public website. The cloud environment can run the service and tests; real WhatsApp extension use requires loading the extension on your own computer and running the local backend there.
+## Load the WhatsApp extension
 
-## Directory layout
+1. Open `chrome://extensions` in Chrome and enable **Developer mode**.
+2. Choose **Load unpacked** and select this project's `extension/` folder.
+3. Keep the local backend running and refresh WhatsApp Web.
+4. Select an inquiry or use its quotation entry, then sign in as `staff` in the side panel. Use a separate workspace tab for the `boss` account.
+
+The backend and extension use local port 8765. Each computer runs its own backend and keeps its own data. The GitHub repository provides source code; the application runs on the computer where it is installed.
+
+## Try the complete workflow
+
+1. Sign in as `boss`, open **Settings → Business data**, and check and import `samples/business_demo.xlsx`.
+2. As `staff`, start a new quotation and enter:
+
+   > Hi boss, I need 20 bags cement for plastering. Prefer fast setting. Deliver to Shah Alam. How much?
+
+3. Review the matched product, quantity and delivery area, confirm the source, and submit for owner approval.
+4. With the fresh sample workbook, the original total is **RM495.00** and the suggested total is **RM471.20**. The owner can accept it or adjust the price within the business rules.
+5. After approval, download the PDF and Excel files, choose a reply language, and check the chat draft before sending. Attach the PDF separately.
+6. Record the customer's outcome to include it in later pricing suggestions.
+
+See the [user guide](docs/USER_GUIDE.md) for the complete demonstration, manual corrections, backups and operating limits. The [business data format](docs/DATA_FORMAT.md) explains the workbook. Optional AI connections and mobile approvals are covered in [integrations](docs/INTEGRATIONS.md).
+
+## Project layout
 
 | Path | Contents |
 | --- | --- |
-| `backend/` | APIs, requirement review, pricing, approval and file exports |
-| `extension/` | Workspace interface and WhatsApp Web extension |
+| `extension/` | Chrome extension and workspace interface |
+| `backend/` | APIs, parsing, pricing, approvals and exports |
 | `mobile/` | Optional mobile approval interface |
-| `samples/` | Synthetic demonstration data and Excel templates |
-| `tests/`, `independent-results/`, `retest-results/` | Automated tests and regression cases |
-| `assets/` | Chinese PDF font and its license |
-| `tools/` | Release packaging and sample-generation tools |
-| `docs/` and root documentation files | Original requirements, user guides and release notes |
-| `qa-results/` | Historical verification records included in the uploaded package |
+| `assets/` | PDF font and its license |
+| `samples/` | Synthetic demonstration workbooks and product data |
+| `tests/` | Backend regressions, extension checks and browser tests |
+| `docs/` | User guide, data format, integrations and testing instructions |
+| `tools/build_release.py` | Release ZIP packaging and integrity checks |
 
-## Development and validation
+## Development
 
 ```bash
 python -m venv .venv
 # macOS / Linux
 source .venv/bin/activate
 python -m pip install -r requirements-dev.txt
-python -m pytest tests independent-results retest-results -q
+python -m pytest tests -q
 node tests/extension_checks.mjs
 ```
 
-The complete backend regression suite generates `independent-results/remaining-*.json` and refreshes `qa-results/long-inquiry-current.json`. The latter is retained in the repository as historical delivery evidence. Back it up first, save the current output separately and restore the backup, or run the complete suite in a temporary copy of the project. The regular `python -m pytest tests -q` command does not refresh that historical record.
+On Windows, activate with `.venv\Scripts\Activate.ps1` in PowerShell or `.venv\Scripts\activate.bat` in cmd. Node.js is used for development checks; ordinary application use does not require it. See [testing](docs/TESTING.md) for browser tests and release packaging, and [API.md](API.md) for endpoint contracts.
 
-On Windows, activate the environment with `.venv\Scripts\Activate.ps1` in PowerShell or `.venv\Scripts\activate.bat` in cmd.
+Runtime data is kept in the ignored `data/` directory by default. Stop the service before backing it up. Preserve `data/` and `.venv/` when updating an installation; do not share personal data or credentials in a submission package.
 
-Extension logic checks require Node.js. Browser tests additionally require Node.js 20+, Playwright and Chromium. Browser scripts start their own test services. Stop project processes occupying ports 8765 / 8766 before running them, and execute the scripts sequentially. These macOS / Linux Bash examples use an existing Chromium installation:
-
-```bash
-npm install --no-package-lock
-TEST_PYTHON="$PWD/.venv/bin/python" BROWSER_EXECUTABLE=/path/to/chromium node tests/browser_smoke.mjs
-TEST_PYTHON="$PWD/.venv/bin/python" BROWSER_EXECUTABLE=/path/to/chromium node tests/copilot_browser.mjs
-```
-
-If Chromium is not installed, first run `npx playwright install chromium`; you can then omit `BROWSER_EXECUTABLE` when running the scripts. In Windows PowerShell, first set `$env:TEST_PYTHON = "$PWD\.venv\Scripts\python.exe"`, optionally set `$env:BROWSER_EXECUTABLE = "full path to browser"`, and run `node tests/browser_smoke.mjs`.
-
-See [API.md](API.md) for the API contract and [VERIFICATION.md](VERIFICATION.md) for the original package's test coverage and real-device validation limits. `qa-results/` contains historical records from that package; see the separate [repository import notes](docs/仓库导入说明.md) for this import's results.
-
-## Data and extension
-
-Runtime data is stored in `data/` by default; use `WA_QUOTE_DATA` to select another directory. Stop the service before backing up the entire data directory. Databases, accounts, keys, local dependencies and exported files are excluded from Git. Each computer keeps its own data.
-
-Enable Developer mode on Chrome's extension management page, load this repository's `extension/` directory, then refresh WhatsApp Web. The extension processes inquiries that the user actively selects; the user checks replies before sending them. The mobile gateway, real AI and WhatsApp notifications are optional. See the [connection guide](接入AI与手机通知_1.2.md) for configuration.
-
-The font is distributed under the SIL Open Font License; see [assets/OFL.txt](assets/OFL.txt). This repository does not include an open-source license covering the application as a whole.
+The Noto Sans SC font uses the [SIL Open Font License](assets/OFL.txt). This repository does not include an open-source license covering the application as a whole.
