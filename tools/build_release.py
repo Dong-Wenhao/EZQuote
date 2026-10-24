@@ -29,7 +29,7 @@ def release_files():
     files = [ROOT / name for name in ROOT_FILES]
     files.extend(ROOT / "docs" / name for name in DOCUMENTS)
     files.extend(directory_files("docs/images", {".png", ".svg", ".dot"}))
-    files.extend(directory_files("submission", {".md", ".pdf", ".pptx", ".txt", ".mp4"}))
+    files.extend(directory_files("submission", {".md", ".pdf", ".docx", ".pptx", ".txt", ".mp4"}))
     for directory, suffixes in {"backend": {".py"}, "extension": None,
                                 "tests": {".py", ".mjs"}, "assets": {".ttf", ".txt"},
                                 "samples": {".xlsx", ".json"}, "mobile": {".html", ".js", ".css"}}.items():

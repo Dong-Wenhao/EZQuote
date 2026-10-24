@@ -2,6 +2,8 @@
 
 EzQuote MVP 1.6.1 is a local quotation workspace and WhatsApp Web Chrome extension for building-materials stores. It supports Chinese, English and Malay throughout inquiry review, product matching, pricing, owner approval and customer replies.
 
+SDC Hackathon 2026 · Team Lulu Master · Xiamen University Malaysia · Domain 2 · SDG 8 and SDG 9.
+
 The default workflow uses local rules and historical business statistics. No AI or WhatsApp API key is required. The owner controls the final price, and staff review customer replies before sending them.
 
 ## Problem and target users
@@ -72,13 +74,13 @@ No environmental benefit, revenue increase or job-creation effect has been quant
 | Submission status and outstanding evidence | [Materials index](submission/README.md) |
 | Technical tools declaration | [PDF](submission/Tech_Tools_Declaration.pdf) |
 | Pitch deck | [PDF](submission/Pitch_Deck_EzQuote.pdf) · [Editable PowerPoint](submission/Pitch_Deck_EzQuote.pptx) |
-| Official preliminary proposal | Awaiting the completed source document and required personal confirmations. |
+| Preliminary proposal supplied by the team | [PDF](submission/SDC2026_LuluMaster_Preliminary.pdf) · [Editable Word](submission/SDC2026_LuluMaster_Preliminary.docx); contact and provider/host details still need review. |
 | Replit proof of use | Awaiting genuine account, running-project and usage evidence. |
 | Product demo recording | [MP4](submission/EzQuote_Demo.mp4); a YouTube URL is still required. |
 | Public prototype | Awaiting a verified public URL. |
 | RunPod proof | Include only if the team actually used RunPod and supplies evidence. |
 
-Pending items are not represented as completed submissions.
+The supplied proposal includes the team's signature and date. Its missing leader telephone number and unresolved “QB” provider/host field are listed in the [materials index](submission/README.md). The proposed GenAI workflow in section 2.2 describes a design goal; the current implementation and verified-use status are described above. Pending items are not represented as completed submissions.
 
 ## Run the application
 
