@@ -1,0 +1,24 @@
+digraph Architecture {
+  graph [rankdir=LR, bgcolor="#f4f8f6", pad=0.35, nodesep=0.5, ranksep=0.65, fontname="DejaVu Sans", fontsize=20, label="EZQUOTE | LOCAL PROTOTYPE ARCHITECTURE", labelloc=t, fontcolor="#143d30"];
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=14, margin="0.2,0.16", color="#c7ddd1", fillcolor="#ffffff", fontcolor="#143d30", penwidth=1.4];
+  edge [color="#4b7c65", penwidth=1.7, arrowsize=0.8, fontname="DejaVu Sans", fontsize=10, fontcolor="#385d4c"];
+  inquiry [label="CUSTOMER INQUIRY\nSelected WhatsApp text\nor manually pasted request"];
+  workspace [label="WORKSPACE + EXTENSION\nChinese / English / Malay\nLocal browser interface", fillcolor="#d9f3e6"];
+  api [label="FASTAPI BACKEND\nAuthentication + source review\nStock + pricing + approval", fillcolor="#154d37", fontcolor=white, color="#154d37"];
+  workbook [label="EXCEL BUSINESS DATA\nProducts + inventory + history\nDelivery + shop rules"];
+  store [label="SQLITE\nQuotes + revisions + decisions\nCustomer outcomes + activity"];
+  people [label="HUMAN CONTROL\nStaff verifies source and items\nOwner accepts or edits price", fillcolor="#d9f3e6"];
+  output [label="APPROVED OUTPUT\nPDF + Excel ledger\nReply draft for manual sending"];
+  optional [label="OPTIONAL OPENAI API\nLegacy catalog extraction only\nDisabled by default", style="rounded,dashed,filled", color="#8b9b94", fontcolor="#596c62", fillcolor="#eef1ef"];
+  phone [label="OPTIONAL MOBILE GATEWAY\nSigned, expiring approval link\nOwner password required", style="rounded,dashed,filled", color="#8b9b94", fontcolor="#596c62", fillcolor="#eef1ef"];
+  inquiry -> workspace;
+  workspace -> api [label="local requests"];
+  workbook -> api [label="validated import"];
+  api -> store [dir=both, label="persist / read"];
+  api -> people [label="review + suggestion"];
+  people -> output [label="approved revision"];
+  api -> optional [style=dashed, label="optional"];
+  api -> phone [style=dashed, label="optional"];
+  {rank=same; workbook; workspace;}
+  {rank=same; store; people; optional; phone;}
+}

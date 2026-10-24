@@ -57,6 +57,6 @@ Browser checks use synthetic WhatsApp pages and provider responses. Native Chrom
 python tools/build_release.py
 ```
 
-The packager writes `../output/EzQuote_MVP_v1.6.1.zip` with a `wa_quote_mvp/` root directory. It includes the complete extension, runtime code, launchers, dependencies, font and license, samples, current documentation and development tests. It checks required files, version consistency, packaged extension bytes, ZIP CRC and SHA-256 hashes.
+The packager writes `../output/EzQuote_MVP_v1.6.1.zip` with a `wa_quote_mvp/` root directory. It includes the complete extension, runtime code, launchers, dependencies, font notices, Apache license, samples, current documentation and images, supplied submission materials and development tests. It checks required files, version consistency, packaged extension bytes, ZIP CRC and SHA-256 hashes. Missing proposals, service proofs and public links are not created or certified by packaging.
 
 Local data, databases, credentials, virtual environments, dependency caches and generated test outputs are excluded. Extract the complete ZIP before running `python run.py` or loading its `extension/` directory.

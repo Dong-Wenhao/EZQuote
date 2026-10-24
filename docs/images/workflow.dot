@@ -1,0 +1,13 @@
+digraph Workflow {
+  graph [rankdir=LR, bgcolor="#f4f8f6", pad=0.35, nodesep=0.4, ranksep=0.35, fontname="DejaVu Sans", fontsize=20, label="HUMAN-IN-THE-LOOP QUOTATION WORKFLOW", labelloc=t, fontcolor="#143d30"];
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=13, margin="0.16,0.2", color="#c7ddd1", fillcolor="#ffffff", fontcolor="#143d30", penwidth=1.4];
+  edge [color="#4b7c65", penwidth=1.8, arrowsize=0.8, fontname="DejaVu Sans", fontsize=11, fontcolor="#385d4c"];
+  trigger [label="01 | TRIGGER\nSelected or pasted\ncustomer inquiry"];
+  data [label="02 | CONNECTED DATA\nExcel catalog + inventory\nHistory + delivery + rules"];
+  logic [label="03 | DECISION LOGIC\nLocal parsing + stock checks\nHistorical pricing suggestion"];
+  approval [label="04 | HUMAN APPROVAL\nStaff verifies source and items\nOwner accepts or edits price", fillcolor="#154d37", fontcolor=white, color="#154d37"];
+  visible [label="05 | VISIBLE OUTPUT\nApproved PDF + ledger\nReply draft, manually sent"];
+  audit [label="06 | ACTIVITY LOG\nRevision + approval decision\nCustomer outcome", fillcolor="#d9f3e6"];
+  trigger -> data -> logic -> approval -> visible -> audit;
+  audit -> logic [style=dashed, label="Recorded outcomes inform later suggestions", constraint=false];
+}

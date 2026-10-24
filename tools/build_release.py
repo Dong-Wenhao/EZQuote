@@ -10,7 +10,7 @@ VERSION = "1.6.1"
 OUTPUT = ROOT.parent / "output" / f"EzQuote_MVP_v{VERSION}.zip"
 PREFIX = "wa_quote_mvp/"
 ROOT_FILES = {"run.py", "requirements.txt", "requirements-dev.txt", "package.json",
-              ".gitignore", "README.md", "API.md", "Start Windows.bat",
+              ".gitignore", ".gitattributes", "README.md", "API.md", "LICENSE", "Start Windows.bat",
               "Start Mobile Windows.bat", "Start Mac Linux.command"}
 DOCUMENTS = {"USER_GUIDE.md", "DATA_FORMAT.md", "INTEGRATIONS.md", "TESTING.md"}
 EXCLUDED_DIRECTORIES = {"data", ".venv", "node_modules", "__pycache__",
@@ -22,12 +22,14 @@ def directory_files(directory, suffixes=None):
     return [path for path in (ROOT / directory).rglob("*")
             if path.is_file()
             and not EXCLUDED_DIRECTORIES.intersection(path.relative_to(ROOT).parts)
-            and (suffixes is None or path.suffix in suffixes)]
+            and (suffixes is None or path.suffix.lower() in suffixes)]
 
 
 def release_files():
     files = [ROOT / name for name in ROOT_FILES]
     files.extend(ROOT / "docs" / name for name in DOCUMENTS)
+    files.extend(directory_files("docs/images", {".png", ".svg", ".dot"}))
+    files.extend(directory_files("submission", {".md", ".pdf", ".pptx", ".txt"}))
     for directory, suffixes in {"backend": {".py"}, "extension": None,
                                 "tests": {".py", ".mjs"}, "assets": {".ttf", ".txt"},
                                 "samples": {".xlsx", ".json"}, "mobile": {".html", ".js", ".css"}}.items():
@@ -75,7 +77,7 @@ def validate_archive(archive, files):
                        for file in directory_files("extension")}
     assert {name for name in names if name.startswith(PREFIX + "extension/")} == extension_names
     assert archive.read(PREFIX + "extension/icon128.png").startswith(b"\x89PNG")
-    for name in ("assets/NotoSansSC.ttf", "assets/OFL.txt", "samples/products.json",
+    for name in ("LICENSE", "assets/NotoSansSC.ttf", "assets/OFL.txt", "samples/products.json",
                  "samples/business_demo.json", "mobile/index.html", "backend/mobile_gateway.py",
                  "tests/test_previous_eight.py", "tests/test_remaining_edges.py",
                  "tests/test_long_inquiry.py", "tests/test_release_startup.py"):
