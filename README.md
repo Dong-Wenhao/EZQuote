@@ -21,7 +21,7 @@ The prototype brings those steps into one reviewable workflow. It aims to reduce
 
 ## Live demo
 
-**Awaiting verified public URL.** The current prototype has been validated locally. A Replit-hosted public demo and proof of use are not yet verified in this repository. Judges can run the full local workflow using the instructions below; the Chrome extension provides the WhatsApp entry on the same computer.
+**Awaiting verified public URL.** The current prototype has been validated locally. An opt-in Replit web entry point and [deployment guide](docs/REPLIT.md) are included; a successful Replit deployment and proof of use are still pending. Judges can run the full local workflow using the instructions below; the Chrome extension continues to provide the WhatsApp entry on the same computer.
 
 ## Product demo video
 
@@ -99,7 +99,7 @@ On first launch, create a shop and separate owner and staff passwords. The accou
 3. Keep the local backend running and refresh WhatsApp Web.
 4. Select an inquiry or use its quotation entry, then sign in as `staff` in the side panel. Use a separate workspace tab for the `boss` account.
 
-The backend and extension use local port 8765. Each computer runs its own backend and keeps its own data. The GitHub repository provides source code; the application runs on the computer where it is installed.
+For the normal local installation, the backend and extension use port 8765 and each computer keeps its own data. Replit uses the separate `run_replit.py` web entry point and configured HTTPS origins; it does not change the Chrome extension's local connection. Follow the [Replit guide](docs/REPLIT.md) to prepare a hosted demonstration.
 
 ## Try the complete workflow
 

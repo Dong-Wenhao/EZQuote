@@ -17,7 +17,7 @@ The technical declaration distinguishes the rule-based default workflow, optiona
 | Item | Current status |
 | --- | --- |
 | Completed preliminary proposal (`SDC2026_LuluMaster_Preliminary.pdf`) | Pending the original submission form and verified team contact details, signature, date and eligibility/workshop responses. |
-| Replit proof of use (`Replit_Proof_of_Use.pdf`) | Pending actual project/run/deployment and Usage or Credits evidence. No Replit use or deployment is claimed. |
+| Replit proof of use (`Replit_Proof_of_Use.pdf`) | Deployment configuration and a [step-by-step guide](../docs/REPLIT.md) are prepared; actual project/run/deployment and Usage or Credits evidence are still required. No hosted Replit use is claimed. |
 | Live prototype URL | Pending a verified public URL accessible to reviewers. The current prototype runs locally. |
 | YouTube product demonstration | Local MP4 is available above; pending its final playable public or unlisted YouTube URL. |
 | RunPod declaration or proof | Team use is unconfirmed. State “Not used” only if confirmed; add proof only if the service was actually used. |

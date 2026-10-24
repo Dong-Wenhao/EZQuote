@@ -9,10 +9,10 @@ ROOT = Path(__file__).resolve().parents[1]
 VERSION = "1.6.1"
 OUTPUT = ROOT.parent / "output" / f"EzQuote_MVP_v{VERSION}.zip"
 PREFIX = "wa_quote_mvp/"
-ROOT_FILES = {"run.py", "requirements.txt", "requirements-dev.txt", "package.json",
+ROOT_FILES = {"run.py", "run_replit.py", ".replit", "requirements.txt", "requirements-dev.txt", "package.json",
               ".gitignore", ".gitattributes", "README.md", "API.md", "LICENSE", "Start Windows.bat",
               "Start Mobile Windows.bat", "Start Mac Linux.command"}
-DOCUMENTS = {"USER_GUIDE.md", "DATA_FORMAT.md", "INTEGRATIONS.md", "TESTING.md"}
+DOCUMENTS = {"USER_GUIDE.md", "DATA_FORMAT.md", "INTEGRATIONS.md", "TESTING.md", "REPLIT.md"}
 EXCLUDED_DIRECTORIES = {"data", ".venv", "node_modules", "__pycache__",
                         ".pytest_cache", "test-results"}
 

@@ -28,6 +28,7 @@ from .requirements import understand
 from .pricing import recommend, save_pricing, get_pricing, totals, ensure_stock
 from .reviews import review as create_review, validate as validate_review, saved_review, bind as bind_review, stale as review_stale
 from .requirement_tokens import VERSION as PARSER_VERSION
+from .replit import normalize_public_origins
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -170,7 +171,11 @@ class MobileDecision(Version):
     pricing_note: str = Field(default="", max_length=500)
 
 
-def create_app(data_dir=None, transport=None, gateway_ready=None, start_worker=True):
+def create_app(data_dir=None, transport=None, gateway_ready=None, start_worker=True, public_origins=()):
+    public_origins = normalize_public_origins(public_origins)
+    allowed_origins = {"http://127.0.0.1:8765", "http://localhost:8765", *public_origins}
+    allowed_hosts = {"127.0.0.1", "localhost", "testserver"}
+    allowed_hosts.update(origin.removeprefix("https://") for origin in public_origins)
     store = Store(data_dir or os.getenv("WA_QUOTE_DATA") or ROOT / "data")
     connections = Connections(store.directory)
     transport = transport or ProviderHTTP()
@@ -200,17 +205,18 @@ def create_app(data_dir=None, transport=None, gateway_ready=None, start_worker=T
     login_attempts = {}
     mobile_attempts = {}
     app.add_middleware(CORSMiddleware,
-                       allow_origins=["http://127.0.0.1:8765", "http://localhost:8765"],
+                       allow_origins=sorted(allowed_origins),
                        allow_origin_regex=r"chrome-extension://[a-p]{32}",
                        allow_credentials=False, allow_methods=["GET", "POST", "PUT", "OPTIONS"],
                        allow_headers=["Authorization", "Content-Type"])
 
     @app.middleware("http")
     async def local_access(request: Request, call_next):
-        if request.headers.get("host", "").split(":")[0] not in {"127.0.0.1", "localhost", "testserver"}:
-            return JSONResponse({"detail": "Use the local 127.0.0.1 address"}, status_code=400)
+        if request.headers.get("host", "").split(":")[0] not in allowed_hosts:
+            detail = "Host is not allowed" if public_origins else "Use the local 127.0.0.1 address"
+            return JSONResponse({"detail": detail}, status_code=400)
         origin = request.headers.get("origin", "")
-        if origin and origin not in {"http://127.0.0.1:8765", "http://localhost:8765"}:
+        if origin and origin not in allowed_origins:
             import re
             if not re.fullmatch(r"chrome-extension://[a-p]{32}", origin):
                 return JSONResponse({"detail": "Origin is not allowed"}, status_code=403)

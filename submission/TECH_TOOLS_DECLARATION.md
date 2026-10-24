@@ -19,7 +19,7 @@ This unsigned technical declaration is based on inspection of the EZQuote MVP 1.
 | PyMuPDF | 1.26.6, pinned in `requirements-dev.txt` | Development checks of generated PDF content. |
 | Node.js and Playwright | Node.js 20+ for browser checks; Playwright 1.62.1 in `package.json` | Development-only extension and browser checks. Ordinary application startup does not require Node.js. |
 | GitHub | Repository and Git commit history | Source distribution and version history. |
-| OpenAI Codex | Development assistance during repository preparation | Used for repository setup, documentation translation and organization, submission preparation, and validation. This assistance is separate from model calls made by the application. Codex is not an end-user runtime dependency. |
+| OpenAI Codex | Development assistance during repository preparation | Used for repository setup, documentation translation and organization, opt-in hosting code and tests, submission preparation, and validation. This assistance is separate from model calls made by the application. Codex is not an end-user runtime dependency. |
 
 Direct Python package versions are specified in [requirements.txt](../requirements.txt) and [requirements-dev.txt](../requirements-dev.txt). Browser-check dependencies are in [package.json](../package.json).
 
@@ -32,7 +32,7 @@ Direct Python package versions are specified in [requirements.txt](../requiremen
 | Qwen | No Qwen provider or endpoint is implemented in the current repository. | Do not describe Qwen as an integrated or demonstrated service. |
 | Optional WhatsApp Cloud API | Implemented owner-notification queue, configurable Meta Graph API version (default `v26.0`), and signed mobile approval links. Disabled by default. | Local tests use synthetic provider responses. Live account authorization, message delivery and receipt have not been established by the supplied evidence. |
 | Cloudflare Tunnel | Optional `cloudflared` launcher support exposes the separate mobile approval gateway. | A local mobile gateway was tested. No public tunnel use was verified in the supplied evidence. |
-| Replit | No Replit deployment URL or proof-of-use material was supplied. The current application is configured for local access. | External team use is unconfirmed. Replit use or deployment must be evidenced before it is claimed. |
+| Replit | Opt-in `.replit` and `run_replit.py` web hosting configuration is included, with exact HTTPS origins and initial account passwords supplied through Secrets. The ordinary local launcher and Chrome extension remain unchanged. | The saved startup command and quotation/export workflow were validated locally. No Replit deployment URL or platform proof has been supplied; actual Replit use remains unverified. |
 | RunPod | No RunPod integration or proof-of-use material was supplied. | External team use is unconfirmed. Declare “Not used” only after team confirmation; provide proof only if it was actually used. |
 
 In optional OpenAI mode, the request contains the selected inquiry and candidate catalog identifiers and descriptions, excluding catalog prices. The application requests `store: false`, validates returned evidence against the inquiry, and falls back to local rules when the request or output fails. This setting is not a claim about all provider retention policies. A model cannot approve quotations or determine final prices.
@@ -47,7 +47,7 @@ In optional OpenAI mode, the request contains the selected inquiry and candidate
 
 ## Validation and limits
 
-Recorded local validation covers 331 backend cases, 10 extension logic groups, 8 browser smoke groups and 7 complete business/mobile workflow groups. It includes real local services, quotation submission and approval, PDF/Excel downloads, pricing limits and customer-outcome feedback.
+Recorded local validation covers 352 backend cases (331 original regressions and 21 opt-in hosting checks), 10 extension logic groups, 8 browser smoke groups and 7 complete business/mobile workflow groups. It includes real local services, quotation submission and approval, PDF/Excel downloads, pricing limits and customer-outcome feedback. The additional hosting checks and local runtime exercise cover configured public origins, account initialization and the saved Replit startup command; they are not a hosted Replit deployment.
 
 Chrome API bridges, WhatsApp page content and external-provider responses in these checks are synthetic. These results do not establish native Chrome/real WhatsApp integration, live Meta delivery, paid model calls, public cloud deployment or first-time installation on a clean Windows machine. See [testing instructions](../docs/TESTING.md) for reproduction commands and scope.
 

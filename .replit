@@ -1,0 +1,6 @@
+entrypoint = "run_replit.py"
+modules = ["python-3.12"]
+run = "sh -c 'python -m venv .venv && .venv/bin/python -m pip install --disable-pip-version-check -r requirements.txt && exec .venv/bin/python run_replit.py'"
+
+[deployment]
+run = ["sh", "-c", "python -m venv .venv && .venv/bin/python -m pip install --disable-pip-version-check -r requirements.txt && exec .venv/bin/python run_replit.py"]

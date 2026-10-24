@@ -17,7 +17,9 @@ python -m pytest tests -q --disable-warnings --tb=short
 
 On Windows, use `.venv\Scripts\Activate.ps1` in PowerShell or `.venv\Scripts\activate.bat` in cmd. Stop the development service before tests that use ports 8765 / 8766.
 
-All 331 backend cases are in `tests/`, including the independent requirement and long-input regressions. Coverage includes quantity integrity, multilingual parsing, stock, permissions, manual corrections, review binding, pricing, approval, idempotency, PDF / Excel exports, snapshots, feedback, mobile links and launcher behavior. Tests that save diagnostic JSON write it to the ignored `test-results/` directory.
+All 352 backend cases are in `tests/`: the original 331 business and launcher regressions, plus 21 opt-in Replit origin and account-initialization checks. Coverage includes quantity integrity, multilingual parsing, stock, permissions, manual corrections, review binding, pricing, approval, idempotency, PDF / Excel exports, snapshots, feedback, mobile links and launcher behavior. Tests that save diagnostic JSON write it to the ignored `test-results/` directory.
+
+The opt-in hosting checks verify exact public origins, rejection of unconfigured hosts and origins, closed first-visitor setup, distinct initial passwords, and preservation of existing cloud accounts and sessions. The `.replit` workspace and publishing commands use the same startup sequence; this command and the complete quotation/export API workflow were also exercised locally with isolated data. A browser check through a locally routed HTTPS test origin also verified both roles, import, submission, owner-edited approval and PDF download. These checks do not establish that a Replit account has published the application. See [Replit deployment](REPLIT.md) for the steps to perform in your account.
 
 ## Extension logic
 
