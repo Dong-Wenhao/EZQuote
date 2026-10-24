@@ -25,7 +25,9 @@ The prototype brings those steps into one reviewable workflow. It aims to reduce
 
 ## Product demo video
 
-**Awaiting verified public URL.** No final YouTube video link has been supplied. A real local-workflow screenshot is included below.
+A 51-second [local product demo recording (MP4)](submission/EzQuote_Demo.mp4) shows the real English interface: inquiry, product matching, staff submission, owner price edits, PDF download and customer-outcome recording. It uses isolated synthetic data with external APIs disabled.
+
+**YouTube link pending.** The recording is ready to upload, but no final public or unlisted YouTube URL has been supplied. A real local-workflow screenshot is included below.
 
 ![EZQuote local demonstration using synthetic data](docs/images/demo-screenshot.png)
 
@@ -72,7 +74,8 @@ No environmental benefit, revenue increase or job-creation effect has been quant
 | Pitch deck | [PDF](submission/Pitch_Deck_EzQuote.pdf) · [Editable PowerPoint](submission/Pitch_Deck_EzQuote.pptx) |
 | Official preliminary proposal | Awaiting the completed source document and required personal confirmations. |
 | Replit proof of use | Awaiting genuine account, running-project and usage evidence. |
-| Product video and public prototype | Awaiting verified public URLs. |
+| Product demo recording | [MP4](submission/EzQuote_Demo.mp4); a YouTube URL is still required. |
+| Public prototype | Awaiting a verified public URL. |
 | RunPod proof | Include only if the team actually used RunPod and supplies evidence. |
 
 Pending items are not represented as completed submissions.

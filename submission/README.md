@@ -8,6 +8,7 @@ These materials describe the implemented EZQuote prototype. Supporting documents
 | --- | --- |
 | Repository-based technical tools declaration, unsigned | [PDF](Tech_Tools_Declaration.pdf) · [Source](TECH_TOOLS_DECLARATION.md) |
 | Project pitch deck | [PDF](Pitch_Deck_EzQuote.pdf) · [PowerPoint](Pitch_Deck_EzQuote.pptx) |
+| Local product demonstration, synthetic data | [MP4 recording](EzQuote_Demo.mp4), 51 seconds; not a Replit proof or YouTube publication. |
 
 The technical declaration distinguishes the rule-based default workflow, optional OpenAI extraction, development assistance and integrations whose real use has not been verified. It does not replace an official signed form if the competition requires one.
 
@@ -18,7 +19,7 @@ The technical declaration distinguishes the rule-based default workflow, optiona
 | Completed preliminary proposal (`SDC2026_LuluMaster_Preliminary.pdf`) | Pending the original submission form and verified team contact details, signature, date and eligibility/workshop responses. |
 | Replit proof of use (`Replit_Proof_of_Use.pdf`) | Pending actual project/run/deployment and Usage or Credits evidence. No Replit use or deployment is claimed. |
 | Live prototype URL | Pending a verified public URL accessible to reviewers. The current prototype runs locally. |
-| YouTube product demonstration | Pending the final playable public or unlisted video URL. |
+| YouTube product demonstration | Local MP4 is available above; pending its final playable public or unlisted YouTube URL. |
 | RunPod declaration or proof | Team use is unconfirmed. State “Not used” only if confirmed; add proof only if the service was actually used. |
 
 Missing files and URLs are not linked to placeholders. The proposal, service evidence and video must reflect actual team activity and the capabilities demonstrated by the code.
